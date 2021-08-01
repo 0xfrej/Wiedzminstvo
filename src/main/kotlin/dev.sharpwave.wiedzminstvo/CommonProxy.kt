@@ -6,10 +6,10 @@ import dev.sharpwave.wiedzminstvo.capabilities.horseowner.IHorseOwner
 import dev.sharpwave.wiedzminstvo.capabilities.storedhorse.HorseStorage
 import dev.sharpwave.wiedzminstvo.capabilities.storedhorse.IStoredHorse
 import dev.sharpwave.wiedzminstvo.capabilities.storedhorse.StoredHorse
-import dev.sharpwave.wiedzminstvo.network.HorseCapSyncPacket
-import dev.sharpwave.wiedzminstvo.network.OwnerSyncShowStatsPacket
-import dev.sharpwave.wiedzminstvo.network.PlayWhistlePacket
-import dev.sharpwave.wiedzminstvo.network.PressKeyPacket
+import dev.sharpwave.wiedzminstvo.network.horse.HorseCapSyncPacket
+import dev.sharpwave.wiedzminstvo.network.horse.OwnerSyncShowStatsPacket
+import dev.sharpwave.wiedzminstvo.network.horse.PlayWhistlePacket
+import dev.sharpwave.wiedzminstvo.network.horse.PressKeyPacket
 import dev.sharpwave.wiedzminstvo.sound.WhistleSounds.registerSounds
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.network.PacketBuffer
@@ -37,14 +37,14 @@ class CommonProxy : IProxy {
     companion object {
         fun setup(event: FMLCommonSetupEvent?) {
             val version: String = WiedzminstvoMod.info.version.toString()
-            WiedzminstvoMod.network =
-                NetworkRegistry.newSimpleChannel(ResourceLocation(WiedzminstvoMod.ID, "callablehorseschannel"),
+            WiedzminstvoMod.mainNetwork =
+                NetworkRegistry.newSimpleChannel(ResourceLocation(WiedzminstvoMod.ID, "wiedzminstvo_main_channel"),
                     { version },
                     { anObject: String? -> version.equals(anObject) }
                 ) { anObject: String? -> version.equals(anObject) }
 
             @Suppress("INACCESSIBLE_TYPE")
-            WiedzminstvoMod.network.registerMessage(0,
+            WiedzminstvoMod.mainNetwork.registerMessage(0,
                 HorseCapSyncPacket::class.java,
                 { obj: HorseCapSyncPacket, buf: PacketBuffer -> obj.toBytes(buf) },
                 { HorseCapSyncPacket() },
@@ -52,7 +52,7 @@ class CommonProxy : IProxy {
                 Optional.of(NetworkDirection.PLAY_TO_CLIENT)
             )
             @Suppress("INACCESSIBLE_TYPE")
-            WiedzminstvoMod.network.registerMessage(1,
+            WiedzminstvoMod.mainNetwork.registerMessage(1,
                 OwnerSyncShowStatsPacket::class.java,
                 OwnerSyncShowStatsPacket::toBytes,
                 { OwnerSyncShowStatsPacket() },
@@ -60,7 +60,7 @@ class CommonProxy : IProxy {
                 Optional.of(NetworkDirection.PLAY_TO_CLIENT)
             )
             @Suppress("INACCESSIBLE_TYPE")
-            WiedzminstvoMod.network.registerMessage(2,
+            WiedzminstvoMod.mainNetwork.registerMessage(2,
                 PressKeyPacket::class.java,
                 PressKeyPacket::toBytes,
                 { PressKeyPacket() },
@@ -68,7 +68,7 @@ class CommonProxy : IProxy {
                 Optional.of(NetworkDirection.PLAY_TO_SERVER)
             )
             @Suppress("INACCESSIBLE_TYPE")
-            WiedzminstvoMod.network.registerMessage(3,
+            WiedzminstvoMod.mainNetwork.registerMessage(3,
                 PlayWhistlePacket::class.java,
                 PlayWhistlePacket::toBytes,
                 { PlayWhistlePacket() },

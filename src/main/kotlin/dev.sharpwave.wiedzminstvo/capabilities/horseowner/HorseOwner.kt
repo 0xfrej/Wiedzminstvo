@@ -12,6 +12,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.vector.Vector3d
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
+import net.minecraftforge.common.util.LazyOptional
 import java.util.*
 
 
@@ -20,21 +21,21 @@ class HorseOwner : IHorseOwner {
     override var horseNBT: CompoundNBT = CompoundNBT()
     override var storageUUID: String = ""
     override var lastSeenDim: RegistryKey<World> =
-        RegistryKey.func_240903_a_(Registry.WORLD_KEY, ResourceLocation("overworld"))
+        RegistryKey.create(Registry.DIMENSION_REGISTRY, ResourceLocation("overworld"))
     override var lastSeenPosition = Vector3d.ZERO
 
     override fun createHorseEntity(world: World): AbstractHorseEntity? {
-        val type: Optional<EntityType<*>> = EntityType.readEntityType(horseNBT)
+        val type: Optional<EntityType<*>> = EntityType.by(horseNBT)
         if (type.isPresent) {
             val entity = type.get().create(world)
             if (entity is AbstractHorseEntity) {
-                entity.read(horseNBT)
+                entity.readAdditionalSaveData(horseNBT)
                 horseNum++
-                val cap = entity.getCapability(HorseProvider.HORSE_CAPABILITY, null)
+                val cap: LazyOptional<IStoredHorse?> = entity.getCapability(HorseProvider.HORSE_CAPABILITY!!, null)
                 if (cap.isPresent) {
                     cap.resolve().get().horseNum = horseNum
-                    entity.setUniqueId(UUID.randomUUID())
-                    entity.extinguish()
+                    entity.uuid = UUID.randomUUID()
+                    entity.clearFire()
                     entity.hurtTime = 0
                 }
                 return entity
@@ -46,11 +47,11 @@ class HorseOwner : IHorseOwner {
 
     override fun setHorse(horse: AbstractHorseEntity, player: PlayerEntity) {
         storageUUID = UUID.randomUUID().toString()
-        val cap = horse.getCapability(HorseProvider.HORSE_CAPABILITY, null)
+        val cap = horse.getCapability(HorseProvider.HORSE_CAPABILITY!!, null)
         cap.ifPresent { storedHorse: IStoredHorse? ->
             storedHorse!!.horseNum = horseNum
             storedHorse.isOwned = true
-            storedHorse.ownerUUID = player!!.gameProfile.id.toString()
+            storedHorse.ownerUUID = player.gameProfile.id.toString()
             storedHorse.storageUUID = storageUUID
             val tag = horse.serializeNBT()
             horseNBT = tag
@@ -61,7 +62,7 @@ class HorseOwner : IHorseOwner {
         horseNum = 0
         horseNBT = CompoundNBT()
         storageUUID = ""
-        lastSeenDim = RegistryKey.func_240903_a_(Registry.WORLD_KEY, ResourceLocation("overworld"))
+        lastSeenDim = RegistryKey.create(Registry.DIMENSION_REGISTRY, ResourceLocation("overworld"))
         lastSeenPosition = Vector3d.ZERO
     }
 }

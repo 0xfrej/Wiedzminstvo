@@ -1,7 +1,7 @@
-package dev.sharpwave.wiedzminstvo.network
+package dev.sharpwave.wiedzminstvo.network.horse
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
-import dev.sharpwave.wiedzminstvo.sound.WhistleSounds.randomWhistle
+import dev.sharpwave.wiedzminstvo.sound.WhistleSounds
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.network.PacketBuffer
 import net.minecraft.util.SoundCategory
@@ -18,13 +18,15 @@ class PlayWhistlePacket {
     fun handle(ctx: Supplier<NetworkEvent.Context>) {
         if (ctx.get().direction.receptionSide.isClient) {
             ctx.get().enqueueWork {
-                val player: PlayerEntity = WiedzminstvoMod.proxy.getPlayer()
+                val player: PlayerEntity? = WiedzminstvoMod.proxy.player
                 if (player != null) {
                     val rand = Random()
-                    player.world.playSound(
+                    player.level.playSound(
                         player,
-                        player.getPosition(),
-                        randomWhistle,
+                        player.x,
+                        player.y,
+                        player.z,
+                        WhistleSounds.randomWhistle!!,
                         SoundCategory.PLAYERS,
                         1f,
                         (1.4 + rand.nextGaussian() / 3).toFloat()

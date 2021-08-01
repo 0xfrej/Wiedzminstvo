@@ -25,7 +25,7 @@ class ClientProxy : IProxy {
 
     companion object {
         @SubscribeEvent
-        fun setup(event: FMLClientSetupEvent?) {
+        fun setup(event: FMLClientSetupEvent) {
             KeybindManager.init()
         }
     }

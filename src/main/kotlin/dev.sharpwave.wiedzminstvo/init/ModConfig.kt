@@ -4,11 +4,10 @@ import com.electronwill.nightconfig.core.file.CommentedFileConfig
 import com.electronwill.nightconfig.core.io.WritingMode
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.config.HorseConfig
+import dev.sharpwave.wiedzminstvo.config.MainConfig
 import net.minecraftforge.common.ForgeConfigSpec
-import net.minecraftforge.fml.common.Mod
 import java.io.File
 
-@Mod.EventBusSubscriber
 object ModConfig {
     private val serverBuilder = ForgeConfigSpec.Builder()
     private val clientBuilder = ForgeConfigSpec.Builder()
@@ -17,6 +16,7 @@ object ModConfig {
 
     init {
         // Build configs from each config definition class
+        MainConfig(this.serverBuilder, this.clientBuilder)
         HorseConfig(this.serverBuilder, this.clientBuilder)
 
         // Build configs

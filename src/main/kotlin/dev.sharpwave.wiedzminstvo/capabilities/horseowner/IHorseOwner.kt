@@ -8,13 +8,13 @@ import net.minecraft.util.math.vector.Vector3d
 import net.minecraft.world.World
 
 interface IHorseOwner {
-    fun createHorseEntity(world: World): AbstractHorseEntity?
     var horseNBT: CompoundNBT
-
-    fun setHorse(horse: AbstractHorseEntity, player: PlayerEntity)
-    fun clearHorse()
     var horseNum: Int
     var storageUUID: String
     var lastSeenPosition: Vector3d
     var lastSeenDim: RegistryKey<World>
+
+    fun createHorseEntity(world: World): AbstractHorseEntity?
+    fun setHorse(horse: AbstractHorseEntity, player: PlayerEntity)
+    fun clearHorse()
 }

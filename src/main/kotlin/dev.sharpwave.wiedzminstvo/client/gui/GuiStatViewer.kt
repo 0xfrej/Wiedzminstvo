@@ -103,7 +103,7 @@ class GuiStatViewer(player: PlayerEntity) : Screen(StringTextComponent("Horse St
         AbstractGui.drawString(
             stack,
             mc.font,
-            lastDim.func_240901_a_().toString(),
+            lastDim.location().toString(),
             i + 8,
             j + 120,
             DyeColor.WHITE.colorValue
@@ -128,43 +128,43 @@ class GuiStatViewer(player: PlayerEntity) : Screen(StringTextComponent("Horse St
 
     companion object {
         private val TEXTURE = ResourceLocation(WiedzminstvoMod.ID, "textures/gui/horse_stat_viewer.png")
-        private val setColor: Method? = ObfuscationReflectionHelper.findMethod(
-            LlamaEntity::class.java, "func_190711_a",
-            DyeColor::class.java
-        )
     }
 
     init {
-        owner = HorseHelper.getOwnerCap(player)
+        owner = HorseHelper.getOwnerCap(player)!!
         horse = owner.createHorseEntity(player.level)!!
         horse.attributes.load(owner.horseNBT.getList("Attributes", 10)) // Read
 
         // attributes
         horse.readAdditionalSaveData(owner.horseNBT)
         val cap = horse.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
+
         cap.ifPresent { horseInventory: IItemHandler ->
             if (horseInventory.getStackInSlot(0)
-                    .isEmpty && horse.func_230264_L__()
-            ) horse.func_230266_a_(null) // Set saddled
+                    .isEmpty && horse.isSaddleable
+            ) horse.equipSaddle(null) // Set saddled
             if (horse is LlamaEntity) {
-                // TODO: Use ObfuscationReflectionHelper
-                if (setColor != null) {
-                    try {
-                        val stack = horseInventory.getStackInSlot(1)
-                        if (horse.isArmor(stack)) setColor.invoke(
-                            horse,
-                            DyeColor.byId(stack.damageValue)
-                        ) else setColor.invoke(horse, null as DyeColor?)
-                    } catch (e: IllegalAccessException) {
-                        e.printStackTrace()
-                    } catch (e: IllegalArgumentException) {
-                        e.printStackTrace()
-                    } catch (e: InvocationTargetException) {
-                        e.printStackTrace()
-                    }
+                try {
+                    val setColor: Method = ObfuscationReflectionHelper.findMethod(
+                        LlamaEntity::class.java, "func_190711_a",
+                        DyeColor::class.java
+                    )
+
+                    val stack = horseInventory.getStackInSlot(1)
+                    if (horse.isArmor(stack)) setColor.invoke(
+                        horse,
+                        DyeColor.byId(stack.damageValue)
+                    ) else setColor.invoke(horse, null as DyeColor?)
+                } catch (e: IllegalAccessException) {
+                    e.printStackTrace()
+                } catch (e: IllegalArgumentException) {
+                    e.printStackTrace()
+                } catch (e: InvocationTargetException) {
+                    e.printStackTrace()
                 }
             }
         }
+
         health = floor(horse.health.toDouble()).toFloat()
         maxHealth = (floor((horse.maxHealth * 10).toDouble()) / 10).toFloat()
         speed = (floor(horse.getAttribute(Attributes.MOVEMENT_SPEED)!!.value * 100) / 10).toFloat()

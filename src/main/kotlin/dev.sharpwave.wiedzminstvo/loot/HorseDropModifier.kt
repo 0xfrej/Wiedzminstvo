@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus
 open class HorseDropModifier protected constructor(conditionsIn: Array<ILootCondition>?) : LootModifier(conditionsIn) {
 
     override fun doApply(generatedLoot: MutableList<ItemStack>, context: LootContext): List<ItemStack> {
-        val entity: Entity = context.get(LootParameters.THIS_ENTITY)
+        val entity: Entity? = context.getParamOrNull(LootParameters.THIS_ENTITY)
         if (entity is AbstractHorseEntity) {
             val horse = getHorseCap(entity)
             if (horse != null && horse.isOwned) {

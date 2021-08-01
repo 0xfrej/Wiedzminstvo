@@ -29,7 +29,7 @@ import net.minecraftforge.fml.config.ModConfig as FMLModConfig
 object WiedzminstvoMod {
     // the modid of our mod
     const val ID: String = "wiedzminstvo"
-    lateinit var network: SimpleChannel
+    lateinit var mainNetwork: SimpleChannel
     val info: IModInfo
 
     var proxy: IProxy = DistExecutor.safeRunForDist(
@@ -53,8 +53,9 @@ object WiedzminstvoMod {
         // usage of the KotlinEventBus
         MOD_BUS.addListener(::onClientSetup)
         FORGE_BUS.addListener(::onServerAboutToStart)
+        MOD_BUS.addListener(::onCommonSetup)
 
-        info = ModLoadingContext.get().getActiveContainer().getModInfo();
+        info = ModLoadingContext.get().activeContainer.modInfo;
     }
 
     private fun onCommonSetup(event: FMLCommonSetupEvent) {
@@ -62,10 +63,10 @@ object WiedzminstvoMod {
     }
 
     private fun onClientSetup(event: FMLClientSetupEvent) {
-        //logger.log(Level.INFO, "Initializing client...")
+
     }
 
     private fun onServerAboutToStart(event: FMLServerAboutToStartEvent) {
-        //logger.log(Level.INFO, "Server starting...")
+
     }
 }

@@ -1,4 +1,4 @@
-package dev.sharpwave.wiedzminstvo.network
+package dev.sharpwave.wiedzminstvo.network.horse
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.capabilities.storedhorse.HorseProvider
@@ -8,7 +8,6 @@ import net.minecraft.entity.Entity
 import net.minecraft.nbt.CompoundNBT
 import net.minecraft.network.PacketBuffer
 import net.minecraft.world.World
-import net.minecraftforge.fml.loading.FMLEnvironment
 import net.minecraftforge.fml.network.NetworkEvent
 import java.util.function.Supplier
 
@@ -40,8 +39,8 @@ class HorseCapSyncPacket {
     fun handle(ctx: Supplier<NetworkEvent.Context>) {
         if (ctx.get().direction.receptionSide.isClient) {
             ctx.get().enqueueWork {
-                val world: World = WiedzminstvoMod.proxy.getWorld()
-                val e: Entity = world.getEntityByID(entityID)
+                val world: World = WiedzminstvoMod.proxy.world!!
+                val e: Entity? = world.getEntity(entityID)
                 if (e != null) {
                     val horse = getHorseCap(e)
                     HorseProvider.HORSE_CAPABILITY!!.storage

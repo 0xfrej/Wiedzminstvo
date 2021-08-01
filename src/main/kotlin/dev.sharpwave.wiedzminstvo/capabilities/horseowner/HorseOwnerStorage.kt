@@ -20,7 +20,7 @@ class HorseOwnerStorage : IStorage<IHorseOwner> {
         tag.putInt("horseNum", instance.horseNum)
         tag.putString("uuid", instance.storageUUID)
         tag.put("lastSeenPos", NBTUtil.writeBlockPos(BlockPos(instance.lastSeenPosition)))
-        tag.putString("lastSeenDim", instance.lastSeenDim.func_240901_a_().toString())
+        tag.putString("lastSeenDim", instance.lastSeenDim.location().toString())
         return tag
     }
 
@@ -32,6 +32,6 @@ class HorseOwnerStorage : IStorage<IHorseOwner> {
         val temp = NBTUtil.readBlockPos(tag.getCompound("lastSeenPos"))
         instance.lastSeenPosition = Vector3d(temp.x.toDouble(), temp.y.toDouble(), temp.z.toDouble())
         instance.lastSeenDim =
-            RegistryKey.func_240903_a_(Registry.WORLD_KEY, ResourceLocation(tag.getString("lastSeenDim")))
+            RegistryKey.create(Registry.DIMENSION_REGISTRY, ResourceLocation(tag.getString("lastSeenDim")))
     }
 }

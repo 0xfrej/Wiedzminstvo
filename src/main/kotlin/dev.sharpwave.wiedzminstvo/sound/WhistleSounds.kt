@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus
 object WhistleSounds {
 	var randomWhistle: SoundEvent? = null
 	private val sounds = ArrayList<SoundEvent>()
+
 	fun registerSounds() {
 		randomWhistle = registerSound("whistle")
 	}

@@ -6,7 +6,7 @@ import net.minecraftforge.common.ForgeConfigSpec.ConfigValue
 
 object HorseConfig : IConfig {
     var deathIsPermanent: ForgeConfigSpec.BooleanValue? = null
-    var callableDimsWhitelist: ConfigValue<List<String?>>? = null
+    var callableDimsWhitelist: ConfigValue<List<String>>? = null
     var maxCallingDistance: ForgeConfigSpec.IntValue? = null
     var enableStatsViewer: ForgeConfigSpec.BooleanValue? = null
     var walkRange: ForgeConfigSpec.DoubleValue? = null

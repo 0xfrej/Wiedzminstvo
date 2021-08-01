@@ -5,7 +5,7 @@ import dev.sharpwave.wiedzminstvo.capabilities.horseowner.HorseOwnerProvider
 import dev.sharpwave.wiedzminstvo.capabilities.horseowner.IHorseOwner
 import dev.sharpwave.wiedzminstvo.capabilities.storedhorse.HorseProvider
 import dev.sharpwave.wiedzminstvo.capabilities.storedhorse.IStoredHorse
-import dev.sharpwave.wiedzminstvo.network.HorseCapSyncPacket
+import dev.sharpwave.wiedzminstvo.network.horse.HorseCapSyncPacket
 import dev.sharpwave.wiedzminstvo.worlddata.StoredHorsesWorldData
 import net.minecraft.entity.Entity
 import net.minecraft.entity.player.PlayerEntity
@@ -21,17 +21,17 @@ import java.util.*
 
 object HorseHelper {
     private val cachedHorses: MutableMap<Entity, LazyOptional<IStoredHorse>> = HashMap()
-    fun getOwnerCap(player: PlayerEntity): IHorseOwner {
-        val cap = player.getCapability(HorseOwnerProvider.OWNER_CAPABILITY, null)
+    fun getOwnerCap(player: PlayerEntity): IHorseOwner? {
+        val cap = player.getCapability(HorseOwnerProvider.OWNER_CAPABILITY!!, null)
         return if (cap.isPresent) cap.resolve().get() else null
     }
 
     fun getHorseCap(horse: Entity): IStoredHorse? {
         var cap = cachedHorses[horse]
         if (cap == null) {
-            cap = horse.getCapability(HorseProvider.HORSE_CAPABILITY, null)
+            cap = horse.getCapability(HorseProvider.HORSE_CAPABILITY!!, null)
             cachedHorses[horse] = cap
-            cap.addListener(NonNullConsumer { optional: LazyOptional<IStoredHorse>? ->
+            cap.addListener(NonNullConsumer {
                 cachedHorses.remove(
                     horse
                 )
@@ -42,20 +42,20 @@ object HorseHelper {
 
     fun sendHorseUpdateInRange(horse: Entity) {
         val storedHorse = getHorseCap(horse)
-        WiedzminstvoMod.network.send(PacketDistributor.NEAR.with {
+        WiedzminstvoMod.mainNetwork.send(PacketDistributor.NEAR.with {
             TargetPoint(
                 horse.x,
                 horse.y,
                 horse.z,
                 32.0,
-                horse.level.func_234923_W_()
+                horse.level.dimension()
             )
         }, HorseCapSyncPacket(horse.id, storedHorse))
     }
 
     fun sendHorseUpdateToClient(horse: Entity, player: PlayerEntity) {
         val storedHorse = getHorseCap(horse)
-        WiedzminstvoMod.network.send(
+        WiedzminstvoMod.mainNetwork.send(
             PacketDistributor.PLAYER.with { player as ServerPlayerEntity? },
             HorseCapSyncPacket(horse.id, storedHorse)
         )
@@ -79,9 +79,9 @@ object HorseHelper {
     }
 
     fun setHorseLastSeen(player: PlayerEntity) {
-        val owner = getOwnerCap(player)
-        owner!!.lastSeenPosition = player.position()
-        owner.lastSeenDim = player.level.func_234923_W_()
+        val owner = getOwnerCap(player)!!
+        owner.lastSeenPosition = player.position()
+        owner.lastSeenDim = player.level.dimension()
     }
 
     fun getWorldData(world: ServerWorld): StoredHorsesWorldData {
