@@ -124,7 +124,7 @@ class StoredHorsesWorldData : WorldSavedData {
     }
 
     companion object {
-        private val name: String = WiedzminstvoMod.ID.toString() + "_stored_horses"
+        private val name: String = WiedzminstvoMod.MODID.toString() + "_stored_horses"
         fun getInstance(world: ServerWorld): StoredHorsesWorldData {
             val storage: DimensionSavedDataManager = world.dataStorage
             val instance = storage.get({ StoredHorsesWorldData() }, name) as StoredHorsesWorldData

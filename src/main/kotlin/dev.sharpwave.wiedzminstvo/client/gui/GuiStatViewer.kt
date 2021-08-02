@@ -127,7 +127,7 @@ class GuiStatViewer(player: PlayerEntity) : Screen(StringTextComponent("Horse St
     }
 
     companion object {
-        private val TEXTURE = ResourceLocation(WiedzminstvoMod.ID, "textures/gui/horse_stat_viewer.png")
+        private val TEXTURE = ResourceLocation(WiedzminstvoMod.MODID, "textures/gui/horse_stat_viewer.png")
     }
 
     init {

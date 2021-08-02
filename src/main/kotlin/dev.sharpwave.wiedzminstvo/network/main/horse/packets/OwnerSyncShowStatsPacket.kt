@@ -1,4 +1,4 @@
-package dev.sharpwave.wiedzminstvo.network.horse
+package dev.sharpwave.wiedzminstvo.network.main.horse.packets
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.capabilities.horseowner.HorseOwnerProvider

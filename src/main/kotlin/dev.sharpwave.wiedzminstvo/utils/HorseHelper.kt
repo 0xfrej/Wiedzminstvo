@@ -5,7 +5,7 @@ import dev.sharpwave.wiedzminstvo.capabilities.horseowner.HorseOwnerProvider
 import dev.sharpwave.wiedzminstvo.capabilities.horseowner.IHorseOwner
 import dev.sharpwave.wiedzminstvo.capabilities.storedhorse.HorseProvider
 import dev.sharpwave.wiedzminstvo.capabilities.storedhorse.IStoredHorse
-import dev.sharpwave.wiedzminstvo.network.horse.HorseCapSyncPacket
+import dev.sharpwave.wiedzminstvo.network.main.horse.packets.HorseCapSyncPacket
 import dev.sharpwave.wiedzminstvo.worlddata.StoredHorsesWorldData
 import net.minecraft.entity.Entity
 import net.minecraft.entity.player.PlayerEntity

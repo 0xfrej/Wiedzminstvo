@@ -33,19 +33,19 @@ import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 
 
-@EventBusSubscriber(modid = WiedzminstvoMod.ID)
+@EventBusSubscriber(modid = WiedzminstvoMod.MODID)
 object HorseEntityEvents {
     @SubscribeEvent
     fun onAttachCaps(event: AttachCapabilitiesEvent<Entity?>) {
         if (event.getObject() is PlayerEntity) event.addCapability(
             ResourceLocation(
-                WiedzminstvoMod.ID,
+                WiedzminstvoMod.MODID,
                 "horse_owner"
             ), HorseOwnerProvider()
         )
         if (event.getObject() is AbstractHorseEntity) event.addCapability(
             ResourceLocation(
-                WiedzminstvoMod.ID,
+                WiedzminstvoMod.MODID,
                 "stored_horse"
             ), HorseProvider()
         )

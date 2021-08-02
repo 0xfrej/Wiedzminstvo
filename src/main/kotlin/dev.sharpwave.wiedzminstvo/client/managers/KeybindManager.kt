@@ -15,9 +15,9 @@ object KeybindManager {
 
     fun init() {
         if (FMLEnvironment.dist.isClient) {
-            setHorse = KeyBinding("key.sethorse.desc", GLFW.GLFW_KEY_P, "key.${WiedzminstvoMod.ID}.category")
-            callHorse = KeyBinding("key.callhorse.desc", GLFW.GLFW_KEY_V, "key.${WiedzminstvoMod.ID}.category")
-            showStats = KeyBinding("key.showstats.desc", GLFW.GLFW_KEY_K, "key.${WiedzminstvoMod.ID}.category")
+            setHorse = KeyBinding("key.sethorse.desc", GLFW.GLFW_KEY_P, "key.${WiedzminstvoMod.MODID}.category")
+            callHorse = KeyBinding("key.callhorse.desc", GLFW.GLFW_KEY_V, "key.${WiedzminstvoMod.MODID}.category")
+            showStats = KeyBinding("key.showstats.desc", GLFW.GLFW_KEY_K, "key.${WiedzminstvoMod.MODID}.category")
             ClientRegistry.registerKeyBinding(setHorse)
             ClientRegistry.registerKeyBinding(callHorse)
             if (HorseConfig.enableStatsViewer?.get() == true) ClientRegistry.registerKeyBinding(showStats)

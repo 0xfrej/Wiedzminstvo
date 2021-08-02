@@ -3,8 +3,8 @@ package dev.sharpwave.wiedzminstvo.managers
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.capabilities.storedhorse.IStoredHorse
 import dev.sharpwave.wiedzminstvo.config.HorseConfig
-import dev.sharpwave.wiedzminstvo.network.horse.OwnerSyncShowStatsPacket
-import dev.sharpwave.wiedzminstvo.network.horse.PlayWhistlePacket
+import dev.sharpwave.wiedzminstvo.network.main.horse.packets.OwnerSyncShowStatsPacket
+import dev.sharpwave.wiedzminstvo.network.main.horse.packets.PlayWhistlePacket
 import dev.sharpwave.wiedzminstvo.sound.WhistleSounds
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper.getHorseCap
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper.getOwnerCap

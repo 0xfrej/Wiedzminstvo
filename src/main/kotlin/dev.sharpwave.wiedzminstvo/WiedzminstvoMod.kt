@@ -5,16 +5,11 @@ import net.minecraftforge.fml.DistExecutor
 import net.minecraftforge.fml.DistExecutor.SafeSupplier
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
-import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent
 import net.minecraftforge.fml.loading.FMLPaths
 import net.minecraftforge.fml.network.simple.SimpleChannel
 import net.minecraftforge.forgespi.language.IModInfo
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import thedarkcolour.kotlinforforge.forge.FORGE_BUS
-import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import net.minecraftforge.fml.config.ModConfig as FMLModConfig
 
 
@@ -25,10 +20,10 @@ import net.minecraftforge.fml.config.ModConfig as FMLModConfig
  *
  * An example for blocks is in the `blocks` package of this mod.
  */
-@Mod(WiedzminstvoMod.ID)
+@Mod(WiedzminstvoMod.MODID)
 object WiedzminstvoMod {
-    // the modid of our mod
-    const val ID: String = "wiedzminstvo"
+
+    const val MODID: String = "wiedzminstvo"
     lateinit var mainNetwork: SimpleChannel
     val info: IModInfo
 
@@ -37,6 +32,7 @@ object WiedzminstvoMod {
     ) { SafeSupplier { CommonProxy() } }
 
     // the logger for our mod
+    //TODO: Replace usages for Logger
     val logger: Logger = LogManager.getFormatterLogger("Wiedzminstvo")
 
     init {
@@ -47,26 +43,26 @@ object WiedzminstvoMod {
         // Register the KDeferredRegister to the mod-specific event bus
 
         // Load config files
-        ModConfig.loadConfig(ModConfig.serverConfig, FMLPaths.CONFIGDIR.get().resolve("$ID-server.toml").toString())
-        ModConfig.loadConfig(ModConfig.clientConfig, FMLPaths.CONFIGDIR.get().resolve("$ID-client.toml").toString())
+        ModConfig.loadConfig(ModConfig.serverConfig, FMLPaths.CONFIGDIR.get().resolve("$MODID-server.toml").toString())
+        ModConfig.loadConfig(ModConfig.clientConfig, FMLPaths.CONFIGDIR.get().resolve("$MODID-client.toml").toString())
 
         // usage of the KotlinEventBus
-        MOD_BUS.addListener(::onClientSetup)
+        /*MOD_BUS.addListener(::onClientSetup)
         FORGE_BUS.addListener(::onServerAboutToStart)
-        MOD_BUS.addListener(::onCommonSetup)
+        MOD_BUS.addListener(::onCommonSetup)*/
 
         info = ModLoadingContext.get().activeContainer.modInfo;
     }
 
-    private fun onCommonSetup(event: FMLCommonSetupEvent) {
+    /*private fun onCommonSetup(event: FMLCommonSetupEvent) {
 
-    }
+    }*/
 
-    private fun onClientSetup(event: FMLClientSetupEvent) {
+    /*private fun onClientSetup(event: FMLClientSetupEvent) {
 
-    }
+    }*/
 
-    private fun onServerAboutToStart(event: FMLServerAboutToStartEvent) {
+    /*private fun onServerAboutToStart(event: FMLServerAboutToStartEvent) {
 
-    }
+    }*/
 }

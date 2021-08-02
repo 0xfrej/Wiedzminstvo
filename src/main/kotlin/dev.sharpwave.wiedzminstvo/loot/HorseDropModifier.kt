@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus
 
 
-@EventBusSubscriber(modid = WiedzminstvoMod.ID, bus = Bus.MOD)
+@EventBusSubscriber(modid = WiedzminstvoMod.MODID, bus = Bus.MOD)
 open class HorseDropModifier protected constructor(conditionsIn: Array<ILootCondition>?) : LootModifier(conditionsIn) {
 
     override fun doApply(generatedLoot: MutableList<ItemStack>, context: LootContext): List<ItemStack> {
@@ -49,7 +49,7 @@ open class HorseDropModifier protected constructor(conditionsIn: Array<ILootCond
     companion object {
         @SubscribeEvent
         fun registerModifierSerializers(event: RegistryEvent.Register<GlobalLootModifierSerializer<*>?>) {
-            event.registry.register(Serializer().setRegistryName(ResourceLocation(WiedzminstvoMod.ID, "horse_drop")))
+            event.registry.register(Serializer().setRegistryName(ResourceLocation(WiedzminstvoMod.MODID, "horse_drop")))
         }
     }
 }
