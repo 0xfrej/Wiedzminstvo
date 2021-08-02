@@ -2,7 +2,7 @@ package dev.sharpwave.wiedzminstvo.client.gui
 
 import com.mojang.blaze3d.matrix.MatrixStack
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
-import dev.sharpwave.wiedzminstvo.capabilities.horseowner.IHorseOwner
+import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.IHorseOwner
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.AbstractGui

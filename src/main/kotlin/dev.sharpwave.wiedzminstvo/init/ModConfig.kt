@@ -2,6 +2,7 @@ package dev.sharpwave.wiedzminstvo.init
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig
 import com.electronwill.nightconfig.core.io.WritingMode
+import dev.sharpwave.wiedzminstvo.Logger
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.config.HorseConfig
 import dev.sharpwave.wiedzminstvo.config.MainConfig
@@ -25,11 +26,11 @@ object ModConfig {
     }
 
     fun loadConfig(configSpec: ForgeConfigSpec, path: String) {
-        WiedzminstvoMod.logger.info("Loading config: $path")
+        Logger.log.info("Loading config: $path")
         val file = CommentedFileConfig.builder(File(path)).sync().autosave().writingMode(WritingMode.REPLACE).build()
-        WiedzminstvoMod.logger.info("Built config: $path")
+        Logger.log.info("Built config: $path")
         file.load()
-        WiedzminstvoMod.logger.info("Loaded config: $path")
+        Logger.log.info("Loaded config: $path")
         configSpec.setConfig(file)
     }
 }

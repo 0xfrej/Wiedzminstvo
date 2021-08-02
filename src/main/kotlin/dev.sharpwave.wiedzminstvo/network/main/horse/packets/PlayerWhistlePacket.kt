@@ -1,6 +1,7 @@
 package dev.sharpwave.wiedzminstvo.network.main.horse.packets
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
+import dev.sharpwave.wiedzminstvo.network.INetworkPacket
 import dev.sharpwave.wiedzminstvo.sound.WhistleSounds
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.network.PacketBuffer
@@ -9,13 +10,11 @@ import net.minecraftforge.fml.network.NetworkEvent
 import java.util.*
 import java.util.function.Supplier
 
+@Suppress("unused")
+class PlayWhistlePacket() : INetworkPacket {
+    constructor(buf: PacketBuffer?) : this()
 
-class PlayWhistlePacket {
-    constructor() {}
-    constructor(buf: PacketBuffer?) {}
-
-    fun toBytes(buf: PacketBuffer?) {}
-    fun handle(ctx: Supplier<NetworkEvent.Context>) {
+    override fun handle(ctx: Supplier<NetworkEvent.Context>) {
         if (ctx.get().direction.receptionSide.isClient) {
             ctx.get().enqueueWork {
                 val player: PlayerEntity? = WiedzminstvoMod.proxy.player

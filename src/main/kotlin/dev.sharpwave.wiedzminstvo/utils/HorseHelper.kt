@@ -1,12 +1,12 @@
 package dev.sharpwave.wiedzminstvo.utils
 
-import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
-import dev.sharpwave.wiedzminstvo.capabilities.horseowner.HorseOwnerProvider
-import dev.sharpwave.wiedzminstvo.capabilities.horseowner.IHorseOwner
-import dev.sharpwave.wiedzminstvo.capabilities.storedhorse.HorseProvider
-import dev.sharpwave.wiedzminstvo.capabilities.storedhorse.IStoredHorse
+import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.HorseOwnerProvider
+import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.IHorseOwner
+import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.HorseProvider
+import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.IStoredHorse
+import dev.sharpwave.wiedzminstvo.network.main.horse.HorseSubNetwork
 import dev.sharpwave.wiedzminstvo.network.main.horse.packets.HorseCapSyncPacket
-import dev.sharpwave.wiedzminstvo.worlddata.StoredHorsesWorldData
+import dev.sharpwave.wiedzminstvo.world.data.StoredHorsesWorldData
 import net.minecraft.entity.Entity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.ServerPlayerEntity
@@ -42,7 +42,7 @@ object HorseHelper {
 
     fun sendHorseUpdateInRange(horse: Entity) {
         val storedHorse = getHorseCap(horse)
-        WiedzminstvoMod.mainNetwork.send(PacketDistributor.NEAR.with {
+        HorseSubNetwork.send(PacketDistributor.NEAR.with {
             TargetPoint(
                 horse.x,
                 horse.y,
@@ -55,7 +55,7 @@ object HorseHelper {
 
     fun sendHorseUpdateToClient(horse: Entity, player: PlayerEntity) {
         val storedHorse = getHorseCap(horse)
-        WiedzminstvoMod.mainNetwork.send(
+        HorseSubNetwork.send(
             PacketDistributor.PLAYER.with { player as ServerPlayerEntity? },
             HorseCapSyncPacket(horse.id, storedHorse)
         )

@@ -1,0 +1,22 @@
+{
+  "key.wiedzminstvo.category": "Callable Horses",
+  "key.sethorse.desc": "Set Horse",
+  "key.callhorse.desc": "Call Horse",
+  "key.showstats.desc": "Show Horse Stats",
+
+  "wiedzminstvo.error.dim": "You can't call your horse in this dimension!",
+  "wiedzminstvo.error.riding": "You can't be riding while calling your horse!",
+  "wiedzminstvo.error.nohorse": "You currently don't have a personal Horse!",
+  "wiedzminstvo.error.notriding": "You need to be riding a horse to do this!",
+  "wiedzminstvo.error.alreadyowned": "This horse already has an owner!",
+  "wiedzminstvo.error.alreadypersonal": "This is already your personal horse!",
+  "wiedzminstvo.error.area": "You can't call your horse in this area!",
+  "wiedzminstvo.error.range": "Your horse is too far away to hear you!",
+  "wiedzminstvo.error.setarea": "You can't set your horse in this area!",
+  "wiedzminstvo.error.nospace": "There is not enough space here to call your horse!",
+
+  "wiedzminstvo.success": "This is now your personal horse!",
+
+  "wiedzminstvo.alert.death": "Your personal horse just died!",
+  "wiedzminstvo.alert.offlinedeath": "Your personal horse died while you were offline!"
+}

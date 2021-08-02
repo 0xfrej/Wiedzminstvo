@@ -1,0 +1,11 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:entity_properties",
+      "predicate": {
+        "type": "#wiedzminstvo:horse"
+      },
+      "entity": "THIS"
+    }
+  ]
+}

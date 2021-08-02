@@ -1,30 +1,30 @@
 package dev.sharpwave.wiedzminstvo.network.main.horse.packets
 
-import dev.sharpwave.wiedzminstvo.managers.HorseManager.callHorse
-import dev.sharpwave.wiedzminstvo.managers.HorseManager.setHorse
-import dev.sharpwave.wiedzminstvo.managers.HorseManager.showHorseStats
+import dev.sharpwave.wiedzminstvo.entity.managers.HorseManager.callHorse
+import dev.sharpwave.wiedzminstvo.entity.managers.HorseManager.setHorse
+import dev.sharpwave.wiedzminstvo.entity.managers.HorseManager.showHorseStats
+import dev.sharpwave.wiedzminstvo.network.INetworkPacket
 import net.minecraft.network.PacketBuffer
 import net.minecraftforge.fml.network.NetworkEvent
 import java.util.function.Supplier
 
-
-class PressKeyPacket {
+@Suppress("unused")
+class PressKeyPacket() : INetworkPacket {
     private var key = 0
 
-    constructor() {}
-    constructor(key: Int) {
+    constructor(key: Int) : this() {
         this.key = key
     }
 
-    constructor(buf: PacketBuffer) {
+    constructor(buf: PacketBuffer) : this() {
         key = buf.readInt()
     }
 
-    fun toBytes(buf: PacketBuffer) {
+    override fun toBytes(buf: PacketBuffer) {
         buf.writeInt(key)
     }
 
-    fun handle(ctx: Supplier<NetworkEvent.Context>) {
+    override fun handle(ctx: Supplier<NetworkEvent.Context>) {
         if (ctx.get().direction.receptionSide.isServer) {
             ctx.get().enqueueWork {
                 val player = ctx.get().sender

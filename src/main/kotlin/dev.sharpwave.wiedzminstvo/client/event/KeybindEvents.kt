@@ -1,25 +1,49 @@
 package dev.sharpwave.wiedzminstvo.client.event
 
+import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
+import dev.sharpwave.wiedzminstvo.client.managers.KeybindManager
 import dev.sharpwave.wiedzminstvo.config.HorseConfig
-import net.minecraft.client.settings.KeyBinding
-import net.minecraftforge.fml.client.registry.ClientRegistry
-import net.minecraftforge.fml.loading.FMLEnvironment
-import org.lwjgl.glfw.GLFW
+import dev.sharpwave.wiedzminstvo.network.main.horse.HorseSubNetwork
+import dev.sharpwave.wiedzminstvo.network.main.horse.packets.PressKeyPacket
+import net.minecraft.world.gen.feature.Features.Configs
+import net.minecraftforge.api.distmarker.Dist
+import net.minecraftforge.api.distmarker.OnlyIn
+import net.minecraftforge.event.TickEvent.PlayerTickEvent
+import net.minecraftforge.eventbus.api.SubscribeEvent
+import net.minecraftforge.fml.LogicalSide
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 
 
-object KeybindManager {
-    var setHorse: KeyBinding? = null
-    var callHorse: KeyBinding? = null
-    var showStats: KeyBinding? = null
-
-    init {
-        if (FMLEnvironment.dist.isClient) {
-            setHorse = KeyBinding("key.sethorse.desc", GLFW.GLFW_KEY_P, "key.callablehorses.category")
-            callHorse = KeyBinding("key.callhorse.desc", GLFW.GLFW_KEY_V, "key.callablehorses.category")
-            showStats = KeyBinding("key.showstats.desc", GLFW.GLFW_KEY_K, "key.callablehorses.category")
-            ClientRegistry.registerKeyBinding(setHorse)
-            ClientRegistry.registerKeyBinding(callHorse)
-            if (HorseConfig.enableStatsViewer?.get() == true) ClientRegistry.registerKeyBinding(showStats)
+@OnlyIn(Dist.CLIENT)
+@EventBusSubscriber(value = [Dist.CLIENT], modid = WiedzminstvoMod.MODID)
+object KeybindEvents {
+    private var lastPressTime: Long = 0
+    @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
+    fun onPlayerTick(event: PlayerTickEvent) {
+        val player = event.player
+        if (player != null && event.side == LogicalSide.CLIENT) {
+            val callHorse: Boolean = KeybindManager.callHorse!!.isDown
+            val setHorse: Boolean = KeybindManager.setHorse!!.isDown
+            val showStats = if (HorseConfig.enableStatsViewer?.get() != null) KeybindManager.showStats!!.isDown else false
+            if (callHorse) {
+                if (System.currentTimeMillis() - lastPressTime > 500) {
+                    lastPressTime = System.currentTimeMillis()
+                    HorseSubNetwork.sendToServer(PressKeyPacket(0))
+                }
+            }
+            if (setHorse) {
+                if (System.currentTimeMillis() - lastPressTime > 500) {
+                    lastPressTime = System.currentTimeMillis()
+                    HorseSubNetwork.sendToServer(PressKeyPacket(1))
+                }
+            }
+            if (showStats) {
+                if (System.currentTimeMillis() - lastPressTime > 500) {
+                    lastPressTime = System.currentTimeMillis()
+                    HorseSubNetwork.sendToServer(PressKeyPacket(2))
+                }
+            }
         }
     }
 }

@@ -1,15 +1,16 @@
 package dev.sharpwave.wiedzminstvo
 
+import dev.sharpwave.wiedzminstvo.client.managers.KeybindManager
 import dev.sharpwave.wiedzminstvo.init.ModConfig
 import net.minecraftforge.fml.DistExecutor
 import net.minecraftforge.fml.DistExecutor.SafeSupplier
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import net.minecraftforge.fml.loading.FMLPaths
 import net.minecraftforge.fml.network.simple.SimpleChannel
 import net.minecraftforge.forgespi.language.IModInfo
-import org.apache.logging.log4j.LogManager
-import org.apache.logging.log4j.Logger
+import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import net.minecraftforge.fml.config.ModConfig as FMLModConfig
 
 
@@ -24,16 +25,11 @@ import net.minecraftforge.fml.config.ModConfig as FMLModConfig
 object WiedzminstvoMod {
 
     const val MODID: String = "wiedzminstvo"
-    lateinit var mainNetwork: SimpleChannel
     val info: IModInfo
 
     var proxy: IProxy = DistExecutor.safeRunForDist(
         { SafeSupplier { ClientProxy() } }
     ) { SafeSupplier { CommonProxy() } }
-
-    // the logger for our mod
-    //TODO: Replace usages for Logger
-    val logger: Logger = LogManager.getFormatterLogger("Wiedzminstvo")
 
     init {
         // Register configs
@@ -47,7 +43,8 @@ object WiedzminstvoMod {
         ModConfig.loadConfig(ModConfig.clientConfig, FMLPaths.CONFIGDIR.get().resolve("$MODID-client.toml").toString())
 
         // usage of the KotlinEventBus
-        /*MOD_BUS.addListener(::onClientSetup)
+        MOD_BUS.addListener(::onClientSetup)
+        /*
         FORGE_BUS.addListener(::onServerAboutToStart)
         MOD_BUS.addListener(::onCommonSetup)*/
 
@@ -58,9 +55,9 @@ object WiedzminstvoMod {
 
     }*/
 
-    /*private fun onClientSetup(event: FMLClientSetupEvent) {
-
-    }*/
+    private fun onClientSetup(event: FMLClientSetupEvent) {
+            KeybindManager.init()
+    }
 
     /*private fun onServerAboutToStart(event: FMLServerAboutToStartEvent) {
 
