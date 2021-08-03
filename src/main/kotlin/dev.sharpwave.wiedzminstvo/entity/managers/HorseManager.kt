@@ -236,6 +236,7 @@ object HorseManager {
             )
             return false
         }
+        // TODO: add this check also to client side to prevent spawning the sound
         if (player.vehicle != null) {
             player.displayClientMessage(
                 TranslationTextComponent("wiedzminstvo.horse.error.riding").withStyle(TextFormatting.RED),
@@ -357,6 +358,7 @@ object HorseManager {
         }
     }
 
+    // TODO: Possibly generalize this and include in helper?
     private fun isAreaProtected(player: PlayerEntity, fakeHorse: Entity?): Boolean {
         var fakeHorseShadow = fakeHorse
         val owner = getOwnerCap(player)
