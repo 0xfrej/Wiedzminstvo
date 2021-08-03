@@ -10,7 +10,7 @@ import dev.sharpwave.wiedzminstvo.config.HorseConfig
 import dev.sharpwave.wiedzminstvo.config.MainConfig
 import dev.sharpwave.wiedzminstvo.entity.managers.HorseManager
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper
-import dev.sharpwave.wiedzminstvo.world.data.StoredHorsesWorldData
+import dev.sharpwave.wiedzminstvo.world.data.HorsesWorldData
 import net.minecraft.entity.Entity
 import net.minecraft.entity.passive.horse.AbstractHorseEntity
 import net.minecraft.entity.player.PlayerEntity
@@ -65,7 +65,7 @@ object HorseEntityEvents {
                         if (e is AbstractHorseEntity) {
                             val horse: IStoredHorse? = HorseHelper.getHorseCap(e)
                             if (horse?.isOwned == true) {
-                                val data: StoredHorsesWorldData = HorseHelper.getWorldData(world as ServerWorld)
+                                val data: HorsesWorldData = HorseHelper.getWorldData(world as ServerWorld)
                                 if (data.isDisbanded(horse.storageUUID)) {
                                     HorseManager.clearHorse(horse)
                                     data.clearDisbanded(horse.storageUUID)
@@ -150,8 +150,7 @@ object HorseEntityEvents {
                 val horse: IStoredHorse = HorseHelper.getHorseCap(e)!!
                 e.setCustomName(
                     StringTextComponent(
-                        "Is Owned: " + horse.isOwned.toString() + ", Storage UUID: " + horse.storageUUID
-                            .toString() + ", Horse Number: " + horse.horseNum
+                        "Is Owned: " + horse.isOwned.toString() + ", Storage UUID: " + horse.storageUUID + ", Horse Number: " + horse.horseNum
                             .toString() + ", Horse UUID: " + e.uuid
                     )
                 )
@@ -193,7 +192,7 @@ object HorseEntityEvents {
                         horseOwner.lastSeenPosition = Vector3d.ZERO
                     }
                 } else {
-                    Logger.log.debug(e.toString() + " was marked as killed.")
+                    Logger.log.debug("$e was marked as killed.")
                     e.level.server?.allLevels?.forEach { serverWorld ->
                         HorseHelper.getWorldData(serverWorld).markKilled(horse.storageUUID)
                     }
@@ -208,16 +207,15 @@ object HorseEntityEvents {
         val joiningEntity: Entity = event.entity
         val world = event.world
         if (!world.isClientSide && joiningEntity is PlayerEntity) {
-            val player = joiningEntity
-            val owner: IHorseOwner = HorseHelper.getOwnerCap(player)!!
+            val owner: IHorseOwner = HorseHelper.getOwnerCap(joiningEntity)!!
             val ownedHorse: String = owner.storageUUID
-            if (!ownedHorse.isEmpty()) {
-                val data: StoredHorsesWorldData = HorseHelper.getWorldData(world as ServerWorld)
+            if (ownedHorse.isNotEmpty()) {
+                val data: HorsesWorldData = HorseHelper.getWorldData(world as ServerWorld)
                 if (data.wasKilled(ownedHorse)) {
                     data.clearKilled(ownedHorse)
                     if (HorseConfig.deathIsPermanent?.get() == true) {
                         owner.clearHorse()
-                        player.displayClientMessage(
+                        joiningEntity.displayClientMessage(
                             TranslationTextComponent("wiedzminstvo.horse.alert.offlinedeath").withStyle(
                                 TextFormatting.RED
                             ), false

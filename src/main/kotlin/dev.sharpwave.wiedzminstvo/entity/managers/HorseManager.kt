@@ -2,8 +2,6 @@ package dev.sharpwave.wiedzminstvo.entity.managers
 
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.IStoredHorse
 import dev.sharpwave.wiedzminstvo.config.HorseConfig
-import dev.sharpwave.wiedzminstvo.network.main.MainNetwork
-import dev.sharpwave.wiedzminstvo.network.main.horse.HorseSubNetwork
 import dev.sharpwave.wiedzminstvo.network.main.horse.packets.OwnerSyncShowStatsPacket
 import dev.sharpwave.wiedzminstvo.network.main.horse.packets.PlayWhistlePacket
 import dev.sharpwave.wiedzminstvo.sound.WhistleSounds
@@ -14,7 +12,7 @@ import dev.sharpwave.wiedzminstvo.utils.HorseHelper.getWorldData
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper.sendHorseUpdateInRange
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper.setHorseLastSeen
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper.setHorseNum
-import dev.sharpwave.wiedzminstvo.world.data.StoredHorsesWorldData
+import dev.sharpwave.wiedzminstvo.world.data.HorsesWorldData
 import net.minecraft.entity.Entity
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.ai.attributes.Attributes
@@ -45,6 +43,7 @@ import java.util.stream.Collectors
 
 
 object HorseManager {
+    // TODO: make horse disappear, relocate and then again appear with an effect
     fun callHorse(player: PlayerEntity?): Boolean {
         if (player != null) {
             val horseOwner = getOwnerCap(player)
@@ -153,6 +152,7 @@ object HorseManager {
                 val horseOwner = getOwnerCap(player)
                 val ownedID = horseOwner!!.storageUUID
 
+                // TODO: DEBUG DISBANIDNG!!
                 // Marking any old horses as disbanded
                 if (ownedID.isNotEmpty()) {
                     val ent: Entity? = findHorseWithStorageID(horseOwner.storageUUID, player.level)
@@ -160,7 +160,7 @@ object HorseManager {
                         clearHorse(getHorseCap(ent))
                     } else {
                         player.level.server?.allLevels?.forEach { serverWorld ->
-                            val data: StoredHorsesWorldData = getWorldData(serverWorld)
+                            val data: HorsesWorldData = getWorldData(serverWorld)
                             data.disbandHorse(ownedID)
                         }
                     }
@@ -228,6 +228,7 @@ object HorseManager {
         (e as LivingEntity).health = e.maxHealth
     }
 
+    // TODO: Add check if horse won't be spawned in mid air
     fun canCallHorse(player: PlayerEntity): Boolean {
         if (isAreaProtected(player, null)) {
             player.displayClientMessage(
@@ -244,6 +245,7 @@ object HorseManager {
             )
             return false
         }
+        // TODO: Implement octree search or maybe run octree search for empty space only if this fails
         val startX: Double = player.x - 1
         val startY: Double = player.y
         val startZ: Double = player.z - 1
@@ -346,12 +348,12 @@ object HorseManager {
                         horseOwner.lastSeenPosition = e.position()
                     } else {
                         world.server?.allLevels?.forEach { serverWorld ->
-                            val data: StoredHorsesWorldData = getWorldData(serverWorld)
+                            val data: HorsesWorldData = getWorldData(serverWorld)
                             data.addOfflineSavedHorse(horse.storageUUID, e.serializeNBT())
                         }
                     }
                 } else {
-                    val data: StoredHorsesWorldData = getWorldData(world as ServerWorld)
+                    val data: HorsesWorldData = getWorldData(world as ServerWorld)
                     data.addOfflineSavedHorse(horse.storageUUID, e.serializeNBT())
                 }
             }

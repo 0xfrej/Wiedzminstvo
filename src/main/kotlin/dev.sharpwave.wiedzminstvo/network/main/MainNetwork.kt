@@ -4,6 +4,7 @@ import dev.sharpwave.wiedzminstvo.network.AbstractNetwork
 import dev.sharpwave.wiedzminstvo.network.main.horse.HorseSubNetwork
 import dev.sharpwave.wiedzminstvo.network.main.horse.packets.PlayWhistlePacket
 import net.minecraftforge.fml.network.NetworkDirection
+import kotlin.reflect.full.companionObject
 
 object MainNetwork : AbstractNetwork("main") {
     override fun init() {
@@ -16,7 +17,7 @@ object MainNetwork : AbstractNetwork("main") {
     private fun registerPackets() {
         getBuilder()
             .registerMessage(
-                PlayWhistlePacket::class.java,
+                PlayWhistlePacket::class,
                 NetworkDirection.PLAY_TO_CLIENT
             )
     }

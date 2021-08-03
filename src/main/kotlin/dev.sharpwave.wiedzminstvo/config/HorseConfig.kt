@@ -17,7 +17,7 @@ object HorseConfig : IConfig {
         server.comment("Roach").push("horse")
             deathIsPermanent = server
                 .comment("Personal Horses get deleted if they're killed")
-                .define("deathIsPermanent", true)
+                .define("deathIsPermanent", false)
 
             callableDimsWhitelist = server
                 .comment("Whitelist for dimensions where horses can be called. Set to empty to allow calling the horse in every dimension")

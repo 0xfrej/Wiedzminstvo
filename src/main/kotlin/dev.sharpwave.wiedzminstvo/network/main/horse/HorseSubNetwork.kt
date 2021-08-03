@@ -13,15 +13,15 @@ object HorseSubNetwork : AbstractSubNetwork() {
     override fun registerPackets(builder: NetworkBuilder): AbstractSubNetwork {
         builder
             .registerMessage(
-                HorseCapSyncPacket::class.java,
+                HorseCapSyncPacket::class,
                 NetworkDirection.PLAY_TO_CLIENT
             )
             .registerMessage(
-                OwnerSyncShowStatsPacket::class.java,
+                OwnerSyncShowStatsPacket::class,
                 NetworkDirection.PLAY_TO_CLIENT
             )
             .registerMessage(
-                PressKeyPacket::class.java,
+                PressKeyPacket::class,
                 NetworkDirection.PLAY_TO_SERVER
             )
 

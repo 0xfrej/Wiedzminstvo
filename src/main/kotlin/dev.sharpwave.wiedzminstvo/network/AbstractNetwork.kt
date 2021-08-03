@@ -4,11 +4,8 @@ import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.network.NetworkRegistry
 
-abstract class AbstractNetwork(private val name: String) : NetworkingUnit() {
+abstract class AbstractNetwork(val name: String) : NetworkingUnit() {
     private var builder: NetworkBuilder? = null
-
-    val channelName: String
-        get() = "wiedzminstvo_${name}_channel"
 
     open fun init()
     {
@@ -16,7 +13,7 @@ abstract class AbstractNetwork(private val name: String) : NetworkingUnit() {
 
         registerNetworkChannel(
             NetworkRegistry.newSimpleChannel(
-                ResourceLocation(WiedzminstvoMod.MODID, this.channelName),
+                ResourceLocation(WiedzminstvoMod.MODID, this.name),
                 { version },
                 { anObject: String? -> version == anObject }
             ) { anObject: String? -> version == anObject }

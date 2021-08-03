@@ -27,6 +27,7 @@ object WiedzminstvoMod {
     const val MODID: String = "wiedzminstvo"
     val info: IModInfo
 
+    // TODO: Get rid of proxies
     var proxy: IProxy = DistExecutor.safeRunForDist(
         { SafeSupplier { ClientProxy() } }
     ) { SafeSupplier { CommonProxy() } }
@@ -48,13 +49,14 @@ object WiedzminstvoMod {
         FORGE_BUS.addListener(::onServerAboutToStart)
         MOD_BUS.addListener(::onCommonSetup)*/
 
-        info = ModLoadingContext.get().activeContainer.modInfo;
+        info = ModLoadingContext.get().activeContainer.modInfo
     }
 
     /*private fun onCommonSetup(event: FMLCommonSetupEvent) {
 
     }*/
 
+    @Suppress("UNUSED_PARAMETER")
     private fun onClientSetup(event: FMLClientSetupEvent) {
             KeybindManager.init()
     }

@@ -4,19 +4,19 @@
   "key.callhorse.desc": "Call Horse",
   "key.showstats.desc": "Show Horse Stats",
 
-  "wiedzminstvo.error.dim": "You can't call your horse in this dimension!",
-  "wiedzminstvo.error.riding": "You can't be riding while calling your horse!",
-  "wiedzminstvo.error.nohorse": "You currently don't have a personal Horse!",
-  "wiedzminstvo.error.notriding": "You need to be riding a horse to do this!",
-  "wiedzminstvo.error.alreadyowned": "This horse already has an owner!",
-  "wiedzminstvo.error.alreadypersonal": "This is already your personal horse!",
-  "wiedzminstvo.error.area": "You can't call your horse in this area!",
-  "wiedzminstvo.error.range": "Your horse is too far away to hear you!",
-  "wiedzminstvo.error.setarea": "You can't set your horse in this area!",
-  "wiedzminstvo.error.nospace": "There is not enough space here to call your horse!",
+  "wiedzminstvo.horse.error.dim": "You can't call your horse in this dimension!",
+  "wiedzminstvo.horse.error.riding": "You can't be riding while calling your horse!",
+  "wiedzminstvo.horse.error.nohorse": "You currently don't have a personal Horse!",
+  "wiedzminstvo.horse.error.notriding": "You need to be riding a horse to do this!",
+  "wiedzminstvo.horse.error.alreadyowned": "This horse already has an owner!",
+  "wiedzminstvo.horse.error.alreadypersonal": "This is already your personal horse!",
+  "wiedzminstvo.horse.error.area": "You can't call your horse in this area!",
+  "wiedzminstvo.horse.error.range": "Your horse is too far away to hear you!",
+  "wiedzminstvo.horse.error.setarea": "You can't set your horse in this area!",
+  "wiedzminstvo.horse.error.nospace": "There is not enough space here to call your horse!",
 
-  "wiedzminstvo.success": "This is now your personal horse!",
+  "wiedzminstvo.horse.success": "This is now your personal horse!",
 
-  "wiedzminstvo.alert.death": "Your personal horse just died!",
-  "wiedzminstvo.alert.offlinedeath": "Your personal horse died while you were offline!"
+  "wiedzminstvo.horse.alert.death": "Your personal horse just died!",
+  "wiedzminstvo.horse.alert.offlinedeath": "Your personal horse died while you were offline!"
 }

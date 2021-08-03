@@ -34,6 +34,7 @@ class PlayWhistlePacket() : AbstractNetworkPacket() {
                 }
             }
         }
+        ctx.get().packetHandled = true;
     }
 
     companion object : NetworkingUnit()

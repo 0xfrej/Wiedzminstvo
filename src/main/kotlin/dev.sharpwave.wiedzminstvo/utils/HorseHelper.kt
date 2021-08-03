@@ -4,9 +4,8 @@ import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.HorseOwnerProvi
 import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.IHorseOwner
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.HorseProvider
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.IStoredHorse
-import dev.sharpwave.wiedzminstvo.network.main.horse.HorseSubNetwork
 import dev.sharpwave.wiedzminstvo.network.main.horse.packets.HorseCapSyncPacket
-import dev.sharpwave.wiedzminstvo.world.data.StoredHorsesWorldData
+import dev.sharpwave.wiedzminstvo.world.data.HorsesWorldData
 import net.minecraft.entity.Entity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.ServerPlayerEntity
@@ -68,13 +67,13 @@ object HorseHelper {
 
     fun setHorseNum(world: ServerWorld, storageId: String, num: Int) {
         world.server.allLevels.forEach { serverWorld ->
-            val storedHorses: StoredHorsesWorldData = StoredHorsesWorldData.getInstance(serverWorld)
+            val storedHorses: HorsesWorldData = HorsesWorldData.getInstance(serverWorld)
             storedHorses.addHorseNum(storageId, num)
         }
     }
 
     fun getHorseNum(world: ServerWorld, storageId: String): Int {
-        val storedHorses: StoredHorsesWorldData = StoredHorsesWorldData.getInstance(world)
+        val storedHorses: HorsesWorldData = HorsesWorldData.getInstance(world)
         return storedHorses.getHorseNum(storageId)
     }
 
@@ -84,7 +83,7 @@ object HorseHelper {
         owner.lastSeenDim = player.level.dimension()
     }
 
-    fun getWorldData(world: ServerWorld): StoredHorsesWorldData {
-        return StoredHorsesWorldData.getInstance(world)
+    fun getWorldData(world: ServerWorld): HorsesWorldData {
+        return HorsesWorldData.getInstance(world)
     }
 }
