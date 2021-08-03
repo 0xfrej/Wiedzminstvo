@@ -7,9 +7,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 object ModSound {
-
     @SubscribeEvent
-    fun init(event: FMLCommonSetupEvent) {
+    fun init(@Suppress("UNUSED_PARAMETER") event: FMLCommonSetupEvent) {
         WhistleSounds.registerSounds()
     }
 }

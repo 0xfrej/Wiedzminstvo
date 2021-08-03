@@ -22,7 +22,7 @@ class HorseOwner : IHorseOwner {
     override var storageUUID: String = ""
     override var lastSeenDim: RegistryKey<World> =
         RegistryKey.create(Registry.DIMENSION_REGISTRY, ResourceLocation("overworld"))
-    override var lastSeenPosition = Vector3d.ZERO
+    override var lastSeenPosition: Vector3d = Vector3d.ZERO
 
     override fun createHorseEntity(world: World): AbstractHorseEntity? {
         val type: Optional<EntityType<*>> = EntityType.by(horseNBT)
@@ -40,7 +40,7 @@ class HorseOwner : IHorseOwner {
                 }
                 return entity
             }
-            Logger.log.error("The entity with NBT $horseNBT wasn't a horse somehow?...")
+            Logger.error("The entity with NBT $horseNBT wasn't a horse somehow?...")
         }
         return null
     }

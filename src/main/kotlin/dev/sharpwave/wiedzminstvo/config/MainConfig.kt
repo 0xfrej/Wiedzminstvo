@@ -1,7 +1,6 @@
 package dev.sharpwave.wiedzminstvo.config
 
 import net.minecraftforge.common.ForgeConfigSpec
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue
 
 
 object MainConfig : IConfig {

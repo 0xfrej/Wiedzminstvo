@@ -2,7 +2,6 @@ package dev.sharpwave.wiedzminstvo.utils
 
 import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.common.capabilities.CapabilityManager
-import java.util.concurrent.Callable
 
 object CapabilityRegistrar {
     fun <IT, T:IT> register(

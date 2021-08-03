@@ -2,12 +2,12 @@ package dev.sharpwave.wiedzminstvo.entity.events
 
 import dev.sharpwave.wiedzminstvo.Logger
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
+import dev.sharpwave.wiedzminstvo.config.HorseConfig
+import dev.sharpwave.wiedzminstvo.config.MainConfig
 import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.HorseOwnerProvider
 import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.IHorseOwner
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.HorseProvider
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.IStoredHorse
-import dev.sharpwave.wiedzminstvo.config.HorseConfig
-import dev.sharpwave.wiedzminstvo.config.MainConfig
 import dev.sharpwave.wiedzminstvo.entity.managers.HorseManager
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper
 import dev.sharpwave.wiedzminstvo.world.data.HorsesWorldData
@@ -75,7 +75,7 @@ object HorseEntityEvents {
                                     if (globalNum > horse.horseNum) {
 //										e.setPosition(e.getPosX(), -200, e.getPosZ());
                                         e.remove()
-                                        Logger.log.debug(e.toString() + " was instantly despawned because its number is " + horse.horseNum + " and the global num is " + globalNum)
+                                        Logger.debug(e.toString() + " was instantly despawned because its number is " + horse.horseNum + " and the global num is " + globalNum)
                                     }
                                 }
                             }
@@ -192,7 +192,7 @@ object HorseEntityEvents {
                         horseOwner.lastSeenPosition = Vector3d.ZERO
                     }
                 } else {
-                    Logger.log.debug("$e was marked as killed.")
+                    Logger.debug("$e was marked as killed.")
                     e.level.server?.allLevels?.forEach { serverWorld ->
                         HorseHelper.getWorldData(serverWorld).markKilled(horse.storageUUID)
                     }
