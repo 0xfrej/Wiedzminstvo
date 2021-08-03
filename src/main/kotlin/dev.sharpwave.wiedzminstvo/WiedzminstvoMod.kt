@@ -14,23 +14,11 @@ import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import net.minecraftforge.fml.config.ModConfig as FMLModConfig
 
 
-/**
- * Main mod class. Should be an `object` declaration annotated with `@Mod`.
- * The modid should be declared in this object and should match the modId entry
- * in mods.toml.
- *
- * An example for blocks is in the `blocks` package of this mod.
- */
 @Mod(WiedzminstvoMod.MODID)
 object WiedzminstvoMod {
 
     const val MODID: String = "wiedzminstvo"
     val info: IModInfo
-
-    // TODO: Get rid of proxies
-    var proxy: IProxy = DistExecutor.safeRunForDist(
-        { SafeSupplier { ClientProxy() } }
-    ) { SafeSupplier { CommonProxy() } }
 
     init {
         // Register configs
@@ -45,23 +33,12 @@ object WiedzminstvoMod {
 
         // usage of the KotlinEventBus
         MOD_BUS.addListener(::onClientSetup)
-        /*
-        FORGE_BUS.addListener(::onServerAboutToStart)
-        MOD_BUS.addListener(::onCommonSetup)*/
 
         info = ModLoadingContext.get().activeContainer.modInfo
     }
-
-    /*private fun onCommonSetup(event: FMLCommonSetupEvent) {
-
-    }*/
 
     @Suppress("UNUSED_PARAMETER")
     private fun onClientSetup(event: FMLClientSetupEvent) {
             KeybindManager.init()
     }
-
-    /*private fun onServerAboutToStart(event: FMLServerAboutToStartEvent) {
-
-    }*/
 }

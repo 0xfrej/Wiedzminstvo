@@ -3,7 +3,7 @@ package dev.sharpwave.wiedzminstvo.entity.managers
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.IStoredHorse
 import dev.sharpwave.wiedzminstvo.config.HorseConfig
 import dev.sharpwave.wiedzminstvo.network.main.horse.packets.OwnerSyncShowStatsPacket
-import dev.sharpwave.wiedzminstvo.network.main.horse.packets.PlayWhistlePacket
+import dev.sharpwave.wiedzminstvo.network.main.packets.PlayWhistlePacket
 import dev.sharpwave.wiedzminstvo.sound.WhistleSounds
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper.getHorseCap
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper.getOwnerCap
@@ -157,7 +157,7 @@ object HorseManager {
                 if (ownedID.isNotEmpty()) {
                     val ent: Entity? = findHorseWithStorageID(horseOwner.storageUUID, player.level)
                     if (ent != null) {
-                        clearHorse(getHorseCap(ent))
+                        getHorseCap(ent)?.let { clearHorse(it) }
                     } else {
                         player.level.server?.allLevels?.forEach { serverWorld ->
                             val data: HorsesWorldData = getWorldData(serverWorld)
@@ -193,14 +193,14 @@ object HorseManager {
         OwnerSyncShowStatsPacket.send(PacketDistributor.PLAYER.with { player }, OwnerSyncShowStatsPacket(owner))
     }
 
-    fun clearHorse(horse: IStoredHorse?) {
-        horse!!.isOwned = false
+    fun clearHorse(horse: IStoredHorse) {
+        horse.isOwned = false
         horse.horseNum = 0
         horse.ownerUUID = ""
         horse.storageUUID = ""
     }
 
-    fun findHorseWithStorageID(id: String, world: World): AbstractHorseEntity? {
+    private fun findHorseWithStorageID(id: String, world: World): AbstractHorseEntity? {
         val server = world.server
         val entities: MutableList<Entity> = ArrayList()
         for (w in server?.allLevels!!) entities.addAll(w.entities.collect(Collectors.toList()))
@@ -229,7 +229,7 @@ object HorseManager {
     }
 
     // TODO: Add check if horse won't be spawned in mid air
-    fun canCallHorse(player: PlayerEntity): Boolean {
+    private fun canCallHorse(player: PlayerEntity): Boolean {
         if (isAreaProtected(player, null)) {
             player.displayClientMessage(
                 TranslationTextComponent("wiedzminstvo.horse.error.area").withStyle(TextFormatting.RED),
@@ -298,13 +298,10 @@ object HorseManager {
             val livingHorse: Entity? = findHorseWithStorageID(owner.storageUUID, player.level)
             if (livingHorse != null) {
                 lastSeenPos = livingHorse.position()
-                lastSeenDim = livingHorse.level.dimension() // Dimension
-                // registry
-                // key
+                lastSeenDim = livingHorse.level.dimension()
             }
             val movementFactorHorse: Double =
-                server.getLevel(lastSeenDim)!!.dimensionType().coordinateScale() // getDimensionType,
-            // getMovementFactor
+                server.getLevel(lastSeenDim)!!.dimensionType().coordinateScale()
             val movementFactorOwner: Double = player.level.dimensionType().coordinateScale()
             val movementFactorTotal =
                 if (movementFactorHorse > movementFactorOwner) movementFactorHorse / movementFactorOwner else movementFactorOwner / movementFactorHorse
@@ -319,7 +316,8 @@ object HorseManager {
         return true
     }
 
-    fun canSetHorse(player: PlayerEntity, entity: Entity?): Boolean {
+    // TODO: check if horse is friend of player
+    private fun canSetHorse(player: PlayerEntity, entity: Entity?): Boolean {
         if (isAreaProtected(player, entity)) {
             player.displayClientMessage(
                 TranslationTextComponent("wiedzminstvo.horse.error.setarea").withStyle(TextFormatting.RED),

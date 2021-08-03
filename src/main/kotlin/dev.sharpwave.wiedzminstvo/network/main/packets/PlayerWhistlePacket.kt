@@ -1,9 +1,9 @@
-package dev.sharpwave.wiedzminstvo.network.main.horse.packets
+package dev.sharpwave.wiedzminstvo.network.main.packets
 
-import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.network.AbstractNetworkPacket
 import dev.sharpwave.wiedzminstvo.network.NetworkingUnit
 import dev.sharpwave.wiedzminstvo.sound.WhistleSounds
+import net.minecraft.client.Minecraft
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.network.PacketBuffer
 import net.minecraft.util.SoundCategory
@@ -18,7 +18,7 @@ class PlayWhistlePacket() : AbstractNetworkPacket() {
     override fun handle(ctx: Supplier<NetworkEvent.Context>) {
         if (ctx.get().direction.receptionSide.isClient) {
             ctx.get().enqueueWork {
-                val player: PlayerEntity? = WiedzminstvoMod.proxy.player
+                val player: PlayerEntity? = Minecraft.getInstance().player
                 if (player != null) {
                     val rand = Random()
                     player.level.playSound(
@@ -34,7 +34,7 @@ class PlayWhistlePacket() : AbstractNetworkPacket() {
                 }
             }
         }
-        ctx.get().packetHandled = true;
+        ctx.get().packetHandled = true
     }
 
     companion object : NetworkingUnit()

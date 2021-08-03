@@ -1,11 +1,12 @@
 package dev.sharpwave.wiedzminstvo.network.main.horse.packets
 
-import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
+import dev.sharpwave.wiedzminstvo.client.gui.GuiStatViewer
 import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.HorseOwnerProvider
 import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.IHorseOwner
 import dev.sharpwave.wiedzminstvo.network.AbstractNetworkPacket
 import dev.sharpwave.wiedzminstvo.network.NetworkingUnit
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper.getOwnerCap
+import net.minecraft.client.Minecraft
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.CompoundNBT
 import net.minecraft.network.PacketBuffer
@@ -35,15 +36,16 @@ class OwnerSyncShowStatsPacket() : AbstractNetworkPacket() {
     override fun handle(ctx: Supplier<NetworkEvent.Context>) {
         if (ctx.get().direction.receptionSide.isClient) {
             ctx.get().enqueueWork {
-                val player: PlayerEntity? = WiedzminstvoMod.proxy.player
+                val player: PlayerEntity? = Minecraft.getInstance().player
                 if (player != null) {
                     val owner = getOwnerCap(player)
                     HorseOwnerProvider.OWNER_CAPABILITY!!.storage
                         .readNBT(HorseOwnerProvider.OWNER_CAPABILITY, owner, null, ownerNBT)
-                    WiedzminstvoMod.proxy.displayStatViewer()
+                    Minecraft.getInstance().setScreen(GuiStatViewer(player))
                 }
             }
         }
+        ctx.get().packetHandled = true
     }
 
     companion object : NetworkingUnit()

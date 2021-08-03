@@ -21,7 +21,7 @@ object WhistleSounds {
 	private fun registerSound(soundName: String): SoundEvent {
 		val soundID = ResourceLocation(WiedzminstvoMod.MODID, soundName)
 		val s = SoundEvent(soundID)
-		s.setRegistryName(soundID)
+		s.registryName = soundID
 		sounds.add(s)
 		return s
 	}

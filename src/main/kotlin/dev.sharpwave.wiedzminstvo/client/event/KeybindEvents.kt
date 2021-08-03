@@ -3,7 +3,6 @@ package dev.sharpwave.wiedzminstvo.client.event
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.client.managers.KeybindManager
 import dev.sharpwave.wiedzminstvo.config.HorseConfig
-import dev.sharpwave.wiedzminstvo.network.main.horse.HorseSubNetwork
 import dev.sharpwave.wiedzminstvo.network.main.horse.packets.PressKeyPacket
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn

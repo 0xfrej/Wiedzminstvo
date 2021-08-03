@@ -1,11 +1,11 @@
 package dev.sharpwave.wiedzminstvo.network.main.horse.packets
 
-import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.HorseProvider
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.IStoredHorse
 import dev.sharpwave.wiedzminstvo.network.AbstractNetworkPacket
 import dev.sharpwave.wiedzminstvo.network.NetworkingUnit
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper.getHorseCap
+import net.minecraft.client.Minecraft
 import net.minecraft.entity.Entity
 import net.minecraft.nbt.CompoundNBT
 import net.minecraft.network.PacketBuffer
@@ -40,7 +40,7 @@ class HorseCapSyncPacket() : AbstractNetworkPacket() {
     override fun handle(ctx: Supplier<NetworkEvent.Context>) {
         if (ctx.get().direction.receptionSide.isClient) {
             ctx.get().enqueueWork {
-                val world: World = WiedzminstvoMod.proxy.world!!
+                val world: World = Minecraft.getInstance().level!!
                 val e: Entity? = world.getEntity(entityID)
                 if (e != null) {
                     val horse = getHorseCap(e)
@@ -49,6 +49,7 @@ class HorseCapSyncPacket() : AbstractNetworkPacket() {
                 }
             }
         }
+        ctx.get().packetHandled = true
     }
 
     companion object : NetworkingUnit()

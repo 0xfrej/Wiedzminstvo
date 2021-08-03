@@ -38,6 +38,7 @@ class PressKeyPacket() : AbstractNetworkPacket() {
                 }
             }
         }
+        ctx.get().packetHandled = true
     }
 
     companion object : NetworkingUnit()
