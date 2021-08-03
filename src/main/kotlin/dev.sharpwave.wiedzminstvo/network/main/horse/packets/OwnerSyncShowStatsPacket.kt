@@ -3,7 +3,8 @@ package dev.sharpwave.wiedzminstvo.network.main.horse.packets
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.HorseOwnerProvider
 import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.IHorseOwner
-import dev.sharpwave.wiedzminstvo.network.INetworkPacket
+import dev.sharpwave.wiedzminstvo.network.AbstractNetworkPacket
+import dev.sharpwave.wiedzminstvo.network.NetworkingUnit
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper.getOwnerCap
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.CompoundNBT
@@ -12,7 +13,7 @@ import net.minecraftforge.fml.network.NetworkEvent
 import java.util.function.Supplier
 
 @Suppress("unused")
-class OwnerSyncShowStatsPacket() : INetworkPacket {
+class OwnerSyncShowStatsPacket() : AbstractNetworkPacket() {
     private var ownerNBT: CompoundNBT? = null
 
     constructor(owner: IHorseOwner?) : this() {
@@ -44,4 +45,6 @@ class OwnerSyncShowStatsPacket() : INetworkPacket {
             }
         }
     }
+
+    companion object : NetworkingUnit()
 }

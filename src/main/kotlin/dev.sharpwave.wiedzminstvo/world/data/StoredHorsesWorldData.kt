@@ -8,15 +8,12 @@ import net.minecraft.world.storage.DimensionSavedDataManager
 import net.minecraft.world.storage.WorldSavedData
 
 
-class StoredHorsesWorldData : WorldSavedData {
+class StoredHorsesWorldData : WorldSavedData(name) {
     private val entries: MutableMap<String, Int> = HashMap()
     private val killedHorses: MutableList<String> = ArrayList()
     private val disbandedHorses: MutableList<String> = ArrayList()
     private val offlineSavedHorses: MutableMap<String, CompoundNBT> = HashMap()
     private var i = 0
-
-    constructor() : super(name) {}
-    constructor(name: String?) : super(name) {}
 
     override fun load(nbt: CompoundNBT) {
         var i = 0
@@ -124,7 +121,8 @@ class StoredHorsesWorldData : WorldSavedData {
     }
 
     companion object {
-        private val name: String = WiedzminstvoMod.MODID.toString() + "_stored_horses"
+        private const val name: String = WiedzminstvoMod.MODID + "_stored_horses"
+
         fun getInstance(world: ServerWorld): StoredHorsesWorldData {
             val storage: DimensionSavedDataManager = world.dataStorage
             val instance = storage.get({ StoredHorsesWorldData() }, name) as StoredHorsesWorldData

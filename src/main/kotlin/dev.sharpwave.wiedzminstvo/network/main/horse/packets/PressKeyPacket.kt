@@ -3,13 +3,14 @@ package dev.sharpwave.wiedzminstvo.network.main.horse.packets
 import dev.sharpwave.wiedzminstvo.entity.managers.HorseManager.callHorse
 import dev.sharpwave.wiedzminstvo.entity.managers.HorseManager.setHorse
 import dev.sharpwave.wiedzminstvo.entity.managers.HorseManager.showHorseStats
-import dev.sharpwave.wiedzminstvo.network.INetworkPacket
+import dev.sharpwave.wiedzminstvo.network.AbstractNetworkPacket
+import dev.sharpwave.wiedzminstvo.network.NetworkingUnit
 import net.minecraft.network.PacketBuffer
 import net.minecraftforge.fml.network.NetworkEvent
 import java.util.function.Supplier
 
 @Suppress("unused")
-class PressKeyPacket() : INetworkPacket {
+class PressKeyPacket() : AbstractNetworkPacket() {
     private var key = 0
 
     constructor(key: Int) : this() {
@@ -38,4 +39,6 @@ class PressKeyPacket() : INetworkPacket {
             }
         }
     }
+
+    companion object : NetworkingUnit()
 }

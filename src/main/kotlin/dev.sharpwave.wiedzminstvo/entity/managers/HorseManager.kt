@@ -2,6 +2,7 @@ package dev.sharpwave.wiedzminstvo.entity.managers
 
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.IStoredHorse
 import dev.sharpwave.wiedzminstvo.config.HorseConfig
+import dev.sharpwave.wiedzminstvo.network.main.MainNetwork
 import dev.sharpwave.wiedzminstvo.network.main.horse.HorseSubNetwork
 import dev.sharpwave.wiedzminstvo.network.main.horse.packets.OwnerSyncShowStatsPacket
 import dev.sharpwave.wiedzminstvo.network.main.horse.packets.PlayWhistlePacket
@@ -70,7 +71,7 @@ object HorseManager {
                     1f,
                     (1.4 + rand.nextGaussian() / 3).toFloat()
                 )
-                HorseSubNetwork.send(
+                PlayWhistlePacket.send(
                     PacketDistributor.PLAYER.with { player as ServerPlayerEntity? },
                     PlayWhistlePacket()
                 )
@@ -158,8 +159,8 @@ object HorseManager {
                     if (ent != null) {
                         clearHorse(getHorseCap(ent))
                     } else {
-                        player.level.server?.allLevels?.forEach { serverworld ->
-                            val data: StoredHorsesWorldData = getWorldData(serverworld)
+                        player.level.server?.allLevels?.forEach { serverWorld ->
+                            val data: StoredHorsesWorldData = getWorldData(serverWorld)
                             data.disbandHorse(ownedID)
                         }
                     }
@@ -189,7 +190,7 @@ object HorseManager {
         if (e != null) {
             saveHorse(e)
         }
-        HorseSubNetwork.send(PacketDistributor.PLAYER.with { player }, OwnerSyncShowStatsPacket(owner))
+        OwnerSyncShowStatsPacket.send(PacketDistributor.PLAYER.with { player }, OwnerSyncShowStatsPacket(owner))
     }
 
     fun clearHorse(horse: IStoredHorse?) {
@@ -257,6 +258,7 @@ object HorseManager {
                 while (z <= endZ) {
                     val pos = BlockPos(x, y, z)
                     val state = world.getBlockState(pos)
+                    @Suppress("DEPRECATION")
                     if (state.block.getCollisionShape(state, world, pos, ISelectionContext.empty()) !== VoxelShapes.empty()) {
                         player.displayClientMessage(
                             TranslationTextComponent("wiedzminstvo.horse.error.nospace").withStyle(

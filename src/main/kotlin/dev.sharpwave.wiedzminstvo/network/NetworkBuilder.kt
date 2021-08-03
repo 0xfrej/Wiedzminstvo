@@ -1,6 +1,5 @@
 package dev.sharpwave.wiedzminstvo.network
 
-import dev.sharpwave.wiedzminstvo.network.main.horse.packets.HorseCapSyncPacket
 import net.minecraft.network.PacketBuffer
 import net.minecraftforge.fml.network.NetworkDirection
 import net.minecraftforge.fml.network.NetworkEvent
@@ -12,7 +11,7 @@ import java.util.function.Supplier
 class NetworkBuilder(private val network: SimpleChannel){
     private var messageIndexCount = 0
 
-    fun <MSG : INetworkPacket> registerMessage(
+    fun <MSG : AbstractNetworkPacket> registerMessage(
         messageType: Class<MSG>,
         networkDirection: NetworkDirection,
         encoder: (MSG, PacketBuffer) -> Unit =
@@ -31,6 +30,8 @@ class NetworkBuilder(private val network: SimpleChannel){
             messageConsumer,
             Optional.of(networkDirection)
         )
+
+        messageType.getMethod("registerNetworkChannel", SimpleChannel::class.java).invoke(network)
 
         return this
     }

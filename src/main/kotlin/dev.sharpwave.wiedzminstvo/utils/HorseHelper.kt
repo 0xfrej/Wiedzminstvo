@@ -42,7 +42,7 @@ object HorseHelper {
 
     fun sendHorseUpdateInRange(horse: Entity) {
         val storedHorse = getHorseCap(horse)
-        HorseSubNetwork.send(PacketDistributor.NEAR.with {
+        HorseCapSyncPacket.send(PacketDistributor.NEAR.with {
             TargetPoint(
                 horse.x,
                 horse.y,
@@ -55,7 +55,7 @@ object HorseHelper {
 
     fun sendHorseUpdateToClient(horse: Entity, player: PlayerEntity) {
         val storedHorse = getHorseCap(horse)
-        HorseSubNetwork.send(
+        HorseCapSyncPacket.send(
             PacketDistributor.PLAYER.with { player as ServerPlayerEntity? },
             HorseCapSyncPacket(horse.id, storedHorse)
         )

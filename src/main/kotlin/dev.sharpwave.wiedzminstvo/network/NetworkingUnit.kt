@@ -9,11 +9,11 @@ import net.minecraftforge.fml.network.PacketDistributor.PacketTarget
 import net.minecraftforge.fml.network.simple.SimpleChannel
 import net.minecraftforge.fml.network.simple.SimpleChannel.MessageBuilder
 
-abstract class AbstractBaseNetwork {
+open class NetworkingUnit {
     lateinit var channel: SimpleChannel
         private set
 
-    fun registerNetworkChannel(channel: SimpleChannel): AbstractBaseNetwork {
+    fun registerNetworkChannel(channel: SimpleChannel): NetworkingUnit {
         this.channel = channel
         return this
     }

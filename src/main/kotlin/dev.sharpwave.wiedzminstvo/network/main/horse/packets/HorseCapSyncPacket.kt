@@ -3,7 +3,8 @@ package dev.sharpwave.wiedzminstvo.network.main.horse.packets
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.HorseProvider
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.IStoredHorse
-import dev.sharpwave.wiedzminstvo.network.INetworkPacket
+import dev.sharpwave.wiedzminstvo.network.AbstractNetworkPacket
+import dev.sharpwave.wiedzminstvo.network.NetworkingUnit
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper.getHorseCap
 import net.minecraft.entity.Entity
 import net.minecraft.nbt.CompoundNBT
@@ -13,7 +14,7 @@ import net.minecraftforge.fml.network.NetworkEvent
 import java.util.function.Supplier
 
 @Suppress("unused")
-class HorseCapSyncPacket() : INetworkPacket {
+class HorseCapSyncPacket() : AbstractNetworkPacket() {
     private var entityID = 0
     private var horseNBT: CompoundNBT? = null
 
@@ -49,4 +50,6 @@ class HorseCapSyncPacket() : INetworkPacket {
             }
         }
     }
+
+    companion object : NetworkingUnit()
 }

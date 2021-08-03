@@ -5,7 +5,6 @@ import dev.sharpwave.wiedzminstvo.client.managers.KeybindManager
 import dev.sharpwave.wiedzminstvo.config.HorseConfig
 import dev.sharpwave.wiedzminstvo.network.main.horse.HorseSubNetwork
 import dev.sharpwave.wiedzminstvo.network.main.horse.packets.PressKeyPacket
-import net.minecraft.world.gen.feature.Features.Configs
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 import net.minecraftforge.event.TickEvent.PlayerTickEvent
@@ -29,19 +28,19 @@ object KeybindEvents {
             if (callHorse) {
                 if (System.currentTimeMillis() - lastPressTime > 500) {
                     lastPressTime = System.currentTimeMillis()
-                    HorseSubNetwork.sendToServer(PressKeyPacket(0))
+                    PressKeyPacket.sendToServer(PressKeyPacket(0))
                 }
             }
             if (setHorse) {
                 if (System.currentTimeMillis() - lastPressTime > 500) {
                     lastPressTime = System.currentTimeMillis()
-                    HorseSubNetwork.sendToServer(PressKeyPacket(1))
+                    PressKeyPacket.sendToServer(PressKeyPacket(1))
                 }
             }
             if (showStats) {
                 if (System.currentTimeMillis() - lastPressTime > 500) {
                     lastPressTime = System.currentTimeMillis()
-                    HorseSubNetwork.sendToServer(PressKeyPacket(2))
+                    PressKeyPacket.sendToServer(PressKeyPacket(2))
                 }
             }
         }

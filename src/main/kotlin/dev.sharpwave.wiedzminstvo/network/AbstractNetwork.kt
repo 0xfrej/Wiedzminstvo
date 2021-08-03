@@ -4,7 +4,7 @@ import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.network.NetworkRegistry
 
-abstract class AbstractNetwork(private val name: String) : AbstractBaseNetwork() {
+abstract class AbstractNetwork(private val name: String) : NetworkingUnit() {
     private var builder: NetworkBuilder? = null
 
     val channelName: String
