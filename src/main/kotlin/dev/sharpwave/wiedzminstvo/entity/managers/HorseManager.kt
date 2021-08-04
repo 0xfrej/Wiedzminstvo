@@ -1,7 +1,7 @@
 package dev.sharpwave.wiedzminstvo.entity.managers
 
-import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.IStoredHorse
 import dev.sharpwave.wiedzminstvo.config.HorseConfig
+import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.IStoredHorse
 import dev.sharpwave.wiedzminstvo.network.main.horse.packets.OwnerSyncShowStatsPacket
 import dev.sharpwave.wiedzminstvo.network.main.packets.PlayWhistlePacket
 import dev.sharpwave.wiedzminstvo.sound.WhistleSounds
@@ -116,6 +116,11 @@ object HorseManager {
         return false
     }
 
+    // TODO: Can set horse only if it's tamed and the player is it's owner
+    /*
+    * TODO: Rework setting horse by equipping special saddle which has some special effects or another idea
+    * is to have custom horse inventory slot where you can equip hook for trophies (if possible this is first option)
+    */
     fun setHorse(player: PlayerEntity?) {
         if (player != null) {
             if (player.vehicle == null) {

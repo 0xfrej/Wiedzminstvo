@@ -2,9 +2,9 @@ package dev.sharpwave.wiedzminstvo.world.data
 
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
+import dev.sharpwave.wiedzminstvo.utils.Storage
 import net.minecraft.nbt.CompoundNBT
 import net.minecraft.world.server.ServerWorld
-import net.minecraft.world.storage.DimensionSavedDataManager
 import net.minecraft.world.storage.WorldSavedData
 
 
@@ -124,13 +124,7 @@ class HorsesWorldData : WorldSavedData(name) {
         private const val name: String = WiedzminstvoMod.MODID + "_horses"
 
         fun getInstance(world: ServerWorld): HorsesWorldData {
-            val storage: DimensionSavedDataManager = world.dataStorage
-            var instance = storage.get({ HorsesWorldData() }, name)
-            if (instance == null) {
-                instance = HorsesWorldData()
-            }
-            storage.set(instance)
-            return instance
+            return Storage.getInstance(world, name) { HorsesWorldData() }
         }
     }
 }
