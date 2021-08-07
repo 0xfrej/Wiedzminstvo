@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.5.10'
+    ext.kotlin_version = '1.5.21'
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
         mavenCentral()
@@ -144,7 +144,7 @@ dependencies {
 
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
-    manifest(({
+    manifest({
         attributes([
                 "Specification-Title"     : "wiedzminstvo",
                 "Specification-Vendor"    : "sharpwave.dev",
@@ -154,7 +154,7 @@ jar {
                 "Implementation-Vendor"   : "examplemodsareus",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
-    } as groovy.lang.Closure<?>))
+    })
 }
 
 // Example configuration to allow publishing using the maven-publish task
