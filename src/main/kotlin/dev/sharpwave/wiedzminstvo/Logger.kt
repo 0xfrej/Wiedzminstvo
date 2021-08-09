@@ -1,30 +1,25 @@
 package dev.sharpwave.wiedzminstvo
 
-import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.*
 import org.apache.logging.log4j.Logger
-import org.apache.logging.log4j.MarkerManager
 
 object Logger {
-    val log: Logger = LogManager.getFormatterLogger("Wiedzminstvo")
-}
-/*
-object Logger {
-    val MOD_MARKER: Marker = MarkerManager.getMarker(TestMod3.MODID)
-    private val logger: Logger? = null
+    private val logger: Logger = LogManager.getFormatterLogger("Wiedzminstvo")
+
     fun log(level: Level?, format: String?, vararg data: Any?) {
-        Logger.logger.printf(level, format, data)
+        logger.printf(level, format, data)
     }
 
     fun log(level: Level?, throwable: Throwable?, format: String?, vararg data: Any?) {
-        Logger.logger.log(level, String.format(format!!, *data), throwable)
+        logger.log(level, String.format(format!!, *data), throwable)
     }
 
     fun log(level: Level?, marker: Marker?, format: String?, vararg data: Any?) {
-        Logger.logger.printf(level, marker, format, data)
+        logger.printf(level, marker, format, data)
     }
 
     fun log(level: Level?, marker: Marker?, throwable: Throwable?, format: String?, vararg data: Any?) {
-        Logger.logger.log(level, marker, String.format(format!!, *data), throwable)
+        logger.log(level, marker, String.format(format!!, *data), throwable)
     }
 
     fun fatal(format: String?, vararg data: Any?) {
@@ -115,9 +110,4 @@ object Logger {
     ) {
         log(Level.DEBUG, marker, throwable, format, data)
     }
-
-    fun setLogger(logger: Logger) {
-        check(Logger.logger == null) { "Attempt to replace logger" }
-        Logger.logger = logger
-    }
-}*/
+}
