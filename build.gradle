@@ -48,7 +48,7 @@ minecraft {
             // The markers can be changed as needed.
             // "SCAN": For mods scan.
             // "REGISTRIES": For firing of registry dev.sharpwave.wiedzminstvo.entity.events.
-            // "REGISTRYDUMP": For getting the contents of all registries.
+            // "REGISTRYDUMP": For getting the contents of all dev.sharpwave.wiedzminstvo.registries.
             property 'forge.logging.markers', 'REGISTRIES'
 
             // Recommended logging level for the console
@@ -70,7 +70,7 @@ minecraft {
             // The markers can be changed as needed.
             // "SCAN": For mods scan.
             // "REGISTRIES": For firing of registry dev.sharpwave.wiedzminstvo.entity.events.
-            // "REGISTRYDUMP": For getting the contents of all registries.
+            // "REGISTRYDUMP": For getting the contents of all dev.sharpwave.wiedzminstvo.registries.
             property 'forge.logging.markers', 'REGISTRIES'
 
             // Recommended logging level for the console
@@ -92,7 +92,7 @@ minecraft {
             // The markers can be changed as needed.
             // "SCAN": For mods scan.
             // "REGISTRIES": For firing of registry dev.sharpwave.wiedzminstvo.entity.events.
-            // "REGISTRYDUMP": For getting the contents of all registries.
+            // "REGISTRYDUMP": For getting the contents of all dev.sharpwave.wiedzminstvo.registries.
             property 'forge.logging.markers', 'REGISTRIES'
 
             // Recommended logging level for the console

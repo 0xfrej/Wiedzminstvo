@@ -25,11 +25,11 @@ object ModConfig {
     }
 
     fun loadConfig(configSpec: ForgeConfigSpec, path: String) {
-        Logger.log.info("Loading config: $path")
+        Logger.info("Loading config: $path")
         val file = CommentedFileConfig.builder(File(path)).sync().autosave().writingMode(WritingMode.REPLACE).build()
-        Logger.log.info("Built config: $path")
+        Logger.info("Built config: $path")
         file.load()
-        Logger.log.info("Loaded config: $path")
+        Logger.info("Loaded config: $path")
         configSpec.setConfig(file)
     }
 }
