@@ -9,6 +9,7 @@ import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.IHorseOwner
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.HorseProvider
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.IStoredHorse
 import dev.sharpwave.wiedzminstvo.entity.managers.HorseManager
+import dev.sharpwave.wiedzminstvo.locale.HorseStrings
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper
 import dev.sharpwave.wiedzminstvo.world.data.HorsesWorldData
 import net.minecraft.entity.Entity
@@ -180,7 +181,7 @@ object HorseEntityEvents {
                     if (HorseConfig.deathIsPermanent?.get() == true) {
                         horseOwner.clearHorse()
                         owner.displayClientMessage(
-                            TranslationTextComponent("wiedzminstvo.horse.alert.death").withStyle(
+                            TranslationTextComponent(HorseStrings.HORSE_ALERT_DEATH).withStyle(
                                 TextFormatting.RED
                             ), false
                         )
@@ -216,7 +217,7 @@ object HorseEntityEvents {
                     if (HorseConfig.deathIsPermanent?.get() == true) {
                         owner.clearHorse()
                         joiningEntity.displayClientMessage(
-                            TranslationTextComponent("wiedzminstvo.horse.alert.offlinedeath").withStyle(
+                            TranslationTextComponent(HorseStrings.HORSE_ALERT_OFFLINE_DEATH).withStyle(
                                 TextFormatting.RED
                             ), false
                         )

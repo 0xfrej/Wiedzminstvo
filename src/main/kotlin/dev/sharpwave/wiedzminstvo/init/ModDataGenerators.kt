@@ -1,6 +1,8 @@
 package dev.sharpwave.wiedzminstvo.init
 
-import dev.sharpwave.wiedzminstvo.datagen.*
+import dev.sharpwave.wiedzminstvo.datagen.EntityTags
+import dev.sharpwave.wiedzminstvo.datagen.Items
+import dev.sharpwave.wiedzminstvo.datagen.Language
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent
 
@@ -11,15 +13,16 @@ object ModDataGenerators {
         val generator = event.generator
         val existingFileHelper = event.existingFileHelper
 
-        //if (event.includeServer()) {
+        if (event.includeServer()) {
             //generator.addProvider(Recipes(generator))
             //generator.addProvider(LootTables(generator))
-            //generator.addProvider(Tags(generator, event.existingFileHelper))
-        //}
+            generator.addProvider(EntityTags(generator, event.existingFileHelper))
+        }
 
         if (event.includeClient()) {
-            generator.addProvider(BlockStates(generator))
+            //generator.addProvider(BlockStates(generator))
             generator.addProvider(Items(generator, existingFileHelper))
+            generator.addProvider(Language(generator))
         }
     }
 }

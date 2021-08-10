@@ -2,6 +2,7 @@ package dev.sharpwave.wiedzminstvo.entity.managers
 
 import dev.sharpwave.wiedzminstvo.config.HorseConfig
 import dev.sharpwave.wiedzminstvo.entity.capabilities.storedhorse.IStoredHorse
+import dev.sharpwave.wiedzminstvo.locale.HorseStrings
 import dev.sharpwave.wiedzminstvo.network.main.horse.packets.OwnerSyncShowStatsPacket
 import dev.sharpwave.wiedzminstvo.network.main.packets.PlayWhistlePacket
 import dev.sharpwave.wiedzminstvo.sound.WhistleSounds
@@ -50,7 +51,7 @@ object HorseManager {
             if (horseOwner != null) {
                 if (horseOwner.horseNBT.isEmpty) {
                     player.displayClientMessage(
-                        TranslationTextComponent("wiedzminstvo.horse.error.nohorse").withStyle(
+                        TranslationTextComponent(HorseStrings.HORSE_ERROR_NO_HORSE).withStyle(
                             TextFormatting.RED
                         ), true
                     )
@@ -125,7 +126,7 @@ object HorseManager {
         if (player != null) {
             if (player.vehicle == null) {
                 player.displayClientMessage(
-                    TranslationTextComponent("wiedzminstvo.horse.error.notriding").withStyle(
+                    TranslationTextComponent(HorseStrings.HORSE_ERROR_NOT_RIDING).withStyle(
                         TextFormatting.RED
                     ), true
                 )
@@ -140,7 +141,7 @@ object HorseManager {
                 val owned = storedHorse.isOwned
                 if (owned && owner != playerID) {
                     player.displayClientMessage(
-                        TranslationTextComponent("wiedzminstvo.horse.error.alreadyowned").withStyle(
+                        TranslationTextComponent(HorseStrings.HORSE_ERROR_ALREADY_OWNED).withStyle(
                             TextFormatting.RED
                         ), true
                     )
@@ -148,7 +149,7 @@ object HorseManager {
                 }
                 if (owned && owner == playerID) {
                     player.displayClientMessage(
-                        TranslationTextComponent("wiedzminstvo.horse.error.alreadypersonal").withStyle(
+                        TranslationTextComponent(HorseStrings.HORSE_ERROR_ALREADY_PERSONAL).withStyle(
                             TextFormatting.RED
                         ), true
                     )
@@ -176,7 +177,7 @@ object HorseManager {
                 horseOwner.setHorse(e, player)
                 setHorseLastSeen(player)
                 setHorseNum((e.level as ServerWorld?)!!, storedHorse.storageUUID, storedHorse.horseNum)
-                player.displayClientMessage(TranslationTextComponent("wiedzminstvo.horse.success"), true)
+                player.displayClientMessage(TranslationTextComponent(HorseStrings.HORSE_ERROR_ALREADY_PERSONAL), true)
                 sendHorseUpdateInRange(e)
             }
         }
@@ -186,7 +187,7 @@ object HorseManager {
         val owner = getOwnerCap(player)
         if (owner!!.horseNBT.isEmpty) {
             player.displayClientMessage(
-                TranslationTextComponent("wiedzminstvo.horse.error.nohorse").withStyle(TextFormatting.RED),
+                TranslationTextComponent(HorseStrings.HORSE_ERROR_NO_HORSE).withStyle(TextFormatting.RED),
                 true
             )
             return
@@ -237,7 +238,7 @@ object HorseManager {
     private fun canCallHorse(player: PlayerEntity): Boolean {
         if (isAreaProtected(player, null)) {
             player.displayClientMessage(
-                TranslationTextComponent("wiedzminstvo.horse.error.area").withStyle(TextFormatting.RED),
+                TranslationTextComponent(HorseStrings.HORSE_ERROR_AREA_BANNED).withStyle(TextFormatting.RED),
                 true
             )
             return false
@@ -245,7 +246,7 @@ object HorseManager {
         // TODO: add this check also to client side to prevent spawning the sound
         if (player.vehicle != null) {
             player.displayClientMessage(
-                TranslationTextComponent("wiedzminstvo.horse.error.riding").withStyle(TextFormatting.RED),
+                TranslationTextComponent(HorseStrings.HORSE_ERROR_RIDING).withStyle(TextFormatting.RED),
                 true
             )
             return false
@@ -269,7 +270,7 @@ object HorseManager {
                     @Suppress("DEPRECATION")
                     if (state.block.getCollisionShape(state, world, pos, ISelectionContext.empty()) !== VoxelShapes.empty()) {
                         player.displayClientMessage(
-                            TranslationTextComponent("wiedzminstvo.horse.error.nospace").withStyle(
+                            TranslationTextComponent(HorseStrings.HORSE_ERROR_NO_SPACE).withStyle(
                                 TextFormatting.RED
                             ), true
                         )
@@ -288,7 +289,7 @@ object HorseManager {
                 if (allowedDims[i] == playerDim.location().toString()) return true
             }
             player.displayClientMessage(
-                TranslationTextComponent("wiedzminstvo.horse.error.dim").withStyle(TextFormatting.RED),
+                TranslationTextComponent(HorseStrings.HORSE_ERROR_DIM).withStyle(TextFormatting.RED),
                 true
             )
             return false
@@ -313,7 +314,7 @@ object HorseManager {
             val distance = lastSeenPos.distanceTo(player.position()) / movementFactorTotal
             if (distance <= maxDistance) return true
             player.displayClientMessage(
-                TranslationTextComponent("wiedzminstvo.horse.error.range").withStyle(TextFormatting.RED),
+                TranslationTextComponent(HorseStrings.HORSE_ERROR_RANGE).withStyle(TextFormatting.RED),
                 true
             )
             return false
@@ -325,7 +326,7 @@ object HorseManager {
     private fun canSetHorse(player: PlayerEntity, entity: Entity?): Boolean {
         if (isAreaProtected(player, entity)) {
             player.displayClientMessage(
-                TranslationTextComponent("wiedzminstvo.horse.error.setarea").withStyle(TextFormatting.RED),
+                TranslationTextComponent(HorseStrings.HORSE_ERROR_AREA_BANNED).withStyle(TextFormatting.RED),
                 true
             )
             return false

@@ -40,6 +40,7 @@ class GuiStatViewer(player: PlayerEntity) : Screen(StringTextComponent("Horse St
     private val lastDim: RegistryKey<World>
     private val mc = Minecraft.getInstance()
 
+    // TODO: Translatable UI
     override fun render(stack: MatrixStack, mouseX: Int, mouseY: Int, partialTicks: Float) {
         this.renderBackground(stack)
 
@@ -145,6 +146,7 @@ class GuiStatViewer(player: PlayerEntity) : Screen(StringTextComponent("Horse St
             ) horse.equipSaddle(null) // Set saddled
             if (horse is LlamaEntity) {
                 try {
+                    // TODO: Is this obfuscation helper needed?
                     val setColor: Method = ObfuscationReflectionHelper.findMethod(
                         LlamaEntity::class.java, "func_190711_a",
                         DyeColor::class.java
