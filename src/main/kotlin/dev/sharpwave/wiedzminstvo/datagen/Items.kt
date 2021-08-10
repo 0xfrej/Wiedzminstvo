@@ -16,7 +16,13 @@ class Items(generator: DataGenerator, existingFileHelper: ExistingFileHelper) : 
     }
 
     override fun registerModels() {
-        singleTexture(getRegistryPath(ItemRegistry.AETHER), handheldItem(), "layer0", itemLocation(ItemRegistry.AETHER.id))
+        singleTexture(
+            getRegistryPath(
+                ItemRegistry.AETHER
+            ),
+            handheldItem(),
+            "layer0",
+            itemLocation(ItemRegistry.AETHER.id))
         singleTexture(getRegistryPath(ItemRegistry.ALCHEMISTS_POWDER), handheldItem(), "layer0", itemLocation(ItemRegistry.ALCHEMISTS_POWDER.id))
         singleTexture(getRegistryPath(ItemRegistry.ALCHEMY_PASTE), handheldItem(), "layer0", itemLocation(ItemRegistry.ALCHEMY_PASTE.id))
         singleTexture(getRegistryPath(ItemRegistry.ALCOHEST), handheldItem(), "layer0", itemLocation(ItemRegistry.ALCOHEST.id))

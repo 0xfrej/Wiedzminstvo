@@ -1,6 +1,7 @@
 package dev.sharpwave.wiedzminstvo.datagen
 
 import com.google.gson.GsonBuilder
+import dev.sharpwave.wiedzminstvo.datagen.support.BaseLootTableProvider
 import net.minecraft.block.Block
 import net.minecraft.data.DataGenerator
 import net.minecraft.data.DirectoryCache
@@ -15,12 +16,13 @@ import org.apache.logging.log4j.LogManager
 import java.io.IOException
 
 
-abstract class BlockLootTables(protected val generator: DataGenerator) : LootTableProvider(
-    generator
-) {
-    protected val lootTables: MutableMap<Block, LootTable.Builder> = HashMap()
-    protected abstract fun addTables()
-    protected fun createStandardTable(name: String, block: Block): LootTable.Builder {
+class BlockLootTables(generator: DataGenerator) : BaseLootTableProvider<Block>(generator) {
+
+    override fun addTables() {
+
+    }
+
+    private fun createStandardTable(name: String, block: Block): LootTable.Builder {
         val builder = LootPool.lootPool()
             .name(name)
             .setRolls(ConstantRange.exactly(1))
@@ -40,40 +42,12 @@ abstract class BlockLootTables(protected val generator: DataGenerator) : LootTab
         return LootTable.lootTable().withPool(builder)
     }
 
-    override fun run(cache: DirectoryCache) {
-        addTables()
+    override fun buildTables(): Map<ResourceLocation, LootTable> {
         val tables: MutableMap<ResourceLocation, LootTable> = HashMap()
         for ((key, value) in lootTables) {
             tables[key.lootTable] = value.setParamSet(LootParameterSets.BLOCK).build()
         }
-        writeTables(cache, tables)
-    }
-
-    private fun writeTables(cache: DirectoryCache, tables: Map<ResourceLocation, LootTable>) {
-        val outputFolder = this.generator.outputFolder
-        tables.forEach { (key: ResourceLocation, lootTable: LootTable?) ->
-            val path =
-                outputFolder.resolve("data/" + key.namespace + "/loot_tables/" + key.path + ".json")
-            try {
-                IDataProvider.save(
-                    GSON,
-                    cache,
-                    LootTableManager.serialize(lootTable),
-                    path
-                )
-            } catch (e: IOException) {
-                LOGGER.error("Couldn't write loot table {}", path, e)
-            }
-        }
-    }
-
-    override fun getName(): String {
-        return "Wiedzminstvo LootTables"
-    }
-
-    companion object {
-        private val LOGGER = LogManager.getLogger()
-        private val GSON = GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
+        return tables
     }
 }
 

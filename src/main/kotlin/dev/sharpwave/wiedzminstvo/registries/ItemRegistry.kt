@@ -4,15 +4,15 @@ import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.items.alchemy.*
 import net.minecraft.item.Item
 import net.minecraftforge.fml.RegistryObject
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
+import thedarkcolour.kotlinforforge.forge.MOD_BUS
 
 object ItemRegistry {
     private val ITEMS : DeferredRegister<Item> = DeferredRegister.create(ForgeRegistries.ITEMS, WiedzminstvoMod.MODID)
 
     init {
-        ITEMS.register(FMLJavaModLoadingContext.get().modEventBus)
+        ITEMS.register(MOD_BUS)
     }
 
     val AETHER: RegistryObject<AetherItem> = ITEMS.register("aether") { AetherItem() }

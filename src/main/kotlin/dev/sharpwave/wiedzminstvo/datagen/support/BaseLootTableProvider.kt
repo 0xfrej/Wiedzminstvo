@@ -1,11 +1,14 @@
 package dev.sharpwave.wiedzminstvo.datagen.support
 
 import com.google.gson.GsonBuilder
+import net.minecraft.block.AbstractBlock
 import net.minecraft.block.Block
 import net.minecraft.data.DataGenerator
 import net.minecraft.data.DirectoryCache
 import net.minecraft.data.IDataProvider
 import net.minecraft.data.LootTableProvider
+import net.minecraft.entity.LivingEntity
+import net.minecraft.entity.MobEntity
 import net.minecraft.loot.LootParameterSet
 import net.minecraft.loot.LootParameterSets
 import net.minecraft.loot.LootTable
@@ -15,21 +18,16 @@ import org.apache.logging.log4j.LogManager
 import java.io.IOException
 
 
-abstract class BlockLootTables<T : Block>(protected val generator: DataGenerator) : LootTableProvider(
-    generator
-) {
-    protected abstract val lootParameterSet: LootParameterSet
+abstract class BaseLootTableProvider<T>(protected val generator: DataGenerator): LootTableProvider(generator){
     protected val lootTables: MutableMap<T, LootTable.Builder> = HashMap()
 
     protected abstract fun addTables()
 
+    protected abstract fun buildTables() : Map<ResourceLocation, LootTable>
+
     override fun run(cache: DirectoryCache) {
         addTables()
-        val tables: MutableMap<ResourceLocation, LootTable> = HashMap()
-        for ((key, value) in lootTables) {
-            tables[key.lootTable] = value.setParamSet(LootParameterSets.BLOCK).build()
-        }
-        writeTables(cache, tables)
+        writeTables(cache, buildTables())
     }
 
     private fun writeTables(cache: DirectoryCache, tables: Map<ResourceLocation, LootTable>) {

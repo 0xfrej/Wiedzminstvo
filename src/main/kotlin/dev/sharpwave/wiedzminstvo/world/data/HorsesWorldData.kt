@@ -124,7 +124,7 @@ class HorsesWorldData : WorldSavedData(name) {
         private const val name: String = WiedzminstvoMod.MODID + "_horses"
 
         fun getInstance(world: ServerWorld): HorsesWorldData {
-            return Storage.getInstance(world, name) { HorsesWorldData() }
+            return Storage.getStorageInstance(world, name) { HorsesWorldData() }
         }
     }
 }
