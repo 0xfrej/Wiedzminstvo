@@ -3,35 +3,35 @@ package dev.sharpwave.wiedzminstvo.registries
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.items.alchemy.*
 import net.minecraft.item.Item
-import net.minecraftforge.fml.RegistryObject
-import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
-import thedarkcolour.kotlinforforge.forge.MOD_BUS
+import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
+import thedarkcolour.kotlinforforge.forge.KDeferredRegister
 
-object ItemRegistry {
-    private val ITEMS : DeferredRegister<Item> = DeferredRegister.create(ForgeRegistries.ITEMS, WiedzminstvoMod.MODID)
+object ItemRegistry : IForgeRegistry {
+    private val ITEMS : KDeferredRegister<Item> = KDeferredRegister(ForgeRegistries.ITEMS, WiedzminstvoMod.MODID)
 
-    init {
-        ITEMS.register(MOD_BUS)
+    override fun register(bus: KotlinEventBus) {
+        ITEMS.register(bus)
     }
 
-    val AETHER: RegistryObject<AetherItem> = ITEMS.register("aether") { AetherItem() }
-    val ALCHEMISTS_POWDER: RegistryObject<AlchemistsPowderItem> = ITEMS.register("alchemists_powder") { AlchemistsPowderItem() }
-    val ALCHEMY_PASTE: RegistryObject<AlchemyPasteItem> = ITEMS.register("alchemy_paste") { AlchemyPasteItem() }
-    val ALCOHEST: RegistryObject<AlcohestItem> = ITEMS.register("alcohest") { AlcohestItem() }
-    val BOTTOMLESS_CARAFE: RegistryObject<BottomlessCarafeItem> = ITEMS.register("bottomless_carafe") { BottomlessCarafeItem() }
-    val CALCIUM_EQUUM: RegistryObject<CalciumEquumItem> = ITEMS.register("calcium_equum") { CalciumEquumItem() }
-    val DARK_ESSENCE: RegistryObject<DarkEssenceItem> = ITEMS.register("dark_essence") { DarkEssenceItem() }
-    val DWARVEN_SPIRIT: RegistryObject<DwarvenSpiritItem> = ITEMS.register("dwarven_spirit") { DwarvenSpiritItem() }
-    val FIFTH_ESSENCE: RegistryObject<FifthEssenceItem> = ITEMS.register("fifth_essence") { FifthEssenceItem() }
-    val HYDRAGENUM: RegistryObject<HydragenumItem> = ITEMS.register("hydragenum") { HydragenumItem() }
-    val OPTIMA_MATER: RegistryObject<OptimaMaterItem> = ITEMS.register("optima_mater") { OptimaMaterItem() }
-    val PHOSPHORUS: RegistryObject<PhosphorusItem> = ITEMS.register("phosphorus") { PhosphorusItem() }
-    val QUEBRITH: RegistryObject<QuebrithItem> = ITEMS.register("quebrith") { QuebrithItem() }
-    val REBIS: RegistryObject<RebisItem> = ITEMS.register("rebis") { RebisItem() }
-    val RUBEDO: RegistryObject<RubedoItem> = ITEMS.register("rubedo") { RubedoItem() }
-    val SALTPETER: RegistryObject<SaltpeterItem> = ITEMS.register("saltpeter") { SaltpeterItem() }
-    val SULFUR: RegistryObject<SulfurItem> = ITEMS.register("sulfur") { SulfurItem() }
-    val VERMILLION: RegistryObject<VermillionItem> = ITEMS.register("vermillion") { VermillionItem() }
-    val VITRIOL: RegistryObject<VitriolItem> = ITEMS.register("vitriol") { VitriolItem() }
+    val AETHER by ITEMS.registerObject("aether") { AetherItem() }
+    val ALCHEMISTS_POWDER by ITEMS.registerObject("alchemists_powder") { AlchemistsPowderItem() }
+    val ALCHEMY_PASTE by ITEMS.registerObject("alchemy_paste") { AlchemyPasteItem() }
+    val ALCOHEST by ITEMS.registerObject("alcohest") { AlcohestItem() }
+    val BOTTOMLESS_CARAFE by ITEMS.registerObject("bottomless_carafe") { BottomlessCarafeItem() }
+    val CALCIUM_EQUUM by ITEMS.registerObject("calcium_equum") { CalciumEquumItem() }
+    val DARK_ESSENCE by ITEMS.registerObject("dark_essence") { DarkEssenceItem() }
+    val DWARVEN_SPIRIT by ITEMS.registerObject("dwarven_spirit") { DwarvenSpiritItem() }
+    val FIFTH_ESSENCE by ITEMS.registerObject("fifth_essence") { FifthEssenceItem() }
+    val HYDRAGENUM by ITEMS.registerObject("hydragenum") { HydragenumItem() }
+    val OPTIMA_MATER by ITEMS.registerObject("optima_mater") { OptimaMaterItem() }
+    val PHOSPHORUS by ITEMS.registerObject("phosphorus") { PhosphorusItem() }
+    val QUEBRITH by ITEMS.registerObject("quebrith") { QuebrithItem() }
+    val REBIS by ITEMS.registerObject("rebis") { RebisItem() }
+    val RUBEDO by ITEMS.registerObject("rubedo") { RubedoItem() }
+    val SALTPETER by ITEMS.registerObject("saltpeter") { SaltpeterItem() }
+    val SULFUR by ITEMS.registerObject("sulfur") { SulfurItem() }
+    val VERMILION by ITEMS.registerObject("vermilion") { VermilionItem() }
+    val VITRIOL by ITEMS.registerObject("vitriol") { VitriolItem() }
+
 }

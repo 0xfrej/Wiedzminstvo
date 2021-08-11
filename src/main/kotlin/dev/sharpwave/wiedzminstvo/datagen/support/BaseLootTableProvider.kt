@@ -1,16 +1,10 @@
 package dev.sharpwave.wiedzminstvo.datagen.support
 
 import com.google.gson.GsonBuilder
-import net.minecraft.block.AbstractBlock
-import net.minecraft.block.Block
 import net.minecraft.data.DataGenerator
 import net.minecraft.data.DirectoryCache
 import net.minecraft.data.IDataProvider
 import net.minecraft.data.LootTableProvider
-import net.minecraft.entity.LivingEntity
-import net.minecraft.entity.MobEntity
-import net.minecraft.loot.LootParameterSet
-import net.minecraft.loot.LootParameterSets
 import net.minecraft.loot.LootTable
 import net.minecraft.loot.LootTableManager
 import net.minecraft.util.ResourceLocation

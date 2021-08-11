@@ -1,4 +1,4 @@
-package dev.sharpwave.wiedzminstvo.entity.registries
+package dev.sharpwave.wiedzminstvo.registries
 
 import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.HorseOwner
 import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.HorseOwnerStorage

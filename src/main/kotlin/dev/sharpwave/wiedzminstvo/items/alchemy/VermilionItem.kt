@@ -1,5 +1,5 @@
 package dev.sharpwave.wiedzminstvo.items.alchemy
 
-class VermillionItem : AlchemyItem() {
+class VermilionItem : AlchemyItem() {
 
 }

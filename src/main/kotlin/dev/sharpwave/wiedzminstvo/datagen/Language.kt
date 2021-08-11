@@ -8,6 +8,8 @@ import net.minecraftforge.common.data.LanguageProvider
 
 class Language(generator: DataGenerator) : LanguageProvider(generator, WiedzminstvoMod.MODID, "en_US") {
     override fun addTranslations() {
+        add("itemGroup.wiedzminstvo_alchemy", "Wiedzminstvo - Alchemy")
+
         add(GeneralStrings.KEY_MODID_CATEGORY, "Wiedzminstvo")
         add(GeneralStrings.KEY_SET_HORSE_DESC, "Set Horse")
         add(GeneralStrings.KEY_CALL_HORSE_DESC, "Call Horse")
