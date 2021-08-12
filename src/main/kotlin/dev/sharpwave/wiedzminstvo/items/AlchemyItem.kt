@@ -1,11 +1,9 @@
-package dev.sharpwave.wiedzminstvo.items.alchemy
+package dev.sharpwave.wiedzminstvo.items
 
-import dev.sharpwave.wiedzminstvo.items.ModItemGroup
 import net.minecraft.item.Item
-import net.minecraft.item.ItemGroup
 import net.minecraft.item.Rarity
 
-open class AlchemyItem(properties: Properties) : Item(properties) {
+open class AlchemyItem(properties: Item.Properties) : Item(properties) {
 
     constructor() : this(Properties())
 
