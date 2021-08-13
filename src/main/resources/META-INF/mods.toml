@@ -1,7 +1,7 @@
 
 modLoader="kotlinforforge"
 loaderVersion="[1,)"
-license="MIT"
+license="Apache License 2.0"
 #issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/"
 [[mods]]
 modId="wiedzminstvo"
@@ -23,7 +23,7 @@ Become a witcher on the path, fighting, exploring. In world full of possibili-
 Nah, we just like witcher world and since there is no other more complete mod, we've decided
 to create our own. We promise nothing, but our aim is to bring monsters, alchemy, contracts
 and some more stuff to the game. We work on this mod actively yet perhaps vaguely as we don't
-have much free time in our personal life.
+have much free time in our personal lives.
 
 That's about it. Please enjoy our mod and if you wan't to help out, feel free to join our discord
 server or contribute on github repository :)

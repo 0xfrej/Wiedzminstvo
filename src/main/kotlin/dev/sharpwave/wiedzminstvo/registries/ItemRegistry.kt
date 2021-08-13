@@ -34,5 +34,4 @@ object ItemRegistry : IForgeRegistry {
     val SULFUR by ITEMS.registerObject("sulfur") { AlchemyItem() }
     val VERMILION by ITEMS.registerObject("vermilion") { AlchemyItem() }
     val VITRIOL by ITEMS.registerObject("vitriol") { AlchemyItem() }
-
 }

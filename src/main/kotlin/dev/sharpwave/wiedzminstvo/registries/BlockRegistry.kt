@@ -1,10 +1,9 @@
 package dev.sharpwave.wiedzminstvo.registries
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
-import net.minecraft.block.AbstractBlock
+import dev.sharpwave.wiedzminstvo.blocks.*
 import net.minecraft.block.Block
-import net.minecraft.block.OreBlock
-import net.minecraft.block.material.Material
+import net.minecraft.potion.Effects
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
 import thedarkcolour.kotlinforforge.forge.KDeferredRegister
@@ -17,7 +16,9 @@ object BlockRegistry : IForgeRegistry {
         BLOCKS.register(bus)
     }
 
-    val AETHER by BLOCKS.registerObject("aether_ore") { OreBlock(AbstractBlock.Properties.of(Material.STONE)) }
+    val ARENARIA by BLOCKS.registerObject("arenaria") { AlchemyFlowerBlock.make(Effects.HEAL, 1) }
+    val BEGGARTICK by BLOCKS.registerObject("beggartick_blossoms") { AlchemyFlowerBlock.make() }
+    /*val AETHER by BLOCKS.registerObject("aether_ore") { OreBlock(AbstractBlock.Properties.of(Material.STONE)) }
     val CALCIUM_EQUUM by BLOCKS.registerObject("calcium_equum_ore") { OreBlock(AbstractBlock.Properties.of(Material.STONE)) }
     val HYDRAGENUM by BLOCKS.registerObject("hydragenum_ore") { OreBlock(AbstractBlock.Properties.of(Material.STONE)) }
     val OPTIMA_MATER by BLOCKS.registerObject("optima_mater_ore") { OreBlock(AbstractBlock.Properties.of(Material.STONE)) }
@@ -28,4 +29,8 @@ object BlockRegistry : IForgeRegistry {
     val SULFUR by BLOCKS.registerObject("sulfur_ore") { OreBlock(AbstractBlock.Properties.of(Material.STONE)) }
     val VERMILION by BLOCKS.registerObject("vermilion_ore") { OreBlock(AbstractBlock.Properties.of(Material.STONE)) }
     val VITRIOL by BLOCKS.registerObject("vitriol_ore") { OreBlock(AbstractBlock.Properties.of(Material.STONE)) }
+
+       public static final Block DANDELION = register("dandelion", new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
+
+    */
 }
