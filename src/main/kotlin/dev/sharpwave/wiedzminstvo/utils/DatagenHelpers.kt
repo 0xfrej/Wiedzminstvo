@@ -10,6 +10,10 @@ object DatagenHelpers {
         return ResourceLocation("item/handheld")
     }
 
+    fun generatedItem(): ResourceLocation {
+        return ResourceLocation("item/generated")
+    }
+
     fun itemLocation(itemName: String): ResourceLocation {
         return location("item", itemName)
     }

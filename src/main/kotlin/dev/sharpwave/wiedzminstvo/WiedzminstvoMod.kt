@@ -1,6 +1,7 @@
 package dev.sharpwave.wiedzminstvo
 
 import dev.sharpwave.wiedzminstvo.client.managers.KeybindManager
+import dev.sharpwave.wiedzminstvo.client.render.RenderTypeLookup
 import dev.sharpwave.wiedzminstvo.init.ModConfig
 import dev.sharpwave.wiedzminstvo.init.ModRegistries
 import net.minecraftforge.fml.ModLoadingContext
@@ -39,5 +40,6 @@ object WiedzminstvoMod {
     @Suppress("UNUSED_PARAMETER")
     private fun onClientSetup(event: FMLClientSetupEvent) {
         KeybindManager.init()
+        RenderTypeLookup.register()
     }
 }
