@@ -1,5 +1,6 @@
 package dev.sharpwave.wiedzminstvo.init
 
+import dev.sharpwave.wiedzminstvo.datagen.Blocks
 import dev.sharpwave.wiedzminstvo.datagen.EntityTags
 import dev.sharpwave.wiedzminstvo.datagen.Items
 import dev.sharpwave.wiedzminstvo.datagen.Language
@@ -24,6 +25,7 @@ object ModDataGenerators {
         if (event.includeClient()) {
             //generator.addProvider(BlockStates(generator))
             generator.addProvider(Items(generator, existingFileHelper))
+            generator.addProvider(Blocks(generator, existingFileHelper))
             generator.addProvider(Language(generator))
         }
     }

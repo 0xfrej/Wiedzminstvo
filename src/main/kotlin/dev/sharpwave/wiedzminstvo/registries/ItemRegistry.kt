@@ -3,10 +3,15 @@ package dev.sharpwave.wiedzminstvo.registries
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.items.AlchemyItem
 import dev.sharpwave.wiedzminstvo.items.BottomlessCarafeItem
+import dev.sharpwave.wiedzminstvo.utils.DatagenHelpers.getRegistryPath
+import net.minecraft.block.Block
+import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
+import net.minecraft.item.ItemGroup
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
 import thedarkcolour.kotlinforforge.forge.KDeferredRegister
+import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
 
 object ItemRegistry : IForgeRegistry {
     private val ITEMS : KDeferredRegister<Item> = KDeferredRegister(ForgeRegistries.ITEMS, WiedzminstvoMod.MODID)
@@ -34,4 +39,14 @@ object ItemRegistry : IForgeRegistry {
     val SULFUR by ITEMS.registerObject("sulfur") { AlchemyItem() }
     val VERMILION by ITEMS.registerObject("vermilion") { AlchemyItem() }
     val VITRIOL by ITEMS.registerObject("vitriol") { AlchemyItem() }
+    val ARENARIA by registerBlock(BlockRegistry.ARENARIA)
+    val BEGGARTICK by registerBlock(BlockRegistry.BEGGARTICK)
+
+    private fun registerBlock(block: Block): ObjectHolderDelegate<BlockItem> {
+        return ITEMS.registerObject(getRegistryPath(block)) { BlockItem(block, Item.Properties()) }
+    }
+
+    private fun registerBlock(block: Block, tab: ItemGroup): ObjectHolderDelegate<BlockItem> {
+        return ITEMS.registerObject(getRegistryPath(block)) { BlockItem(block, Item.Properties().tab(tab)) }
+    }
 }
