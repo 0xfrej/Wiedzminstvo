@@ -1,7 +1,9 @@
 package dev.sharpwave.wiedzminstvo.datagen
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
+import dev.sharpwave.wiedzminstvo.registries.BlockRegistry
 import dev.sharpwave.wiedzminstvo.registries.ItemRegistry
+import dev.sharpwave.wiedzminstvo.utils.DatagenHelpers.blockLocation
 import dev.sharpwave.wiedzminstvo.utils.DatagenHelpers.getRegistryPath
 import dev.sharpwave.wiedzminstvo.utils.DatagenHelpers.handheldItem
 import dev.sharpwave.wiedzminstvo.utils.DatagenHelpers.itemLocation
@@ -30,7 +32,7 @@ class Items(generator: DataGenerator, existingFileHelper: ExistingFileHelper) : 
         singleTexture(getRegistryPath(ItemRegistry.SULFUR), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.SULFUR)))
         singleTexture(getRegistryPath(ItemRegistry.VERMILION), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.VERMILION)))
         singleTexture(getRegistryPath(ItemRegistry.VITRIOL), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.VITRIOL)))
-        //singleTexture(getRegistryPath(BlockRegistry.ARENARIA), handheldItem(), "layer0", blockLocation(getRegistryPath(BlockRegistry.ARENARIA)))
-        //singleTexture(getRegistryPath(BlockRegistry.BEGGARTICK), handheldItem(), "layer0", blockLocation(getRegistryPath(BlockRegistry.BEGGARTICK)))
+        singleTexture(getRegistryPath(ItemRegistry.ARENARIA), handheldItem(), "layer0", blockLocation(getRegistryPath(ItemRegistry.ARENARIA)))
+        singleTexture(getRegistryPath(ItemRegistry.BEGGARTICK), handheldItem(), "layer0", blockLocation(getRegistryPath(ItemRegistry.BEGGARTICK)))
     }
 }

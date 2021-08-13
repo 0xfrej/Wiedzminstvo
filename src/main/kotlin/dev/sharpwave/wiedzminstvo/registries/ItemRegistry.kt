@@ -3,6 +3,7 @@ package dev.sharpwave.wiedzminstvo.registries
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.items.AlchemyItem
 import dev.sharpwave.wiedzminstvo.items.BottomlessCarafeItem
+import dev.sharpwave.wiedzminstvo.items.ModItemGroup
 import dev.sharpwave.wiedzminstvo.utils.DatagenHelpers.getRegistryPath
 import net.minecraft.block.Block
 import net.minecraft.item.BlockItem
@@ -39,14 +40,10 @@ object ItemRegistry : IForgeRegistry {
     val SULFUR by ITEMS.registerObject("sulfur") { AlchemyItem() }
     val VERMILION by ITEMS.registerObject("vermilion") { AlchemyItem() }
     val VITRIOL by ITEMS.registerObject("vitriol") { AlchemyItem() }
-    val ARENARIA by registerBlock(BlockRegistry.ARENARIA)
-    val BEGGARTICK by registerBlock(BlockRegistry.BEGGARTICK)
+    val ARENARIA by ITEMS.registerObject("arenaria") { registerBlock(BlockRegistry.ARENARIA, ModItemGroup.TAB_ALCHEMY) }
+    val BEGGARTICK by ITEMS.registerObject("beggartick_blossoms") { registerBlock(BlockRegistry.BEGGARTICK, ModItemGroup.TAB_ALCHEMY) }
 
-    private fun registerBlock(block: Block): ObjectHolderDelegate<BlockItem> {
-        return ITEMS.registerObject(getRegistryPath(block)) { BlockItem(block, Item.Properties()) }
-    }
-
-    private fun registerBlock(block: Block, tab: ItemGroup): ObjectHolderDelegate<BlockItem> {
-        return ITEMS.registerObject(getRegistryPath(block)) { BlockItem(block, Item.Properties().tab(tab)) }
+    private fun registerBlock(block: Block, tab: ItemGroup): BlockItem {
+        return BlockItem(block, Item.Properties().tab(tab))
     }
 }
