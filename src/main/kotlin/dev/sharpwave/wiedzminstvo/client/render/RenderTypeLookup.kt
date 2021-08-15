@@ -9,5 +9,8 @@ object RenderTypeLookup {
         val renderCutout = RenderType.cutout()
         RTL.setRenderLayer(BlockRegistry.ARENARIA, renderCutout)
         RTL.setRenderLayer(BlockRegistry.BEGGARTICK, renderCutout)
+        RTL.setRenderLayer(BlockRegistry.BISON_GRASS, renderCutout)
+        RTL.setRenderLayer(BlockRegistry.BLUE_LOTUS, renderCutout)
+        RTL.setRenderLayer(BlockRegistry.WINTER_CHERRY, renderCutout)
     }
 }

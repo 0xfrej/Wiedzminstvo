@@ -13,5 +13,13 @@ class Blocks(generator: DataGenerator, existingFileHelper: ExistingFileHelper) :
     override fun registerModels() {
         cross(getRegistryPath(BlockRegistry.ARENARIA), blockLocation(getRegistryPath(BlockRegistry.ARENARIA)))
         cross(getRegistryPath(BlockRegistry.BEGGARTICK), blockLocation(getRegistryPath(BlockRegistry.BEGGARTICK)))
+        cross(getRegistryPath(BlockRegistry.BISON_GRASS), blockLocation(getRegistryPath(BlockRegistry.BISON_GRASS)))
+        tallCross(getRegistryPath(BlockRegistry.BLUE_LOTUS), getRegistryPath(BlockRegistry.BLUE_LOTUS))
+        tallCross(getRegistryPath(BlockRegistry.WINTER_CHERRY), getRegistryPath(BlockRegistry.WINTER_CHERRY))
+    }
+
+    private fun tallCross(name: String, registryPath: String) {
+        cross(name+"_top", blockLocation(registryPath+"_top"))
+        cross(name+"_bottom", blockLocation(registryPath+"_bottom"))
     }
 }

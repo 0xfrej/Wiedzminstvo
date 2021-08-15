@@ -21,6 +21,9 @@ object DatagenHelpers {
     fun blockLocation(itemName: String): ResourceLocation {
         return location("block", itemName)
     }
+    fun tallBlockLocation(itemName: String): ResourceLocation {
+        return blockLocation(itemName+"_top")
+    }
     private fun location(location: String, itemName: String): ResourceLocation {
         return ResourceLocation(WiedzminstvoMod.MODID, "$location/$itemName")
     }
