@@ -17,6 +17,7 @@ object ModDataGenerators {
             //generator.addProvider(Recipes(generator))
             generator.addProvider(BlockLootTables(generator))
             generator.addProvider(EntityTags(generator, event.existingFileHelper))
+            generator.addProvider(GlobalLootModifiers(generator))
         }
 
         if (event.includeClient()) {

@@ -13,23 +13,23 @@ object ModItemGroup {
         override fun makeIcon(): ItemStack {
             return ItemStack(Blocks.BREWING_STAND)
         }
-    }.setRecipeFolderName("wiedzminstvo_alchemy")
+    }.setRecipeFolderName("alchemy")
     val TAB_EQUIPMENT = object : ItemGroup("wiedzminstvo_equipment") {
         @OnlyIn(Dist.CLIENT)
         override fun makeIcon(): ItemStack {
             return ItemStack(Items.ARMOR_STAND)
         }
-    }.setRecipeFolderName("wiedzminstvo_equipment")
+    }.setRecipeFolderName("equipment")
     val TAB_POTIONS = object : ItemGroup("wiedzminstvo_potions") {
         @OnlyIn(Dist.CLIENT)
         override fun makeIcon(): ItemStack {
             return ItemStack(Items.POTION)
         }
-    }.setRecipeFolderName("wiedzminstvo_potions")
+    }.setRecipeFolderName("potions")
     val TAB_MISC = object : ItemGroup("wiedzminstvo_misc") {
         @OnlyIn(Dist.CLIENT)
         override fun makeIcon(): ItemStack {
             return ItemStack(Items.BOOKSHELF)
         }
-    }.setRecipeFolderName("wiedzminstvo_misc")
+    }.setRecipeFolderName("misc")
 }

@@ -4,6 +4,7 @@ import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import net.minecraft.block.Block
 import net.minecraft.item.Item
 import net.minecraft.util.ResourceLocation
+import net.minecraftforge.common.loot.GlobalLootModifierSerializer
 
 object DatagenHelpers {
     fun handheldItem(): ResourceLocation {
@@ -30,5 +31,9 @@ object DatagenHelpers {
 
     fun getRegistryPath(block: Block): String {
         return block.registryName!!.path;
+    }
+
+    fun getRegistryPath(serializer: GlobalLootModifierSerializer<*>): String {
+        return serializer.registryName!!.path;
     }
 }

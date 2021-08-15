@@ -8,8 +8,6 @@ import net.minecraftforge.common.data.LanguageProvider
 
 class Language(generator: DataGenerator) : LanguageProvider(generator, WiedzminstvoMod.MODID, "en_US") {
     override fun addTranslations() {
-        add("itemGroup.wiedzminstvo_alchemy", "Wiedzminstvo - Alchemy")
-
         add(GeneralStrings.KEY_MODID_CATEGORY, "Wiedzminstvo")
         add(GeneralStrings.KEY_SET_HORSE_DESC, "Set Horse")
         add(GeneralStrings.KEY_CALL_HORSE_DESC, "Call Horse")
@@ -27,5 +25,11 @@ class Language(generator: DataGenerator) : LanguageProvider(generator, Wiedzmins
         add(HorseStrings.HORSE_SUCCESS_SET_HORSE, "This is now your personal horse!")
         add(HorseStrings.HORSE_ALERT_DEATH, "Your personal horse just died!")
         add(HorseStrings.HORSE_ALERT_OFFLINE_DEATH, "Your personal horse died while you were offline!")
+
+        add("itemGroup.wiedzminstvo_alchemy", "Wiedzminstvo - Alchemy")
+        add("itemGroup.wiedzminstvo_potions", "Wiedzminstvo - Potions")
+        add("itemGroup.wiedzminstvo_equipment", "Wiedzminstvo - Armor & Swords")
+        add("itemGroup.wiedzminstvo_misc", "Wiedzminstvo - Misc")
+
     }
 }

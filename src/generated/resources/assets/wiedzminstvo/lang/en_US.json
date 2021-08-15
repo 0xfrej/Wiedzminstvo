@@ -1,5 +1,8 @@
 {
   "itemGroup.wiedzminstvo_alchemy": "Wiedzminstvo - Alchemy",
+  "itemGroup.wiedzminstvo_equipment": "Wiedzminstvo - Armor & Swords",
+  "itemGroup.wiedzminstvo_misc": "Wiedzminstvo - Misc",
+  "itemGroup.wiedzminstvo_potions": "Wiedzminstvo - Potions",
   "key.call_horse.desc": "Call Horse",
   "key.set_horse.desc": "Set Horse",
   "key.show_horse_stats.desc": "Show Horse Stats",
