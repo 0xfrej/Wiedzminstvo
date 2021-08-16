@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "wiedzminstvo:block/blue_lotus_top"
+    },
+    "half=lower": {
+      "model": "wiedzminstvo:block/blue_lotus_bottom"
+    }
+  }
+}
