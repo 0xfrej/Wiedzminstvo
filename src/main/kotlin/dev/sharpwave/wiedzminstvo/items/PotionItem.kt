@@ -3,7 +3,7 @@ package dev.sharpwave.wiedzminstvo.items
 import net.minecraft.item.Item
 import net.minecraft.item.Rarity
 
-open class AlchemyIngredientItem(properties: Item.Properties) : Item(properties) {
+open class PotionItem(properties: Item.Properties) : Item(properties) {
 
     constructor() : this(Properties())
 
