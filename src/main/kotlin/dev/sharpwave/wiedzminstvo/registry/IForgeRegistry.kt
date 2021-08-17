@@ -1,4 +1,4 @@
-package dev.sharpwave.wiedzminstvo.registries
+package dev.sharpwave.wiedzminstvo.registry
 
 import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
 

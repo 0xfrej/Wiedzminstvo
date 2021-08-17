@@ -1,4 +1,4 @@
-package dev.sharpwave.wiedzminstvo.tags
+package dev.sharpwave.wiedzminstvo.tag
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod.MODID
 import net.minecraft.entity.EntityType

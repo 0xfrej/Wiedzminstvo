@@ -14,7 +14,7 @@ object HorseConfig : IConfig {
     var continuousAntiDupeChecking: ForgeConfigSpec.BooleanValue? = null
 
     override operator fun invoke(server: ForgeConfigSpec.Builder, client: ForgeConfigSpec.Builder) {
-        server.comment("Roach").push("horse")
+        server.comment("Horse").push("horse")
             deathIsPermanent = server
                 .comment("Personal Horses get deleted if they're killed")
                 .define("deathIsPermanent", false)
@@ -27,7 +27,6 @@ object HorseConfig : IConfig {
                 .comment("Maximum block distance from last horse where new horse can be called. Set to -1 to disable range.")
                 .defineInRange("maxCallingDistance", -1, -1, 30000000)
 
-            //Todo: Needed this feature?
             enableStatsViewer = server
                 .comment("Enable/disable the horse stat viewer GUI")
                 .define("enableStatsViewer", true)
@@ -38,10 +37,9 @@ object HorseConfig : IConfig {
 
             walkSpeed = server
                 .comment("Speed with which the horse walks when you call it. Vanilla horse walk speed is 1.2")
-                .defineInRange("walkSpeed", 1.8, 1.2, 10.0)
+                .defineInRange("walkSpeed", 1.8, 1.2, 3.0)
 
-            // Debug feature?
-            // TODO: remove?
+            // TODO: remove this with feature
             continuousAntiDupeChecking = server
                 .comment("Check against duplicate horses every game tick (20 times per second) instead of only on load. Only use this if you're experiencing problem with duplicate horses! THIS COULD CAUSE LAG!")
                 .define("continuousAntiDupeChecking", false)

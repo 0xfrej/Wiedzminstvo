@@ -1,6 +1,6 @@
 package dev.sharpwave.wiedzminstvo.client.render
 
-import dev.sharpwave.wiedzminstvo.registries.BlockRegistry
+import dev.sharpwave.wiedzminstvo.registry.BlockRegistry
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.RenderTypeLookup as RTL
 

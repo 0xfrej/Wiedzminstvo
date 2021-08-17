@@ -1,7 +1,7 @@
 package dev.sharpwave.wiedzminstvo.datagen
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
-import dev.sharpwave.wiedzminstvo.registries.ItemRegistry
+import dev.sharpwave.wiedzminstvo.registry.ItemRegistry
 import dev.sharpwave.wiedzminstvo.utils.DatagenHelpers.blockLocation
 import dev.sharpwave.wiedzminstvo.utils.DatagenHelpers.generatedItem
 import dev.sharpwave.wiedzminstvo.utils.DatagenHelpers.getRegistryPath

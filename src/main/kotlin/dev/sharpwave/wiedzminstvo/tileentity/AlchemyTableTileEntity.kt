@@ -2,7 +2,6 @@ package dev.sharpwave.wiedzminstvo.tileentity
 
 import net.minecraft.block.BlockState
 import net.minecraft.nbt.CompoundNBT
-import net.minecraft.tileentity.EnchantingTableTileEntity
 import net.minecraft.tileentity.ITickableTileEntity
 import net.minecraft.tileentity.TileEntity
 import net.minecraft.tileentity.TileEntityType
@@ -12,8 +11,7 @@ import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.TranslationTextComponent
 import java.util.*
 
-class AlchemyTableTileEntity : TileEntity(TileEntityType.ENCHANTING_TABLE), INameable,
-    ITickableTileEntity {
+class AlchemyTableTileEntity : TileEntity(TileEntityType.ENCHANTING_TABLE), INameable, ITickableTileEntity {
     var time = 0
     var flip = 0f
     var oFlip = 0f
@@ -25,18 +23,18 @@ class AlchemyTableTileEntity : TileEntity(TileEntityType.ENCHANTING_TABLE), INam
     var oRot = 0f
     var tRot = 0f
     private var name: ITextComponent? = null
-    override fun save(p_189515_1_: CompoundNBT): CompoundNBT {
-        super.save(p_189515_1_)
+    override fun save(tag: CompoundNBT): CompoundNBT {
+        super.save(tag)
         if (hasCustomName()) {
-            p_189515_1_.putString("CustomName", ITextComponent.Serializer.toJson(name))
+            tag.putString("CustomName", ITextComponent.Serializer.toJson(name))
         }
-        return p_189515_1_
+        return tag
     }
 
-    override fun load(p_230337_1_: BlockState, p_230337_2_: CompoundNBT) {
-        super.load(p_230337_1_, p_230337_2_)
-        if (p_230337_2_.contains("CustomName", 8)) {
-            name = ITextComponent.Serializer.fromJson(p_230337_2_.getString("CustomName"))
+    override fun load(state: BlockState, tag: CompoundNBT) {
+        super.load(state, tag)
+        if (tag.contains("CustomName", 8)) {
+            name = ITextComponent.Serializer.fromJson(tag.getString("CustomName"))
         }
     }
 
@@ -55,10 +53,10 @@ class AlchemyTableTileEntity : TileEntity(TileEntityType.ENCHANTING_TABLE), INam
             val d1 = playerentity.z - (worldPosition.z.toDouble() + 0.5)
             tRot = MathHelper.atan2(d1, d0).toFloat()
             open += 0.1f
-            if (open < 0.5f || EnchantingTableTileEntity.Companion.RANDOM.nextInt(40) == 0) {
+            if (open < 0.5f || RANDOM.nextInt(40) == 0) {
                 val f1 = flipT
                 do {
-                    flipT += (EnchantingTableTileEntity.Companion.RANDOM.nextInt(4) - EnchantingTableTileEntity.Companion.RANDOM.nextInt(
+                    flipT += (RANDOM.nextInt(4) - RANDOM.nextInt(
                         4
                     )).toFloat()
                 } while (f1 == flipT)
@@ -102,8 +100,8 @@ class AlchemyTableTileEntity : TileEntity(TileEntityType.ENCHANTING_TABLE), INam
         return (if (name != null) name else TranslationTextComponent("container.enchant")) as ITextComponent
     }
 
-    fun setCustomName(p_200229_1_: ITextComponent?) {
-        name = p_200229_1_
+    fun setCustomName(text: ITextComponent) {
+        name = text
     }
 
     override fun getCustomName(): ITextComponent? {

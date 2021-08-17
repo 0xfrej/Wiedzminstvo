@@ -1,4 +1,4 @@
-package dev.sharpwave.wiedzminstvo.client.gui
+package dev.sharpwave.wiedzminstvo.client.gui.screen
 
 import com.mojang.blaze3d.matrix.MatrixStack
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
@@ -27,7 +27,7 @@ import java.lang.reflect.Method
 import kotlin.math.floor
 
 
-class GuiStatViewer(player: PlayerEntity) : Screen(StringTextComponent("Horse Stat Viewer")) {
+class HorseStatScreen(player: PlayerEntity) : Screen(StringTextComponent("Horse Stat Viewer")) {
     private val xSize = 176
     private val ySize = 138
     private val owner: IHorseOwner

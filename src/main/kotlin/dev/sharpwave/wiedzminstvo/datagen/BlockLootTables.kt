@@ -2,19 +2,12 @@ package dev.sharpwave.wiedzminstvo.datagen
 
 import com.google.common.collect.ImmutableSet
 import dev.sharpwave.wiedzminstvo.datagen.support.BaseLootTableProvider
-import dev.sharpwave.wiedzminstvo.registries.BlockRegistry
-import net.minecraft.advancements.criterion.EnchantmentPredicate
-import net.minecraft.advancements.criterion.ItemPredicate
-import net.minecraft.advancements.criterion.MinMaxBounds
+import dev.sharpwave.wiedzminstvo.registry.BlockRegistry
 import net.minecraft.block.Block
 import net.minecraft.block.Blocks
 import net.minecraft.data.DataGenerator
-import net.minecraft.enchantment.Enchantments
 import net.minecraft.item.Item
-import net.minecraft.item.Items
 import net.minecraft.loot.*
-import net.minecraft.loot.conditions.ILootCondition
-import net.minecraft.loot.conditions.MatchTool
 import net.minecraft.loot.conditions.SurvivesExplosion
 import net.minecraft.loot.functions.ExplosionDecay
 import net.minecraft.util.IItemProvider

@@ -1,6 +1,6 @@
 package dev.sharpwave.wiedzminstvo.init
 
-import dev.sharpwave.wiedzminstvo.registries.EntityCapabilityRegistry
+import dev.sharpwave.wiedzminstvo.registry.EntityCapabilityRegistry
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent

@@ -1,8 +1,8 @@
 package dev.sharpwave.wiedzminstvo.init
 
-import dev.sharpwave.wiedzminstvo.registries.BlockRegistry
-import dev.sharpwave.wiedzminstvo.registries.GlobalLootModifiersRegistry
-import dev.sharpwave.wiedzminstvo.registries.ItemRegistry
+import dev.sharpwave.wiedzminstvo.registry.BlockRegistry
+import dev.sharpwave.wiedzminstvo.registry.GlobalLootModifiersRegistry
+import dev.sharpwave.wiedzminstvo.registry.ItemRegistry
 import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
 
 object ModRegistries {

@@ -1,8 +1,9 @@
-package dev.sharpwave.wiedzminstvo.client.gui
+package dev.sharpwave.wiedzminstvo.client.gui.screen
 
 import com.google.common.collect.Lists
 import com.mojang.blaze3d.matrix.MatrixStack
 import com.mojang.blaze3d.systems.RenderSystem
+import dev.sharpwave.wiedzminstvo.inventory.container.AlchemyContainer
 import net.minecraft.client.gui.screen.EnchantmentScreen
 import net.minecraft.client.gui.screen.inventory.ContainerScreen
 import net.minecraft.client.renderer.IRenderTypeBuffer
@@ -12,7 +13,6 @@ import net.minecraft.client.renderer.entity.model.BookModel
 import net.minecraft.client.renderer.texture.OverlayTexture
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.inventory.container.EnchantmentContainer
 import net.minecraft.item.ItemStack
 import net.minecraft.util.EnchantmentNameParts
 import net.minecraft.util.ResourceLocation
@@ -24,14 +24,8 @@ import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 import java.util.*
 
-package net.minecraft.client.gui.screen
 @OnlyIn(Dist.CLIENT)
-class EnchantmentScreen(
-    p_i51090_1_: EnchantmentContainer?,
-    p_i51090_2_: PlayerInventory?,
-    p_i51090_3_: ITextComponent?
-) :
-    ContainerScreen<EnchantmentContainer?>(p_i51090_1_, p_i51090_2_, p_i51090_3_) {
+class AlchemyScreen(container: AlchemyContainer, playerInventory: PlayerInventory, title: ITextComponent) : ContainerScreen<AlchemyContainer>(container, playerInventory, title) {
     private val random = Random()
     var time = 0
     var flip = 0f

@@ -1,4 +1,4 @@
-package dev.sharpwave.wiedzminstvo.items
+package dev.sharpwave.wiedzminstvo.item
 
 import net.minecraft.block.Blocks
 import net.minecraft.item.ItemGroup

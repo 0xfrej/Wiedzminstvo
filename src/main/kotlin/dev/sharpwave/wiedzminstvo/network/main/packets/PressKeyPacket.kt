@@ -1,4 +1,4 @@
-package dev.sharpwave.wiedzminstvo.network.main.horse.packets
+package dev.sharpwave.wiedzminstvo.network.main.packets
 
 import dev.sharpwave.wiedzminstvo.entity.managers.HorseManager.callHorse
 import dev.sharpwave.wiedzminstvo.entity.managers.HorseManager.setHorse

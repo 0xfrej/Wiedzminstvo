@@ -1,10 +1,7 @@
-package dev.sharpwave.wiedzminstvo.registries
+package dev.sharpwave.wiedzminstvo.registry
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
-import dev.sharpwave.wiedzminstvo.blocks.AlchemyFlowerBlock
 import dev.sharpwave.wiedzminstvo.world.loot.HorseDropModifier
-import net.minecraft.block.Block
-import net.minecraft.potion.Effects
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus

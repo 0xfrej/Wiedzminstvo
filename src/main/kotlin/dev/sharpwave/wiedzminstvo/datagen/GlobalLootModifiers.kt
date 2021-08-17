@@ -1,8 +1,8 @@
 package dev.sharpwave.wiedzminstvo.datagen
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
-import dev.sharpwave.wiedzminstvo.registries.GlobalLootModifiersRegistry as GLM
-import dev.sharpwave.wiedzminstvo.tags.EntityTypeTags
+import dev.sharpwave.wiedzminstvo.registry.GlobalLootModifiersRegistry as GLM
+import dev.sharpwave.wiedzminstvo.tag.EntityTypeTags
 import dev.sharpwave.wiedzminstvo.utils.DatagenHelpers.getRegistryPath
 import dev.sharpwave.wiedzminstvo.world.loot.HorseDropModifier
 import net.minecraft.advancements.criterion.EntityPredicate

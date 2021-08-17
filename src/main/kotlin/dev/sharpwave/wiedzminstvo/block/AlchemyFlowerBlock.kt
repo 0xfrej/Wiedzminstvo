@@ -1,4 +1,4 @@
-package dev.sharpwave.wiedzminstvo.blocks
+package dev.sharpwave.wiedzminstvo.block
 
 import net.minecraft.block.*
 import net.minecraft.block.material.Material

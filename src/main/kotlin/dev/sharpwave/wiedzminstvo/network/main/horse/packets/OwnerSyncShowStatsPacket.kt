@@ -1,6 +1,6 @@
 package dev.sharpwave.wiedzminstvo.network.main.horse.packets
 
-import dev.sharpwave.wiedzminstvo.client.gui.GuiStatViewer
+import dev.sharpwave.wiedzminstvo.client.gui.screen.HorseStatScreen
 import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.HorseOwnerProvider
 import dev.sharpwave.wiedzminstvo.entity.capabilities.horseowner.IHorseOwner
 import dev.sharpwave.wiedzminstvo.network.AbstractNetworkPacket
@@ -41,7 +41,7 @@ class OwnerSyncShowStatsPacket() : AbstractNetworkPacket() {
                     val owner = getOwnerCap(player)
                     HorseOwnerProvider.OWNER_CAPABILITY!!.storage
                         .readNBT(HorseOwnerProvider.OWNER_CAPABILITY, owner, null, ownerNBT)
-                    Minecraft.getInstance().setScreen(GuiStatViewer(player))
+                    Minecraft.getInstance().setScreen(HorseStatScreen(player))
                 }
             }
         }

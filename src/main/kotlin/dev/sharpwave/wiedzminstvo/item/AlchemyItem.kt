@@ -1,4 +1,4 @@
-package dev.sharpwave.wiedzminstvo.items
+package dev.sharpwave.wiedzminstvo.item
 
 import net.minecraft.item.Item
 import net.minecraft.item.Rarity

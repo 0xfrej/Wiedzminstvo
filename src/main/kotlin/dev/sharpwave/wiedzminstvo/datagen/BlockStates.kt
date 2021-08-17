@@ -1,7 +1,7 @@
 package dev.sharpwave.wiedzminstvo.datagen
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
-import dev.sharpwave.wiedzminstvo.registries.BlockRegistry
+import dev.sharpwave.wiedzminstvo.registry.BlockRegistry
 import dev.sharpwave.wiedzminstvo.utils.DatagenHelpers.blockLocation
 import dev.sharpwave.wiedzminstvo.utils.DatagenHelpers.getRegistryPath
 import net.minecraft.block.BlockState
