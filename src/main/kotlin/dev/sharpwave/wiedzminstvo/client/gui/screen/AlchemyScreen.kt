@@ -3,17 +3,13 @@ package dev.sharpwave.wiedzminstvo.client.gui.screen
 import com.google.common.collect.Lists
 import com.mojang.blaze3d.matrix.MatrixStack
 import com.mojang.blaze3d.systems.RenderSystem
-import dev.sharpwave.wiedzminstvo.inventory.container.AlchemyContainer
-import net.minecraft.client.gui.screen.EnchantmentScreen
+import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import net.minecraft.client.gui.screen.inventory.ContainerScreen
 import net.minecraft.client.renderer.IRenderTypeBuffer
 import net.minecraft.client.renderer.RenderHelper
 import net.minecraft.client.renderer.Tessellator
-import net.minecraft.client.renderer.entity.model.BookModel
-import net.minecraft.client.renderer.texture.OverlayTexture
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.item.ItemStack
 import net.minecraft.util.EnchantmentNameParts
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.MathHelper
@@ -23,44 +19,35 @@ import net.minecraft.util.text.*
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 import java.util.*
+// TODO: write screen
 
+/*
 @OnlyIn(Dist.CLIENT)
 class AlchemyScreen(container: AlchemyContainer, playerInventory: PlayerInventory, title: ITextComponent) : ContainerScreen<AlchemyContainer>(container, playerInventory, title) {
-    private val random = Random()
-    var time = 0
-    var flip = 0f
-    var oFlip = 0f
-    var flipT = 0f
-    var flipA = 0f
-    var open = 0f
-    var oOpen = 0f
-    private var last = ItemStack.EMPTY
-    override fun tick() {
-        super.tick()
-        tickBook()
-    }
+    private var open = 0f
+    private var oOpen = 0f
 
-    override fun mouseClicked(p_231044_1_: Double, p_231044_3_: Double, p_231044_5_: Int): Boolean {
+    override fun mouseClicked(x: Double, y: Double, key: Int): Boolean {
         val i = (width - imageWidth) / 2
         val j = (height - imageHeight) / 2
         for (k in 0..2) {
-            val d0 = p_231044_1_ - (i + 60).toDouble()
-            val d1 = p_231044_3_ - (j + 14 + 19 * k).toDouble()
-            if (d0 >= 0.0 && d1 >= 0.0 && d0 < 108.0 && d1 < 19.0 && menu!!.clickMenuButton(minecraft!!.player, k)) {
+            val d0 = x - (i + 60).toDouble()
+            val d1 = y - (j + 14 + 19 * k).toDouble()
+            if (d0 >= 0.0 && d1 >= 0.0 && d0 < 108.0 && d1 < 19.0 && menu!!.clickMenuButton(minecraft!!.player!!, k)) {
                 minecraft!!.gameMode!!.handleInventoryButtonClick(menu.containerId, k)
                 return true
             }
         }
-        return super.mouseClicked(p_231044_1_, p_231044_3_, p_231044_5_)
+        return super.mouseClicked(x, y, key)
     }
 
-    override fun renderBg(p_230450_1_: MatrixStack, p_230450_2_: Float, p_230450_3_: Int, p_230450_4_: Int) {
+    override fun renderBg(matrixStack: MatrixStack, p_230450_2_: Float, p_230450_3_: Int, p_230450_4_: Int) {
         RenderHelper.setupForFlatItems()
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f)
-        minecraft!!.getTextureManager().bind(EnchantmentScreen.Companion.ENCHANTING_TABLE_LOCATION)
+        minecraft!!.getTextureManager().bind(ALCHEMY_TABLE_LOCATION)
         val i = (width - imageWidth) / 2
         val j = (height - imageHeight) / 2
-        this.blit(p_230450_1_, i, j, 0, 0, imageWidth, imageHeight)
+        this.blit(matrixStack, i, j, 0, 0, imageWidth, imageHeight)
         RenderSystem.matrixMode(5889)
         RenderSystem.pushMatrix()
         RenderSystem.loadIdentity()
@@ -69,102 +56,69 @@ class AlchemyScreen(container: AlchemyContainer, playerInventory: PlayerInventor
         RenderSystem.translatef(-0.34f, 0.23f, 0.0f)
         RenderSystem.multMatrix(Matrix4f.perspective(90.0, 1.3333334f, 9.0f, 80.0f))
         RenderSystem.matrixMode(5888)
-        p_230450_1_.pushPose()
-        val `matrixstack$entry` = p_230450_1_.last()
-        `matrixstack$entry`.pose().setIdentity()
-        `matrixstack$entry`.normal().setIdentity()
-        p_230450_1_.translate(0.0, 3.3, 1984.0)
-        val f = 5.0f
-        p_230450_1_.scale(5.0f, 5.0f, 5.0f)
-        p_230450_1_.mulPose(Vector3f.ZP.rotationDegrees(180.0f))
-        p_230450_1_.mulPose(Vector3f.XP.rotationDegrees(20.0f))
+        matrixStack.pushPose()
+        val matrixStackForEntry = matrixStack.last()
+        matrixStackForEntry.pose().setIdentity()
+        matrixStackForEntry.normal().setIdentity()
+        matrixStack.translate(0.0, 3.3, 1984.0)
+        matrixStack.scale(5.0f, 5.0f, 5.0f)
+        matrixStack.mulPose(Vector3f.ZP.rotationDegrees(180.0f))
+        matrixStack.mulPose(Vector3f.XP.rotationDegrees(20.0f))
         val f1 = MathHelper.lerp(p_230450_2_, oOpen, open)
-        p_230450_1_.translate(
+        matrixStack.translate(
             ((1.0f - f1) * 0.2f).toDouble(),
             ((1.0f - f1) * 0.1f).toDouble(),
             ((1.0f - f1) * 0.25f).toDouble()
         )
         val f2 = -(1.0f - f1) * 90.0f - 90.0f
-        p_230450_1_.mulPose(Vector3f.YP.rotationDegrees(f2))
-        p_230450_1_.mulPose(Vector3f.XP.rotationDegrees(180.0f))
-        var f3 = MathHelper.lerp(p_230450_2_, oFlip, flip) + 0.25f
-        var f4 = MathHelper.lerp(p_230450_2_, oFlip, flip) + 0.75f
-        f3 = (f3 - MathHelper.fastFloor(f3.toDouble()).toFloat()) * 1.6f - 0.3f
-        f4 = (f4 - MathHelper.fastFloor(f4.toDouble()).toFloat()) * 1.6f - 0.3f
-        if (f3 < 0.0f) {
-            f3 = 0.0f
-        }
-        if (f4 < 0.0f) {
-            f4 = 0.0f
-        }
-        if (f3 > 1.0f) {
-            f3 = 1.0f
-        }
-        if (f4 > 1.0f) {
-            f4 = 1.0f
-        }
+        matrixStack.mulPose(Vector3f.YP.rotationDegrees(f2))
+        matrixStack.mulPose(Vector3f.XP.rotationDegrees(180.0f))
+
         RenderSystem.enableRescaleNormal()
-        EnchantmentScreen.Companion.BOOK_MODEL.setupAnim(0.0f, f3, f4, f1)
-        val `irendertypebuffer$impl` = IRenderTypeBuffer.immediate(Tessellator.getInstance().builder)
-        val ivertexbuilder = `irendertypebuffer$impl`.getBuffer(
-            EnchantmentScreen.Companion.BOOK_MODEL.renderType(
-                EnchantmentScreen.Companion.ENCHANTING_BOOK_LOCATION
-            )
-        )
-        EnchantmentScreen.Companion.BOOK_MODEL.renderToBuffer(
-            p_230450_1_,
-            ivertexbuilder,
-            15728880,
-            OverlayTexture.NO_OVERLAY,
-            1.0f,
-            1.0f,
-            1.0f,
-            1.0f
-        )
-        `irendertypebuffer$impl`.endBatch()
-        p_230450_1_.popPose()
+        val renderTypeBuffer = IRenderTypeBuffer.immediate(Tessellator.getInstance().builder)
+        renderTypeBuffer.endBatch()
+        matrixStack.popPose()
         RenderSystem.matrixMode(5889)
         RenderSystem.viewport(0, 0, minecraft!!.window.width, minecraft!!.window.height)
         RenderSystem.popMatrix()
         RenderSystem.matrixMode(5888)
         RenderHelper.setupFor3DItems()
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f)
-        EnchantmentNameParts.getInstance().initSeed(menu!!.enchantmentSeed.toLong())
         val l = menu.goldCount
         for (i1 in 0..2) {
             val j1 = i + 60
             val k1 = j1 + 20
             blitOffset = 0
-            minecraft!!.getTextureManager().bind(EnchantmentScreen.Companion.ENCHANTING_TABLE_LOCATION)
+            minecraft!!.getTextureManager().bind(ALCHEMY_TABLE_LOCATION)
             val l1 = menu.costs[i1]
             RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f)
             if (l1 == 0) {
-                this.blit(p_230450_1_, j1, j + 14 + 19 * i1, 0, 185, 108, 19)
+                this.blit(matrixStack, j1, j + 14 + 19 * i1, 0, 185, 108, 19)
             } else {
                 val s = "" + l1
                 val i2 = 86 - font.width(s)
                 val itextproperties = EnchantmentNameParts.getInstance().getRandomName(font, i2)
                 var j2 = 6839882
                 if ((l < i1 + 1 || minecraft!!.player!!.experienceLevel < l1) && !minecraft!!.player!!.abilities.instabuild || menu.enchantClue[i1] == -1) { // Forge: render buttons as disabled when enchantable but enchantability not met on lower levels
-                    this.blit(p_230450_1_, j1, j + 14 + 19 * i1, 0, 185, 108, 19)
-                    this.blit(p_230450_1_, j1 + 1, j + 15 + 19 * i1, 16 * i1, 239, 16, 16)
+                    this.blit(matrixStack, j1, j + 14 + 19 * i1, 0, 185, 108, 19)
+                    this.blit(matrixStack, j1 + 1, j + 15 + 19 * i1, 16 * i1, 239, 16, 16)
                     font.drawWordWrap(itextproperties, k1, j + 16 + 19 * i1, i2, j2 and 16711422 shr 1)
                     j2 = 4226832
                 } else {
                     val k2 = p_230450_3_ - (i + 60)
                     val l2 = p_230450_4_ - (j + 14 + 19 * i1)
                     if (k2 >= 0 && l2 >= 0 && k2 < 108 && l2 < 19) {
-                        this.blit(p_230450_1_, j1, j + 14 + 19 * i1, 0, 204, 108, 19)
+                        this.blit(matrixStack, j1, j + 14 + 19 * i1, 0, 204, 108, 19)
                         j2 = 16777088
                     } else {
-                        this.blit(p_230450_1_, j1, j + 14 + 19 * i1, 0, 166, 108, 19)
+                        this.blit(matrixStack, j1, j + 14 + 19 * i1, 0, 166, 108, 19)
                     }
-                    this.blit(p_230450_1_, j1 + 1, j + 15 + 19 * i1, 16 * i1, 223, 16, 16)
+                    this.blit(matrixStack, j1 + 1, j + 15 + 19 * i1, 16 * i1, 223, 16, 16)
                     font.drawWordWrap(itextproperties, k1, j + 16 + 19 * i1, i2, j2)
                     j2 = 8453920
                 }
                 font.drawShadow(
-                    p_230450_1_,
+                    matrixStack,
                     s,
                     (k1 + 86 - font.width(s)).toFloat(),
                     (j + 16 + 19 * i1 + 7).toFloat(),
@@ -234,39 +188,7 @@ class AlchemyScreen(container: AlchemyContainer, playerInventory: PlayerInventor
         }
     }
 
-    fun tickBook() {
-        val itemstack = menu!!.getSlot(0).item
-        if (!ItemStack.matches(itemstack, last)) {
-            last = itemstack
-            do {
-                flipT += (random.nextInt(4) - random.nextInt(4)).toFloat()
-            } while (flip <= flipT + 1.0f && flip >= flipT - 1.0f)
-        }
-        ++time
-        oFlip = flip
-        oOpen = open
-        var flag = false
-        for (i in 0..2) {
-            if (menu.costs[i] != 0) {
-                flag = true
-            }
-        }
-        if (flag) {
-            open += 0.2f
-        } else {
-            open -= 0.2f
-        }
-        open = MathHelper.clamp(open, 0.0f, 1.0f)
-        var f1 = (flipT - flip) * 0.4f
-        val f = 0.2f
-        f1 = MathHelper.clamp(f1, -0.2f, 0.2f)
-        flipA += (f1 - flipA) * 0.9f
-        flip += flipA
-    }
-
     companion object {
-        private val ENCHANTING_TABLE_LOCATION = ResourceLocation("textures/gui/container/enchanting_table.png")
-        private val ENCHANTING_BOOK_LOCATION = ResourceLocation("textures/entity/enchanting_table_book.png")
-        private val BOOK_MODEL = BookModel()
+        private val ALCHEMY_TABLE_LOCATION = ResourceLocation(WiedzminstvoMod.MODID, "textures/gui/container/alchemy_table.png")
     }
-}
+}*/

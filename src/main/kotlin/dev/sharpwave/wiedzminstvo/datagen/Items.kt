@@ -14,6 +14,7 @@ import net.minecraftforge.common.data.ExistingFileHelper
 
 class Items(generator: DataGenerator, existingFileHelper: ExistingFileHelper) : ItemModelProvider(generator, WiedzminstvoMod.MODID, existingFileHelper) {
     override fun registerModels() {
+        withExistingParent(getRegistryPath(ItemRegistry.ALCHEMY_TABLE), blockLocation(getRegistryPath(ItemRegistry.ALCHEMY_TABLE)))
         singleTexture(getRegistryPath(ItemRegistry.AETHER), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.AETHER)))
         singleTexture(getRegistryPath(ItemRegistry.ALCHEMISTS_POWDER), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.ALCHEMISTS_POWDER)))
         singleTexture(getRegistryPath(ItemRegistry.ALCHEMY_PASTE), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.ALCHEMY_PASTE)))

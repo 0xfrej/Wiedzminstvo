@@ -2,7 +2,11 @@ package dev.sharpwave.wiedzminstvo.registry
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.block.AlchemyFlowerBlock
+import dev.sharpwave.wiedzminstvo.block.AlchemyTableBlock
+import net.minecraft.block.AbstractBlock
 import net.minecraft.block.Block
+import net.minecraft.block.material.Material
+import net.minecraft.block.material.MaterialColor
 import net.minecraft.potion.Effects
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
@@ -15,6 +19,7 @@ object BlockRegistry : IForgeRegistry {
         BLOCKS.register(bus)
     }
 
+    val ALCHEMY_TABLE by BLOCKS.registerObject("alchemy_table") { AlchemyTableBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_RED)) }
     val ARENARIA by BLOCKS.registerObject("arenaria") { AlchemyFlowerBlock.make(Effects.HEAL, 1) }
     val BEGGARTICK by BLOCKS.registerObject("beggartick_blossoms") { AlchemyFlowerBlock.make() }
     val BISON_GRASS by BLOCKS.registerObject("bison_grass") { AlchemyFlowerBlock.make() }

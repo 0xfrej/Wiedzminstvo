@@ -29,6 +29,8 @@ import net.minecraftforge.common.Tags
 import net.minecraftforge.event.ForgeEventFactory
 import java.util.*
 
+// TODO: Write container
+/*
 class AlchemyContainer(p_i50086_1_: Int, p_i50086_2_: PlayerInventory, private val access: IWorldPosCallable) : Container(ContainerType.ENCHANTMENT, p_i50086_1_) {
    private val enchantSlots: IInventory = object : Inventory(2) {
       override fun setChanged() {
@@ -37,7 +39,7 @@ class AlchemyContainer(p_i50086_1_: Int, p_i50086_2_: PlayerInventory, private v
       }
    }
    private val random = Random()
-   private val enchantmentSeed = IntReferenceHolder.standalone()
+   val enchantmentSeed = IntReferenceHolder.standalone()
    val costs = IntArray(3)
    val enchantClue = intArrayOf(-1, -1, -1)
    val levelClue = intArrayOf(-1, -1, -1)
@@ -291,4 +293,4 @@ class AlchemyContainer(p_i50086_1_: Int, p_i50086_2_: PlayerInventory, private v
       addDataSlot(IntReferenceHolder.shared(levelClue, 1))
       addDataSlot(IntReferenceHolder.shared(levelClue, 2))
    }
-}
+}*/

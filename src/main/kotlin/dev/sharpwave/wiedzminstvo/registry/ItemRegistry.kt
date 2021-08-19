@@ -1,6 +1,7 @@
 package dev.sharpwave.wiedzminstvo.registry
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
+import dev.sharpwave.wiedzminstvo.block.AlchemyTableBlock
 import dev.sharpwave.wiedzminstvo.item.AlchemyItem
 import dev.sharpwave.wiedzminstvo.item.ModItemGroup
 import dev.sharpwave.wiedzminstvo.item.PotionItem
@@ -20,6 +21,7 @@ object ItemRegistry : IForgeRegistry {
         ITEMS.register(bus)
     }
 
+    val ALCHEMY_TABLE by ITEMS.registerObject("alchemy_table") { registerBlock(BlockRegistry.ALCHEMY_TABLE, ModItemGroup.TAB_ALCHEMY) }
     val ALCHEMY_POTION by ITEMS.registerObject("alchemy_potion") { PotionItem() }
     val ALCHEMISTS_POWDER by ITEMS.registerObject("alchemists_powder") { AlchemyItem() }
     val AETHER by ITEMS.registerObject("aether") { AlchemyItem() }

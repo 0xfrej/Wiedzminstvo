@@ -2,7 +2,6 @@ package dev.sharpwave.wiedzminstvo.alchemy
 
 interface IPotionTier {
     enum class AmplifierType {
-        NONE,
         DURATION,
         STRENGTH
     }

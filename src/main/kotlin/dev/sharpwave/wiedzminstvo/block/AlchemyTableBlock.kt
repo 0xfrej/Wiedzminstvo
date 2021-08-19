@@ -1,6 +1,6 @@
 package dev.sharpwave.wiedzminstvo.block
 
-import dev.sharpwave.wiedzminstvo.inventory.container.AlchemyContainer
+import dev.sharpwave.wiedzminstvo.locale.AlchemyStrings
 import dev.sharpwave.wiedzminstvo.tileentity.AlchemyTableTileEntity
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
@@ -12,7 +12,6 @@ import net.minecraft.inventory.container.INamedContainerProvider
 import net.minecraft.inventory.container.SimpleNamedContainerProvider
 import net.minecraft.item.ItemStack
 import net.minecraft.pathfinding.PathType
-import net.minecraft.tileentity.EnchantingTableTileEntity
 import net.minecraft.tileentity.TileEntity
 import net.minecraft.util.ActionResultType
 import net.minecraft.util.Hand
@@ -22,6 +21,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.BlockRayTraceResult
 import net.minecraft.util.math.shapes.ISelectionContext
 import net.minecraft.util.math.shapes.VoxelShape
+import net.minecraft.util.text.TranslationTextComponent
 import net.minecraft.world.IBlockReader
 import net.minecraft.world.World
 
@@ -32,6 +32,10 @@ class AlchemyTableBlock(properties: Properties) : ContainerBlock(properties) {
 
     override fun getShape(state: BlockState, reader: IBlockReader, pos: BlockPos, selection: ISelectionContext): VoxelShape {
         return SHAPE
+    }
+
+    override fun newBlockEntity(p_196283_1_: IBlockReader): TileEntity {
+        return AlchemyTableTileEntity()
     }
 
     // TODO: Add something like bookshelves or also bookshelves idk to this block which could amplify effects?
@@ -72,10 +76,6 @@ class AlchemyTableBlock(properties: Properties) : ContainerBlock(properties) {
         return BlockRenderType.MODEL
     }
 
-    override fun newBlockEntity(reader: IBlockReader): TileEntity {
-        return AlchemyTableTileEntity()
-    }
-
     override fun use(state: BlockState, level: World, pos: BlockPos, player: PlayerEntity, hand: Hand, rayTrace: BlockRayTraceResult): ActionResultType {
         return if (level.isClientSide) {
             ActionResultType.SUCCESS
@@ -86,7 +86,7 @@ class AlchemyTableBlock(properties: Properties) : ContainerBlock(properties) {
     }
 
     override fun getMenuProvider(state: BlockState, level: World, pos: BlockPos): INamedContainerProvider? {
-        val tileEntity = level.getBlockEntity(pos)
+        /*val tileEntity = level.getBlockEntity(pos)
         return if (tileEntity is AlchemyTableTileEntity) {
             val name = (tileEntity as INameable).displayName
             SimpleNamedContainerProvider({ containerId: Int, inventory: PlayerInventory, player: PlayerEntity ->
@@ -95,17 +95,18 @@ class AlchemyTableBlock(properties: Properties) : ContainerBlock(properties) {
                     inventory,
                     IWorldPosCallable.create(level, pos)
                 )
-            }, name)
+            }, CONTAINER_TITLE)
         } else {
             null
-        }
+        }*/
+        return null
     }
 
     override fun setPlacedBy(level: World, pos: BlockPos, state: BlockState, entity: LivingEntity?, stack: ItemStack) {
         if (stack.hasCustomHoverName()) {
             val tileEntity = level.getBlockEntity(pos)
-            if (tileEntity is EnchantingTableTileEntity) {
-                tileEntity.customName = stack.hoverName
+            if (tileEntity is AlchemyTableTileEntity) {
+                tileEntity.setCustomName(stack.hoverName)
             }
         }
     }
@@ -115,6 +116,7 @@ class AlchemyTableBlock(properties: Properties) : ContainerBlock(properties) {
     }
 
     companion object {
-        protected val SHAPE = box(0.0, 0.0, 0.0, 16.0, 12.0, 16.0)
+        private val SHAPE = box(0.0, 0.0, 0.0, 16.0, 21.0, 16.0)
+        private val CONTAINER_TITLE = TranslationTextComponent(AlchemyStrings.ALCHEMY_TABLE_CONTAINER)
     }
 }
