@@ -2,8 +2,11 @@ package dev.sharpwave.wiedzminstvo.client.render
 
 import dev.sharpwave.wiedzminstvo.registry.BlockRegistry
 import net.minecraft.client.renderer.RenderType
+import net.minecraftforge.api.distmarker.Dist
+import net.minecraftforge.api.distmarker.OnlyIn
 import net.minecraft.client.renderer.RenderTypeLookup as RTL
 
+@OnlyIn(Dist.CLIENT)
 object RenderTypeLookup {
     fun register() {
         val renderCutout = RenderType.cutout()

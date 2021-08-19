@@ -116,7 +116,7 @@ class AlchemyTableBlock(properties: Properties) : ContainerBlock(properties) {
     }
 
     companion object {
-        private val SHAPE = box(0.0, 0.0, 0.0, 16.0, 21.0, 16.0)
+        private val SHAPE = box(0.0, 0.0, 0.0, 15.9, 21.0, 15.9)
         private val CONTAINER_TITLE = TranslationTextComponent(AlchemyStrings.ALCHEMY_TABLE_CONTAINER)
     }
 }
