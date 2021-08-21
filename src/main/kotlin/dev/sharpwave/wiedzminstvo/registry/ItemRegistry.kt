@@ -2,9 +2,7 @@ package dev.sharpwave.wiedzminstvo.registry
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.block.AlchemyTableBlock
-import dev.sharpwave.wiedzminstvo.item.AlchemyItem
-import dev.sharpwave.wiedzminstvo.item.ModItemGroup
-import dev.sharpwave.wiedzminstvo.item.PotionItem
+import dev.sharpwave.wiedzminstvo.item.*
 import net.minecraft.block.Block
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
@@ -22,13 +20,10 @@ object ItemRegistry : IForgeRegistry {
     }
 
     val ALCHEMY_TABLE by ITEMS.registerObject("alchemy_table") { registerBlock(BlockRegistry.ALCHEMY_TABLE, ModItemGroup.TAB_ALCHEMY) }
+    val MORTAR by ITEMS.registerObject("mortar") { registerBlock(BlockRegistry.MORTAR, ModItemGroup.TAB_ALCHEMY) }
     val ALCHEMY_POTION by ITEMS.registerObject("alchemy_potion") { PotionItem() }
-    val ALCHEMISTS_POWDER by ITEMS.registerObject("alchemists_powder") { AlchemyItem() }
-    val AETHER by ITEMS.registerObject("aether") { AlchemyItem() }
     val ALCHEMY_PASTE by ITEMS.registerObject("alchemy_paste") { AlchemyItem() }
-    val ALCOHEST by ITEMS.registerObject("alcohest") { AlchemyItem() }
     val DARK_ESSENCE by ITEMS.registerObject("dark_essence") { AlchemyItem() }
-    val DWARVEN_SPIRIT by ITEMS.registerObject("dwarven_spirit") { AlchemyItem() }
     val FIFTH_ESSENCE by ITEMS.registerObject("fifth_essence") { AlchemyItem() }
     val ARENARIA by ITEMS.registerObject("arenaria") { registerBlock(BlockRegistry.ARENARIA, ModItemGroup.TAB_ALCHEMY) }
     // TODO: Maybe change beggartick and bison grass to flower or make implementation which also has offsetting as flower because it's weird how it is in middle of the block

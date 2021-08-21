@@ -1,9 +1,6 @@
 package dev.sharpwave.wiedzminstvo.init
 
-import dev.sharpwave.wiedzminstvo.registry.BlockRegistry
-import dev.sharpwave.wiedzminstvo.registry.GlobalLootModifiersRegistry
-import dev.sharpwave.wiedzminstvo.registry.ItemRegistry
-import dev.sharpwave.wiedzminstvo.registry.TileEntityRegistry
+import dev.sharpwave.wiedzminstvo.registry.*
 import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
 
 object ModRegistries {
@@ -12,5 +9,6 @@ object ModRegistries {
         ItemRegistry.register(bus)
         TileEntityRegistry.register(bus)
         GlobalLootModifiersRegistry.register(bus)
+        ContainerTypeRegistry.register(bus)
     }
 }

@@ -15,6 +15,9 @@ object ModDataGenerators {
 
         if (event.includeServer()) {
             generator.addProvider(EntityTags(generator, event.existingFileHelper))
+            val blockTags = BlockTags(generator, event.existingFileHelper)
+            generator.addProvider(blockTags)
+            generator.addProvider(ItemTags(generator, blockTags, event.existingFileHelper))
             //generator.addProvider(Recipes(generator))
             generator.addProvider(BlockLootTables(generator))
             generator.addProvider(GlobalLootModifiers(generator))

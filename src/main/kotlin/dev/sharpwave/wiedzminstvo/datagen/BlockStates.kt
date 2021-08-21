@@ -15,7 +15,6 @@ import net.minecraftforge.common.data.ExistingFileHelper
 
 class BlockStates(generator: DataGenerator, existingFileHelper: ExistingFileHelper) : BlockStateProvider(generator, WiedzminstvoMod.MODID, existingFileHelper) {
     override fun registerStatesAndModels() {
-        simpleBlock(BlockRegistry.ALCHEMY_TABLE)
         simpleBlock(BlockRegistry.ARENARIA)
         simpleBlock(BlockRegistry.BEGGARTICK)
         simpleBlock(BlockRegistry.BISON_GRASS)

@@ -14,13 +14,8 @@ import net.minecraftforge.common.data.ExistingFileHelper
 
 class Items(generator: DataGenerator, existingFileHelper: ExistingFileHelper) : ItemModelProvider(generator, WiedzminstvoMod.MODID, existingFileHelper) {
     override fun registerModels() {
-        withExistingParent(getRegistryPath(ItemRegistry.ALCHEMY_TABLE), blockLocation(getRegistryPath(ItemRegistry.ALCHEMY_TABLE)))
-        singleTexture(getRegistryPath(ItemRegistry.AETHER), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.AETHER)))
-        singleTexture(getRegistryPath(ItemRegistry.ALCHEMISTS_POWDER), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.ALCHEMISTS_POWDER)))
         singleTexture(getRegistryPath(ItemRegistry.ALCHEMY_PASTE), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.ALCHEMY_PASTE)))
-        singleTexture(getRegistryPath(ItemRegistry.ALCOHEST), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.ALCOHEST)))
         singleTexture(getRegistryPath(ItemRegistry.DARK_ESSENCE), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.DARK_ESSENCE)))
-        singleTexture(getRegistryPath(ItemRegistry.DWARVEN_SPIRIT), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.DWARVEN_SPIRIT)))
         singleTexture(getRegistryPath(ItemRegistry.FIFTH_ESSENCE), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.FIFTH_ESSENCE)))
         singleTexture(getRegistryPath(ItemRegistry.ARENARIA), generatedItem(), "layer0", blockLocation(getRegistryPath(ItemRegistry.ARENARIA)))
         singleTexture(getRegistryPath(ItemRegistry.BEGGARTICK), generatedItem(), "layer0", blockLocation(getRegistryPath(ItemRegistry.BEGGARTICK)))

@@ -1,6 +1,6 @@
 package dev.sharpwave.wiedzminstvo.block
 
-import dev.sharpwave.wiedzminstvo.locale.AlchemyStrings
+import dev.sharpwave.wiedzminstvo.inventory.container.AlchemyContainer
 import dev.sharpwave.wiedzminstvo.tileentity.AlchemyTableTileEntity
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
@@ -21,7 +21,6 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.BlockRayTraceResult
 import net.minecraft.util.math.shapes.ISelectionContext
 import net.minecraft.util.math.shapes.VoxelShape
-import net.minecraft.util.text.TranslationTextComponent
 import net.minecraft.world.IBlockReader
 import net.minecraft.world.World
 
@@ -86,7 +85,7 @@ class AlchemyTableBlock(properties: Properties) : ContainerBlock(properties) {
     }
 
     override fun getMenuProvider(state: BlockState, level: World, pos: BlockPos): INamedContainerProvider? {
-        /*val tileEntity = level.getBlockEntity(pos)
+        val tileEntity = level.getBlockEntity(pos)
         return if (tileEntity is AlchemyTableTileEntity) {
             val name = (tileEntity as INameable).displayName
             SimpleNamedContainerProvider({ containerId: Int, inventory: PlayerInventory, player: PlayerEntity ->
@@ -95,11 +94,10 @@ class AlchemyTableBlock(properties: Properties) : ContainerBlock(properties) {
                     inventory,
                     IWorldPosCallable.create(level, pos)
                 )
-            }, CONTAINER_TITLE)
+            }, name)
         } else {
             null
-        }*/
-        return null
+        }
     }
 
     override fun setPlacedBy(level: World, pos: BlockPos, state: BlockState, entity: LivingEntity?, stack: ItemStack) {
@@ -117,6 +115,5 @@ class AlchemyTableBlock(properties: Properties) : ContainerBlock(properties) {
 
     companion object {
         private val SHAPE = box(0.0, 0.0, 0.0, 15.9, 21.0, 15.9)
-        private val CONTAINER_TITLE = TranslationTextComponent(AlchemyStrings.ALCHEMY_TABLE_CONTAINER)
     }
 }

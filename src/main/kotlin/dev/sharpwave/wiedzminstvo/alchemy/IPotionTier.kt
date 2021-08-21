@@ -6,6 +6,7 @@ interface IPotionTier {
         STRENGTH
     }
 
+    val name: String
     val uses: Int
     val amplifier: AmplifierType
     val amplifyBy: Double

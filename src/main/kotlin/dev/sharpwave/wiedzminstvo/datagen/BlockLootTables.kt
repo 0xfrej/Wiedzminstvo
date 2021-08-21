@@ -40,6 +40,7 @@ class BlockLootTables(generator: DataGenerator) : BaseLootTableProvider<Block>(g
 
     override fun addTables() {
         dropSelf(BlockRegistry.ALCHEMY_TABLE)
+        dropSelf(BlockRegistry.MORTAR)
         dropSelf(BlockRegistry.ARENARIA)
         dropSelf(BlockRegistry.BEGGARTICK)
         dropSelf(BlockRegistry.BISON_GRASS)
