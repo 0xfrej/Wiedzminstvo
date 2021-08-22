@@ -1,6 +1,6 @@
 package dev.sharpwave.wiedzminstvo.alchemy
 
-import dev.sharpwave.support.register.SimpleRegister
+import dev.sharpwave.minecraft.register.SimpleRegister
 
 object PotionTiers : SimpleRegister<Int, IPotionTier>() {
 

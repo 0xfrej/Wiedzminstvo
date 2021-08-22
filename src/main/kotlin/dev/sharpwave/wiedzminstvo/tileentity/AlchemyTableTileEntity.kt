@@ -12,7 +12,7 @@ import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.TranslationTextComponent
 import java.util.*
 
-class AlchemyTableTileEntity : TileEntity(TileEntityRegistry.ALCHEMY_TABLE), INameable, ITickableTileEntity {
+class AlchemyTableTileEntity : TileEntity(TileEntityRegistry.ALCHEMY_TABLE), INameable {
 
     private var name: ITextComponent? = null
     override fun save(tag: CompoundNBT): CompoundNBT {
@@ -30,10 +30,6 @@ class AlchemyTableTileEntity : TileEntity(TileEntityRegistry.ALCHEMY_TABLE), INa
         }
     }
 
-    override fun tick() {
-
-    }
-
     override fun getName(): ITextComponent {
         return (if (name != null) name else TranslationTextComponent(AlchemyStrings.ALCHEMY_TABLE_CONTAINER)) as ITextComponent
     }
@@ -44,9 +40,5 @@ class AlchemyTableTileEntity : TileEntity(TileEntityRegistry.ALCHEMY_TABLE), INa
 
     override fun getCustomName(): ITextComponent? {
         return name
-    }
-
-    companion object {
-        private val RANDOM = Random()
     }
 }

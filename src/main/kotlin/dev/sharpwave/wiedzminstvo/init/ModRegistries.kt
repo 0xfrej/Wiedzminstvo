@@ -10,5 +10,6 @@ object ModRegistries {
         TileEntityRegistry.register(bus)
         GlobalLootModifiersRegistry.register(bus)
         ContainerTypeRegistry.register(bus)
+        RecipeRegistry.register(bus)
     }
 }

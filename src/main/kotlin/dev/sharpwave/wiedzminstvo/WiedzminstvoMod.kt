@@ -1,10 +1,13 @@
 package dev.sharpwave.wiedzminstvo
 
 import dev.sharpwave.wiedzminstvo.client.managers.KeybindManager
+import dev.sharpwave.wiedzminstvo.client.render.MortarPestleTileEntityRenderer
 import dev.sharpwave.wiedzminstvo.client.render.RenderTypeLookup
 import dev.sharpwave.wiedzminstvo.init.ModConfig
 import dev.sharpwave.wiedzminstvo.init.ModRegistries
+import dev.sharpwave.wiedzminstvo.registry.TileEntityRegistry
 import net.minecraftforge.fml.ModLoadingContext
+import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import net.minecraftforge.fml.loading.FMLPaths
@@ -41,5 +44,7 @@ object WiedzminstvoMod {
     private fun onClientSetup(event: FMLClientSetupEvent) {
         KeybindManager.init()
         RenderTypeLookup.register()
+
+        ClientRegistry.bindTileEntityRenderer(TileEntityRegistry.PESTLE) { terd -> MortarPestleTileEntityRenderer(terd) }
     }
 }

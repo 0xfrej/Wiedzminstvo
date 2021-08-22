@@ -1,4 +1,4 @@
-package dev.sharpwave.support.register
+package dev.sharpwave.minecraft.register
 
 import java.util.function.Supplier
 import kotlin.properties.ReadOnlyProperty
