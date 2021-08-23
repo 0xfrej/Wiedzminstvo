@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "alchemy",
+  "pattern": [
+    "sss",
+    " s ",
+    "sss"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "wiedzminstvo:alchemy_table"
+  }
+}

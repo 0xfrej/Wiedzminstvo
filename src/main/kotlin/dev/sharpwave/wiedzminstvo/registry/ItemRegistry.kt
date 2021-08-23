@@ -3,11 +3,9 @@ package dev.sharpwave.wiedzminstvo.registry
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.block.AlchemyTableBlock
 import dev.sharpwave.wiedzminstvo.item.*
+import dev.sharpwave.wiedzminstvo.item.PotionItem
 import net.minecraft.block.Block
-import net.minecraft.item.BlockItem
-import net.minecraft.item.Item
-import net.minecraft.item.ItemGroup
-import net.minecraft.item.TallBlockItem
+import net.minecraft.item.*
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
 import thedarkcolour.kotlinforforge.forge.KDeferredRegister
@@ -31,6 +29,7 @@ object ItemRegistry : IForgeRegistry {
     val BISON_GRASS by ITEMS.registerObject("bison_grass") { registerBlock(BlockRegistry.BISON_GRASS, ModItemGroup.TAB_ALCHEMY) }
     val BLUE_LOTUS by ITEMS.registerObject("blue_lotus") { registerTallBlock(BlockRegistry.BLUE_LOTUS, ModItemGroup.TAB_ALCHEMY) }
     val WINTER_CHERRY by ITEMS.registerObject("winter_cherry") { registerTallBlock(BlockRegistry.WINTER_CHERRY, ModItemGroup.TAB_ALCHEMY) }
+    val PORK_FAT by ITEMS.registerObject("pork_fat") { Item(Item.Properties().tab(ModItemGroup.TAB_MISC).food(Foods.TROPICAL_FISH)) }
 
     private fun registerBlock(block: Block, tab: ItemGroup): BlockItem {
         return BlockItem(block, Item.Properties().tab(tab))

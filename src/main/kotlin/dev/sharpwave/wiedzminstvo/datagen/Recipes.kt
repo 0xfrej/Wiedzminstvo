@@ -1,44 +1,14 @@
 package dev.sharpwave.wiedzminstvo.datagen
 
-import net.minecraft.data.DataGenerator
-import net.minecraft.data.IFinishedRecipe
-import net.minecraft.data.RecipeProvider
+import dev.sharpwave.wiedzminstvo.registry.ItemRegistry
+import net.minecraft.advancements.criterion.InventoryChangeTrigger
+import net.minecraft.data.*
+import net.minecraft.item.Items
 import java.util.function.Consumer
 
 class Recipes(generator: DataGenerator) : RecipeProvider(generator) {
     override fun buildShapelessRecipes(consumer: Consumer<IFinishedRecipe>) {
-        /**
-         * example
-            ShapedRecipeBuilder.shaped(Registration.TESTITEM.get())
-            .pattern("xxx")
-            .pattern(" s ")
-            .pattern(" s ")
-            .define('x', Tags.Items.BONES)
-            .define('s', Items.STICK)
-            .group("tutorial")
-            .unlockedBy("sticks", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
-            .save(consumer);
-
-            ShapedRecipeBuilder.shaped(Registration.GENERATOR.get())
-            .pattern("iii")
-            .pattern("iCi")
-            .pattern("ccc")
-            .define('i', Tags.Items.INGOTS_IRON)
-            .define('C', Tags.Items.STORAGE_BLOCKS_COAL)
-            .define('c', ItemTags.COALS)
-            .group("tutorial")
-            .unlockedBy("coals", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COAL))
-            .save(consumer);
-
-            ShapedRecipeBuilder.shaped(Registration.DEMO.get())
-            .pattern("rir")
-            .pattern("iri")
-            .pattern("rir")
-            .define('i', Tags.Items.INGOTS_IRON)
-            .define('r', Tags.Items.DUSTS_REDSTONE)
-            .group("tutorial")
-            .unlockedBy("redstone", InventoryChangeTrigger.TriggerInstance.hasItems(Items.REDSTONE))
-            .save(consumer);
-         */
+        ShapedRecipeBuilder.shaped(ItemRegistry.ALCHEMY_TABLE).pattern("sss").pattern(" s ").pattern("sss").define('s', Items.STONE).group("alchemy").unlockedBy("stone", InventoryChangeTrigger.Instance.hasItems(Items.STONE)).save(consumer);
+        ShapedRecipeBuilder.shaped(ItemRegistry.MORTAR).pattern("   ").pattern("s s").pattern("sss").define('s', Items.STONE).group("alchemy").unlockedBy("stone", InventoryChangeTrigger.Instance.hasItems(Items.STONE)).save(consumer);
     }
 }

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "entries": [
-    "wiedzminstvo:horse_drop"
+    "wiedzminstvo:horse_drop",
+    "wiedzminstvo:pig_drop"
   ]
 }

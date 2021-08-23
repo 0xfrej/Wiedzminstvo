@@ -2,6 +2,7 @@ package dev.sharpwave.wiedzminstvo.registry
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.world.loot.HorseDropModifier
+import dev.sharpwave.wiedzminstvo.world.loot.KillDropModifier
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
@@ -15,4 +16,5 @@ object GlobalLootModifiersRegistry : IForgeRegistry {
     }
 
     val HORSE_DROP by GLM.registerObject("horse_drop") { HorseDropModifier.serializerFactory() }
+    val PIG_DROP by GLM.registerObject("pig_drop") { KillDropModifier.serializerFactory() }
 }

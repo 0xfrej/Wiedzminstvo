@@ -22,5 +22,6 @@ class Items(generator: DataGenerator, existingFileHelper: ExistingFileHelper) : 
         singleTexture(getRegistryPath(ItemRegistry.BISON_GRASS), generatedItem(), "layer0", blockLocation(getRegistryPath(ItemRegistry.BISON_GRASS)))
         singleTexture(getRegistryPath(ItemRegistry.BLUE_LOTUS), generatedItem(), "layer0", tallBlockLocation(getRegistryPath(ItemRegistry.BLUE_LOTUS)))
         singleTexture(getRegistryPath(ItemRegistry.WINTER_CHERRY), generatedItem(), "layer0", tallBlockLocation(getRegistryPath(ItemRegistry.WINTER_CHERRY)))
+        singleTexture(getRegistryPath(ItemRegistry.PORK_FAT), generatedItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.PORK_FAT)))
     }
 }
