@@ -1,6 +1,5 @@
 package dev.sharpwave.wiedzminstvo.tileentity
 
-import dev.sharpwave.wiedzminstvo.locale.AlchemyStrings
 import dev.sharpwave.wiedzminstvo.registry.TileEntityRegistry
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import net.minecraft.block.BlockState
@@ -15,7 +14,7 @@ import net.minecraft.tileentity.TileEntity
 import net.minecraft.util.INameable
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.ITextComponent
-import net.minecraft.util.text.TranslationTextComponent
+import net.minecraft.util.text.StringTextComponent
 
 class MortarPestleTileEntity : TileEntity(TileEntityRegistry.PESTLE), INameable, IRecipeHolder, IRecipeHelperPopulator, ITickableTileEntity {
 
@@ -52,7 +51,7 @@ class MortarPestleTileEntity : TileEntity(TileEntityRegistry.PESTLE), INameable,
 
     override fun tick() {
        // if (isGrinding) {
-            if (time < 20) {
+            if (time < 30) {
                 time++
             }
             else {
@@ -63,7 +62,7 @@ class MortarPestleTileEntity : TileEntity(TileEntityRegistry.PESTLE), INameable,
     }
 
     override fun getName(): ITextComponent {
-        return (if (name != null) name else TranslationTextComponent(AlchemyStrings.ALCHEMY_TABLE_CONTAINER)) as ITextComponent
+        return (name ?: StringTextComponent(""))
     }
 
     fun setCustomName(text: ITextComponent) {

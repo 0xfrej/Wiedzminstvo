@@ -1,28 +1,26 @@
 package dev.sharpwave.wiedzminstvo.inventory.container
 
+import dev.sharpwave.wiedzminstvo.inventory.AlchemyInventory
 import dev.sharpwave.wiedzminstvo.registry.BlockRegistry
 import dev.sharpwave.wiedzminstvo.registry.ContainerTypeRegistry
 import dev.sharpwave.wiedzminstvo.tag.ItemTags
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.inventory.IInventory
-import net.minecraft.inventory.Inventory
-import net.minecraft.inventory.container.Container
+import net.minecraft.inventory.container.RecipeBookContainer
 import net.minecraft.inventory.container.Slot
 import net.minecraft.item.ItemStack
+import net.minecraft.item.crafting.IRecipe
+import net.minecraft.item.crafting.RecipeBookCategory
+import net.minecraft.item.crafting.RecipeItemHelper
 import net.minecraft.util.IWorldPosCallable
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import net.minecraftforge.api.distmarker.Dist
+import net.minecraftforge.api.distmarker.OnlyIn
 import java.util.*
 
-class AlchemyContainer(id: Int, inv: PlayerInventory, private val access: IWorldPosCallable) : Container(ContainerTypeRegistry.ALCHEMY, id) {
-   private val alchemySlots: IInventory = object : Inventory(4) {
-      override fun setChanged() {
-         super.setChanged()
-         slotsChanged(this)
-      }
-   }
-
+class AlchemyContainer(id: Int, private val inv: PlayerInventory, private val access: IWorldPosCallable) : RecipeBookContainer<AlchemyInventory>(ContainerTypeRegistry.ALCHEMY, id) {
+   private val alchemySlots = AlchemyInventory(this, 3,1)
    private val random = Random()
 
    constructor(id: Int, inv: PlayerInventory) : this(id, inv, IWorldPosCallable.NULL)
@@ -86,7 +84,7 @@ class AlchemyContainer(id: Int, inv: PlayerInventory, private val access: IWorld
       // middle
       addSlot(object : Slot(alchemySlots, 0, 113, 31) {
          override fun mayPlace(itemStack: ItemStack): Boolean {
-            return ItemTags.BASE_ALCHEMY_POTIONS.contains(itemStack.item)
+            return ItemTags.ALCHEMY_FUSION_INGREDIENTS.contains(itemStack.item)
          }
 
          override fun getMaxStackSize(): Int {
@@ -133,5 +131,39 @@ class AlchemyContainer(id: Int, inv: PlayerInventory, private val access: IWorld
       for (k in 0..8) {
          addSlot(Slot(inv, k, 8 + k * 18, 142))
       }
+   }
+
+   override fun fillCraftSlotsStackedContents(handler: RecipeItemHelper) {
+      alchemySlots.fillStackedContents(handler)
+   }
+
+   override fun clearCraftingContent() {
+      alchemySlots.clearContent()
+   }
+
+   override fun recipeMatches(recipe: IRecipe<in AlchemyInventory>): Boolean {
+      return recipe.matches(alchemySlots, inv.player.level)
+   }
+
+   override fun getResultSlotIndex(): Int {
+      return 0
+   }
+
+   override fun getGridWidth(): Int {
+      return alchemySlots.containerSize
+   }
+
+   override fun getGridHeight(): Int {
+      return 1
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   override fun getSize(): Int {
+      return alchemySlots.containerSize
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   override fun getRecipeBookType(): RecipeBookCategory {
+      return RecipeBookCategory.CRAFTING
    }
 }

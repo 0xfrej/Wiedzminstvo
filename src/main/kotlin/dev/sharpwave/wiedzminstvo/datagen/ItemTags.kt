@@ -11,5 +11,6 @@ import net.minecraftforge.common.data.ExistingFileHelper
 class ItemTags(generator: DataGenerator, blockTags: BlockTagsProvider, existingFileHelper: ExistingFileHelper) : ItemTagsProvider(generator, blockTags, WiedzminstvoMod.MODID, existingFileHelper) {
     override fun addTags() {
         tag(ItemTypeTags.ALCHEMY_INGREDIENTS).add(ItemRegistry.BLUE_LOTUS, ItemRegistry.WINTER_CHERRY, ItemRegistry.ARENARIA, ItemRegistry.BEGGARTICK, ItemRegistry.BISON_GRASS)
+        tag(ItemTypeTags.ALCHEMY_FUSION_INGREDIENTS)
     }
 }

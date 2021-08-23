@@ -10,7 +10,8 @@ import net.minecraft.item.crafting.Ingredient
 import net.minecraft.util.ResourceLocation
 
 class MortarRecipe(location: ResourceLocation, name: String, ingredient: Ingredient, item: ItemStack, experience: Float, grindingCount: Int) :
-    AbstractCookingRecipe(IRecipeType.SMELTING, location, name, ingredient, item, experience, grindingCount) {
+    AbstractCookingRecipe(RecipeRegistry.GRINDING, location, name, ingredient, item, experience, grindingCount) {
+
     override fun getToastSymbol(): ItemStack {
         return ItemStack(ItemRegistry.MORTAR)
     }

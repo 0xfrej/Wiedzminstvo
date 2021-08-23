@@ -35,4 +35,5 @@ d6006278250f210d1d499941f620299ddb524639 data/wiedzminstvo/loot_tables/blocks/wi
 ba9911df46fa44fb858daa439cb606364b69548e data/wiedzminstvo/recipes/alchemy_table.json
 64b62ad1c0289dee1d97ab1ea8f15caec052f97f data/wiedzminstvo/recipes/mortar.json
 9a622399d1ef4eaaad8611502cf0dac6fe16fe76 data/wiedzminstvo/tags/entity_types/horses.json
+74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/wiedzminstvo/tags/items/alchemy_fusion_ingredients.json
 7e31696ac597ae086f3eb112107a20c193e1b765 data/wiedzminstvo/tags/items/alchemy_ingredients.json
