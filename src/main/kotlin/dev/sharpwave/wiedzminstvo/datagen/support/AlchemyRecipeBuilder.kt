@@ -150,6 +150,7 @@ class AlchemyRecipeBuilder(resultItem: IItemProvider, count: Int) {
         fun alchemy(resultItem: IItemProvider, count: Int): AlchemyRecipeBuilder {
             return AlchemyRecipeBuilder(resultItem, count)
         }
+
         fun alchemy(resultItem: IItemProvider): AlchemyRecipeBuilder {
             return alchemy(resultItem, 1)
         }

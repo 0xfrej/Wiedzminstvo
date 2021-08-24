@@ -11,9 +11,13 @@ import net.minecraft.util.math.MathHelper
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer
 import net.minecraftforge.common.loot.LootModifier
 import net.minecraftforge.registries.ForgeRegistries
-import java.util.Random
+import java.util.*
 
-class KillDropModifier constructor(conditionsIn: Array<ILootCondition>, private val reward: Item, private val range: Pair<Int, Int>) : LootModifier(conditionsIn) {
+class KillDropModifier constructor(
+    conditionsIn: Array<ILootCondition>,
+    private val reward: Item,
+    private val range: Pair<Int, Int>
+) : LootModifier(conditionsIn) {
 
     override fun doApply(generatedLoot: MutableList<ItemStack>, context: LootContext): List<ItemStack> {
         generatedLoot.add(ItemStack(reward, MathHelper.nextInt(RANDOM, range.first, range.second)))
@@ -21,7 +25,11 @@ class KillDropModifier constructor(conditionsIn: Array<ILootCondition>, private 
     }
 
     private class Serializer : GlobalLootModifierSerializer<KillDropModifier>() {
-        override fun read(location: ResourceLocation, jObject: JsonObject, ailootcondition: Array<ILootCondition>): KillDropModifier {
+        override fun read(
+            location: ResourceLocation,
+            jObject: JsonObject,
+            ailootcondition: Array<ILootCondition>
+        ): KillDropModifier {
             val rangeCompound = JSONUtils.getAsJsonObject(jObject, "range")
             return KillDropModifier(
                 ailootcondition,

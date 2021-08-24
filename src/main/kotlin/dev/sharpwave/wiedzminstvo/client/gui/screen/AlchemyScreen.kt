@@ -13,16 +13,18 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.MathHelper
 import net.minecraft.util.math.vector.Matrix4f
 import net.minecraft.util.math.vector.Vector3f
-import net.minecraft.util.text.*
+import net.minecraft.util.text.ITextComponent
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 
 @OnlyIn(Dist.CLIENT)
-class AlchemyScreen(container: AlchemyContainer, playerInventory: PlayerInventory, title: ITextComponent) : ContainerScreen<AlchemyContainer>(container, playerInventory, title) {
+class AlchemyScreen(container: AlchemyContainer, playerInventory: PlayerInventory, title: ITextComponent) :
+    ContainerScreen<AlchemyContainer>(container, playerInventory, title) {
     private var open = 0f
     private var oOpen = 0f
 
     override fun mouseClicked(x: Double, y: Double, key: Int): Boolean {
+        // TODO: tf is this
         /*val i = (width - imageWidth) / 2
         val j = (height - imageHeight) / 2
         for (k in 0..2) {
@@ -92,6 +94,7 @@ class AlchemyScreen(container: AlchemyContainer, playerInventory: PlayerInventor
     }
 
     companion object {
-        private val ALCHEMY_TABLE_LOCATION = ResourceLocation(WiedzminstvoMod.MODID, "textures/gui/container/alchemy_table.png")
+        private val ALCHEMY_TABLE_LOCATION =
+            ResourceLocation(WiedzminstvoMod.MODID, "textures/gui/container/alchemy_table.png")
     }
 }

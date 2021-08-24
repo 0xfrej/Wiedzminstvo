@@ -4,9 +4,14 @@ import dev.sharpwave.minecraft.register.SimpleRegister
 
 object PotionTiers : SimpleRegister<Int, IPotionTier>() {
 
-    class PotionTier(override val name: String, override val uses: Int, override val amplifier: IPotionTier.AmplifierType, override val amplifyBy: Double) : IPotionTier
+    class PotionTier(
+        override val name: String,
+        override val uses: Int,
+        override val amplifier: IPotionTier.AmplifierType,
+        override val amplifyBy: Double
+    ) : IPotionTier
 
-    val ENHANCED_DURATION by register(0, PotionTier("enhanced_duration",4, IPotionTier.AmplifierType.DURATION, 1.0))
+    val ENHANCED_DURATION by register(0, PotionTier("enhanced_duration", 4, IPotionTier.AmplifierType.DURATION, 1.0))
     val ENHANCED_STRENGTH by register(1, PotionTier("enhanced_strength", 4, IPotionTier.AmplifierType.STRENGTH, 1.0))
     val MINOR_DURATION by register(2, PotionTier("minor_duration", 6, IPotionTier.AmplifierType.DURATION, 1.25))
     val MINOR_STRENGTH by register(3, PotionTier("minor_strength", 6, IPotionTier.AmplifierType.STRENGTH, 1.25))

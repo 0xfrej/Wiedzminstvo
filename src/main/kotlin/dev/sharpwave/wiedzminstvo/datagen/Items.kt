@@ -12,7 +12,8 @@ import net.minecraft.data.DataGenerator
 import net.minecraftforge.client.model.generators.ItemModelProvider
 import net.minecraftforge.common.data.ExistingFileHelper
 
-class Items(generator: DataGenerator, existingFileHelper: ExistingFileHelper) : ItemModelProvider(generator, WiedzminstvoMod.MODID, existingFileHelper) {
+class Items(generator: DataGenerator, existingFileHelper: ExistingFileHelper) :
+    ItemModelProvider(generator, WiedzminstvoMod.MODID, existingFileHelper) {
     override fun registerModels() {
         singleTexture(getRegistryPath(ItemRegistry.ALCHEMY_PASTE), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.ALCHEMY_PASTE)))
         singleTexture(getRegistryPath(ItemRegistry.DARK_ESSENCE), handheldItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.DARK_ESSENCE)))

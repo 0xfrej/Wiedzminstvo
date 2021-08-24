@@ -18,25 +18,28 @@ object DatagenHelpers {
     fun itemLocation(itemName: String): ResourceLocation {
         return location("item", itemName)
     }
+
     fun blockLocation(itemName: String): ResourceLocation {
         return location("block", itemName)
     }
+
     fun tallBlockLocation(itemName: String): ResourceLocation {
-        return blockLocation(itemName+"_top")
+        return blockLocation(itemName + "_top")
     }
+
     private fun location(location: String, itemName: String): ResourceLocation {
         return ResourceLocation(WiedzminstvoMod.MODID, "$location/$itemName")
     }
 
     fun getRegistryPath(item: Item): String {
-        return item.registryName!!.path;
+        return item.registryName!!.path
     }
 
     fun getRegistryPath(block: Block): String {
-        return block.registryName!!.path;
+        return block.registryName!!.path
     }
 
     fun getRegistryPath(serializer: GlobalLootModifierSerializer<*>): String {
-        return serializer.registryName!!.path;
+        return serializer.registryName!!.path
     }
 }

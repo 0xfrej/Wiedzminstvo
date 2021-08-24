@@ -4,13 +4,10 @@ import dev.sharpwave.wiedzminstvo.locale.AlchemyStrings
 import dev.sharpwave.wiedzminstvo.registry.TileEntityRegistry
 import net.minecraft.block.BlockState
 import net.minecraft.nbt.CompoundNBT
-import net.minecraft.tileentity.ITickableTileEntity
 import net.minecraft.tileentity.TileEntity
-import net.minecraft.tileentity.TileEntityType
 import net.minecraft.util.INameable
 import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.TranslationTextComponent
-import java.util.*
 
 class AlchemyTableTileEntity : TileEntity(TileEntityRegistry.ALCHEMY_TABLE), INameable {
 

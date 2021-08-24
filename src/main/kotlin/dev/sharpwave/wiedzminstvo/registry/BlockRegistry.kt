@@ -8,14 +8,13 @@ import net.minecraft.block.AbstractBlock
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.Material
-import net.minecraft.block.material.MaterialColor
 import net.minecraft.potion.Effects
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
 import thedarkcolour.kotlinforforge.forge.KDeferredRegister
 
 object BlockRegistry : IForgeRegistry {
-    private val BLOCKS : KDeferredRegister<Block> = KDeferredRegister(ForgeRegistries.BLOCKS, WiedzminstvoMod.MODID)
+    private val BLOCKS: KDeferredRegister<Block> = KDeferredRegister(ForgeRegistries.BLOCKS, WiedzminstvoMod.MODID)
 
     override fun register(bus: KotlinEventBus) {
         BLOCKS.register(bus)

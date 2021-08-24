@@ -9,7 +9,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.item.crafting.RecipeItemHelper
 import net.minecraft.util.NonNullList
 
-class AlchemyInventory(container: Container, ingredientSlots: Int, fuseSlots: Int) : IInventory, IRecipeHelperPopulator {
+class AlchemyInventory(container: Container, ingredientSlots: Int, fuseSlots: Int) : IInventory,
+    IRecipeHelperPopulator {
     private val items: NonNullList<ItemStack>
     private val menu: Container
     val ingredientSlots: Int

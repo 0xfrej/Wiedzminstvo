@@ -9,7 +9,8 @@ import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
 import thedarkcolour.kotlinforforge.forge.KDeferredRegister
 
 object GlobalLootModifiersRegistry : IForgeRegistry {
-    private val GLM : KDeferredRegister<GlobalLootModifierSerializer<*>> = KDeferredRegister(ForgeRegistries.LOOT_MODIFIER_SERIALIZERS, WiedzminstvoMod.MODID)
+    private val GLM: KDeferredRegister<GlobalLootModifierSerializer<*>> =
+        KDeferredRegister(ForgeRegistries.LOOT_MODIFIER_SERIALIZERS, WiedzminstvoMod.MODID)
 
     override fun register(bus: KotlinEventBus) {
         GLM.register(bus)

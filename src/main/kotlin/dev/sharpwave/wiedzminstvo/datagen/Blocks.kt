@@ -8,7 +8,8 @@ import net.minecraft.data.DataGenerator
 import net.minecraftforge.client.model.generators.BlockModelProvider
 import net.minecraftforge.common.data.ExistingFileHelper
 
-class Blocks(generator: DataGenerator, existingFileHelper: ExistingFileHelper) : BlockModelProvider(generator, WiedzminstvoMod.MODID, existingFileHelper) {
+class Blocks(generator: DataGenerator, existingFileHelper: ExistingFileHelper) :
+    BlockModelProvider(generator, WiedzminstvoMod.MODID, existingFileHelper) {
 
     override fun registerModels() {
         cross(getRegistryPath(BlockRegistry.ARENARIA), blockLocation(getRegistryPath(BlockRegistry.ARENARIA)))
@@ -19,7 +20,7 @@ class Blocks(generator: DataGenerator, existingFileHelper: ExistingFileHelper) :
     }
 
     private fun tallCross(name: String, registryPath: String) {
-        cross(name+"_top", blockLocation(registryPath+"_top"))
-        cross(name+"_bottom", blockLocation(registryPath+"_bottom"))
+        cross(name + "_top", blockLocation(registryPath + "_top"))
+        cross(name + "_bottom", blockLocation(registryPath + "_bottom"))
     }
 }

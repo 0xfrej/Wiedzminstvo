@@ -35,7 +35,12 @@ class BlockLootTables(generator: DataGenerator) : BaseLootTableProvider<Block>(g
     }
 
     private fun createSingleItemTable(provider: IItemProvider): LootTable.Builder {
-        return LootTable.lootTable().withPool(applyExplosionCondition(provider,LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(provider))))
+        return LootTable.lootTable().withPool(
+            applyExplosionCondition(
+                provider,
+                LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(provider))
+            )
+        )
     }
 
     override fun addTables() {

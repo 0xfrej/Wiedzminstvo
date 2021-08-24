@@ -26,7 +26,11 @@ class HorseDropModifier constructor(conditionsIn: Array<ILootCondition>) : LootM
     }
 
     private class Serializer : GlobalLootModifierSerializer<HorseDropModifier>() {
-        override fun read(location: ResourceLocation, jObject: JsonObject, ailootcondition: Array<ILootCondition>): HorseDropModifier {
+        override fun read(
+            location: ResourceLocation,
+            jObject: JsonObject,
+            ailootcondition: Array<ILootCondition>
+        ): HorseDropModifier {
             return HorseDropModifier(ailootcondition)
         }
 

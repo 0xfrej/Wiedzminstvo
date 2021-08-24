@@ -12,7 +12,7 @@ import kotlin.reflect.full.companionObjectInstance
 import kotlin.reflect.full.functions
 
 
-class NetworkBuilder(private val network: SimpleChannel){
+class NetworkBuilder(private val network: SimpleChannel) {
     private var messageIndexCount = 0
 
     fun <MSG : AbstractNetworkPacket> registerMessage(
@@ -24,7 +24,7 @@ class NetworkBuilder(private val network: SimpleChannel){
             { buf: PacketBuffer -> messageType.java.getConstructor(PacketBuffer::class.java).newInstance(buf) },
         messageConsumer: ((MSG, Supplier<NetworkEvent.Context>) -> Unit) =
             { obj: MSG, ctx: Supplier<NetworkEvent.Context> -> obj.handle(ctx) },
-    ) : NetworkBuilder {
+    ): NetworkBuilder {
         @Suppress("INACCESSIBLE_TYPE")
         network.registerMessage(
             messageIndexCount++,

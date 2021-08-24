@@ -8,8 +8,8 @@ object MainConfig : IConfig {
 
     override operator fun invoke(server: ForgeConfigSpec.Builder, client: ForgeConfigSpec.Builder) {
         server.comment("Main configuration")
-            isDebugEnabled = server
-                .comment("Enable mod debugging")
-                .define("debug", false)
+        isDebugEnabled = server
+            .comment("Enable mod debugging")
+            .define("debug", false)
     }
 }

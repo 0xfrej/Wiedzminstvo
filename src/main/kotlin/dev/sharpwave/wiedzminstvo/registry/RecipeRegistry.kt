@@ -13,7 +13,8 @@ import thedarkcolour.kotlinforforge.forge.KDeferredRegister
 
 
 object RecipeRegistry : IForgeRegistry {
-    private val RECIPE: KDeferredRegister<IRecipeSerializer<*>> = KDeferredRegister(ForgeRegistries.RECIPE_SERIALIZERS, WiedzminstvoMod.MODID)
+    private val RECIPE: KDeferredRegister<IRecipeSerializer<*>> =
+        KDeferredRegister(ForgeRegistries.RECIPE_SERIALIZERS, WiedzminstvoMod.MODID)
 
     override fun register(bus: KotlinEventBus) {
         RECIPE.register(bus)

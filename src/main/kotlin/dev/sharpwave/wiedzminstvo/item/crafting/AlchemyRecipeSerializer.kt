@@ -12,7 +12,8 @@ import net.minecraft.util.NonNullList
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.registries.ForgeRegistryEntry
 
-class AlchemyRecipeSerializer(private val maxIngredients: Int = 4) : ForgeRegistryEntry<IRecipeSerializer<*>>(), IRecipeSerializer<AlchemyRecipe> {
+class AlchemyRecipeSerializer(private val maxIngredients: Int = 4) : ForgeRegistryEntry<IRecipeSerializer<*>>(),
+    IRecipeSerializer<AlchemyRecipe> {
 
     override fun fromJson(location: ResourceLocation, jObject: JsonObject): AlchemyRecipe {
         val group = JSONUtils.getAsString(jObject, "group", "")

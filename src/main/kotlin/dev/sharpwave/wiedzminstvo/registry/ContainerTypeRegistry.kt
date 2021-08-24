@@ -11,7 +11,8 @@ import thedarkcolour.kotlinforforge.forge.KDeferredRegister
 import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
 
 object ContainerTypeRegistry : IForgeRegistry {
-    private val CONTAINERS : KDeferredRegister<ContainerType<*>> = KDeferredRegister(ForgeRegistries.CONTAINERS, WiedzminstvoMod.MODID)
+    private val CONTAINERS: KDeferredRegister<ContainerType<*>> =
+        KDeferredRegister(ForgeRegistries.CONTAINERS, WiedzminstvoMod.MODID)
 
     override fun register(bus: KotlinEventBus) {
         CONTAINERS.register(bus)
@@ -19,7 +20,10 @@ object ContainerTypeRegistry : IForgeRegistry {
 
     val ALCHEMY by registerContainer("alchemy") { id: Int, inv: PlayerInventory -> AlchemyContainer(id, inv) }
 
-    private fun <T : Container> registerContainer(name: String, factory: (Int, PlayerInventory) -> T): ObjectHolderDelegate<ContainerType<T>> {
+    private fun <T : Container> registerContainer(
+        name: String,
+        factory: (Int, PlayerInventory) -> T
+    ): ObjectHolderDelegate<ContainerType<T>> {
         return CONTAINERS.registerObject(name) { ContainerType<T>(factory) }
     }
 }

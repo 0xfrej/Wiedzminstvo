@@ -4,12 +4,12 @@ import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.common.capabilities.CapabilityManager
 
 object CapabilityRegistrar {
-    fun <IT, T:IT> register(
+    fun <IT, T : IT> register(
         interfaceType: Class<IT>,
         type: Class<T>,
         storage: Capability.IStorage<IT>,
         factory: () -> IT = { type.getConstructor().newInstance() as IT }
-    ) : CapabilityRegistrar {
+    ): CapabilityRegistrar {
         CapabilityManager.INSTANCE.register(
             interfaceType,
             storage,

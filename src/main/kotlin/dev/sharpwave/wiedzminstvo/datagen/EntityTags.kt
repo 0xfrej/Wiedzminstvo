@@ -7,7 +7,8 @@ import net.minecraft.data.EntityTypeTagsProvider
 import net.minecraft.entity.EntityType
 import net.minecraftforge.common.data.ExistingFileHelper
 
-class EntityTags(generator: DataGenerator, existingFileHelper: ExistingFileHelper) : EntityTypeTagsProvider(generator, WiedzminstvoMod.MODID, existingFileHelper) {
+class EntityTags(generator: DataGenerator, existingFileHelper: ExistingFileHelper) :
+    EntityTypeTagsProvider(generator, WiedzminstvoMod.MODID, existingFileHelper) {
     override fun addTags() {
         tag(EntityTypeTags.HORSES).add(EntityType.HORSE, EntityType.SKELETON_HORSE, EntityType.ZOMBIE_HORSE, EntityType.DONKEY, EntityType.MULE, EntityType.LLAMA)
         tag(EntityTypeTags.PIGLIKE).add(EntityType.PIG, EntityType.PIGLIN, EntityType.PIGLIN_BRUTE, EntityType.ZOMBIFIED_PIGLIN)

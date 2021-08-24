@@ -29,7 +29,12 @@ class AlchemyTableBlock(properties: Properties) : ContainerBlock(properties) {
         return true
     }
 
-    override fun getShape(state: BlockState, reader: IBlockReader, pos: BlockPos, selection: ISelectionContext): VoxelShape {
+    override fun getShape(
+        state: BlockState,
+        reader: IBlockReader,
+        pos: BlockPos,
+        selection: ISelectionContext
+    ): VoxelShape {
         return SHAPE
     }
 
@@ -75,7 +80,14 @@ class AlchemyTableBlock(properties: Properties) : ContainerBlock(properties) {
         return BlockRenderType.MODEL
     }
 
-    override fun use(state: BlockState, level: World, pos: BlockPos, player: PlayerEntity, hand: Hand, rayTrace: BlockRayTraceResult): ActionResultType {
+    override fun use(
+        state: BlockState,
+        level: World,
+        pos: BlockPos,
+        player: PlayerEntity,
+        hand: Hand,
+        rayTrace: BlockRayTraceResult
+    ): ActionResultType {
         return if (level.isClientSide) {
             ActionResultType.SUCCESS
         } else {

@@ -13,7 +13,12 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.common.util.RecipeMatcher
 
-class AlchemyRecipe(private val id: ResourceLocation, private val group: String, private val result: ItemStack, private val ingredientList: NonNullList<Ingredient>) : IRecipe<AlchemyInventory> {
+class AlchemyRecipe(
+    private val id: ResourceLocation,
+    private val group: String,
+    private val result: ItemStack,
+    private val ingredientList: NonNullList<Ingredient>
+) : IRecipe<AlchemyInventory> {
 
     override fun matches(inventory: AlchemyInventory, level: World): Boolean {
         val inputs: MutableList<ItemStack> = emptyList<ItemStack>().toMutableList()

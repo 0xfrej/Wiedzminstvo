@@ -20,7 +20,6 @@ import net.minecraft.util.math.BlockRayTraceResult
 import net.minecraft.util.math.shapes.ISelectionContext
 import net.minecraft.util.math.shapes.VoxelShape
 import net.minecraft.world.IBlockReader
-import net.minecraft.world.IWorld
 import net.minecraft.world.World
 
 class MortarBlock(properties: Properties) : Block(properties) {
@@ -28,7 +27,12 @@ class MortarBlock(properties: Properties) : Block(properties) {
         return true
     }
 
-    override fun getShape(state: BlockState, reader: IBlockReader, pos: BlockPos, selection: ISelectionContext): VoxelShape {
+    override fun getShape(
+        state: BlockState,
+        reader: IBlockReader,
+        pos: BlockPos,
+        selection: ISelectionContext
+    ): VoxelShape {
         return SHAPE
     }
 
@@ -44,39 +48,46 @@ class MortarBlock(properties: Properties) : Block(properties) {
         return BlockRenderType.MODEL
     }
 
-    override fun use(state: BlockState, level: World, pos: BlockPos, player: PlayerEntity, hand: Hand, rayTrace: BlockRayTraceResult): ActionResultType {
+    override fun use(
+        state: BlockState,
+        level: World,
+        pos: BlockPos,
+        player: PlayerEntity,
+        hand: Hand,
+        rayTrace: BlockRayTraceResult
+    ): ActionResultType {
         return if (level.isClientSide) {
             ActionResultType.SUCCESS
         } else {
             val te = level.getBlockEntity(pos) as MortarPestleTileEntity
             val handStack = player.getItemInHand(hand)
 
-            if (! te.items.isEmpty and !te.canGrind) {
+            if (!te.items.isEmpty and !te.canGrind) {
                 if (handStack.isEmpty) {
                     val teStack = te.popItems()
                     player.setItemInHand(hand, teStack)
-                }
-                else if (handStack.count < handStack.maxStackSize && handStack.sameItem(te.items)) {
+                } else if (handStack.count < handStack.maxStackSize && handStack.sameItem(te.items)) {
                     handStack.count++
                     player.setItemInHand(hand, handStack)
                     te.popItems()
-                }
-                else {
+                } else {
                     te.pushItems(ItemStack.EMPTY)
                 }
-            }
-            else if (! handStack.isEmpty and RecipeHelper.canCraftFromItem(RecipeRegistry.GRINDING, handStack, level)) {
+            } else if (!handStack.isEmpty and RecipeHelper.canCraftFromItem(
+                    RecipeRegistry.GRINDING,
+                    handStack,
+                    level
+                )
+            ) {
                 val newStack = handStack.copy()
                 newStack.count = 1
                 handStack.count--
                 te.pushItems(newStack)
                 player.setItemInHand(hand, handStack)
-            }
-            else if (player.isCrouching and handStack.isEmpty) {
+            } else if (player.isCrouching and handStack.isEmpty) {
                 val teStack = te.popItems()
                 player.setItemInHand(hand, teStack)
-            }
-            else if (! te.isGrinding) {
+            } else if (!te.isGrinding) {
                 te.attemptGrinding()
             }
 

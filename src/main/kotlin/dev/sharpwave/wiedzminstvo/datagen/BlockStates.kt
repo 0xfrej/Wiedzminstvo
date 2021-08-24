@@ -13,7 +13,8 @@ import net.minecraftforge.client.model.generators.ConfiguredModel
 import net.minecraftforge.client.model.generators.ModelFile
 import net.minecraftforge.common.data.ExistingFileHelper
 
-class BlockStates(generator: DataGenerator, existingFileHelper: ExistingFileHelper) : BlockStateProvider(generator, WiedzminstvoMod.MODID, existingFileHelper) {
+class BlockStates(generator: DataGenerator, existingFileHelper: ExistingFileHelper) :
+    BlockStateProvider(generator, WiedzminstvoMod.MODID, existingFileHelper) {
     override fun registerStatesAndModels() {
         simpleBlock(BlockRegistry.ARENARIA)
         simpleBlock(BlockRegistry.BEGGARTICK)

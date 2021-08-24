@@ -1,8 +1,8 @@
 package dev.sharpwave.wiedzminstvo.registry
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
-import dev.sharpwave.wiedzminstvo.block.AlchemyTableBlock
-import dev.sharpwave.wiedzminstvo.item.*
+import dev.sharpwave.wiedzminstvo.item.AlchemyItem
+import dev.sharpwave.wiedzminstvo.item.ModItemGroup
 import dev.sharpwave.wiedzminstvo.item.PotionItem
 import net.minecraft.block.Block
 import net.minecraft.item.*
@@ -11,7 +11,7 @@ import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
 import thedarkcolour.kotlinforforge.forge.KDeferredRegister
 
 object ItemRegistry : IForgeRegistry {
-    private val ITEMS : KDeferredRegister<Item> = KDeferredRegister(ForgeRegistries.ITEMS, WiedzminstvoMod.MODID)
+    private val ITEMS: KDeferredRegister<Item> = KDeferredRegister(ForgeRegistries.ITEMS, WiedzminstvoMod.MODID)
 
     override fun register(bus: KotlinEventBus) {
         ITEMS.register(bus)
@@ -39,9 +39,11 @@ object ItemRegistry : IForgeRegistry {
     private fun registerBlock(block: Block, tab: ItemGroup): BlockItem {
         return BlockItem(block, Item.Properties().tab(tab))
     }
+
     private fun registerTallBlock(block: Block, tab: ItemGroup): BlockItem {
         return TallBlockItem(block, Item.Properties().tab(tab))
     }
+
     private fun registerPlainItem(tab: ItemGroup): Item {
         return Item(Item.Properties().tab(tab))
     }

@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 @EventBusSubscriber(value = [Dist.CLIENT], modid = WiedzminstvoMod.MODID)
 object KeybindEvents {
     private var lastPressTime: Long = 0
+
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     fun onPlayerTick(event: PlayerTickEvent) {

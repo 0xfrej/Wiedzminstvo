@@ -8,11 +8,9 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import net.minecraft.block.BlockState
 import net.minecraft.inventory.IRecipeHelperPopulator
 import net.minecraft.inventory.IRecipeHolder
-import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.item.crafting.AbstractCookingRecipe
 import net.minecraft.item.crafting.IRecipe
-import net.minecraft.item.crafting.IRecipeType
 import net.minecraft.item.crafting.RecipeItemHelper
 import net.minecraft.nbt.CompoundNBT
 import net.minecraft.network.NetworkManager
@@ -25,7 +23,8 @@ import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.StringTextComponent
 
 // TODO: Debug why on load there is not rendered item on client side even though on server side it exists
-class MortarPestleTileEntity : TileEntity(TileEntityRegistry.PESTLE), INameable, IRecipeHolder, IRecipeHelperPopulator, ITickableTileEntity {
+class MortarPestleTileEntity : TileEntity(TileEntityRegistry.PESTLE), INameable, IRecipeHolder, IRecipeHelperPopulator,
+    ITickableTileEntity {
 
     private var name: ITextComponent? = null
     var time = 0
@@ -39,7 +38,11 @@ class MortarPestleTileEntity : TileEntity(TileEntityRegistry.PESTLE), INameable,
         private set
     private val recipesUsed = Object2IntOpenHashMap<ResourceLocation>()
     val canGrind: Boolean
-        get() = ! level!!.isClientSide and ! items.isEmpty and RecipeHelper.canCraftFromItem(RecipeRegistry.GRINDING, items, level!!)
+        get() = !level!!.isClientSide and !items.isEmpty and RecipeHelper.canCraftFromItem(
+            RecipeRegistry.GRINDING,
+            items,
+            level!!
+        )
 
     override fun save(tag: CompoundNBT): CompoundNBT {
         super.save(tag)
@@ -80,11 +83,10 @@ class MortarPestleTileEntity : TileEntity(TileEntityRegistry.PESTLE), INameable,
     }
 
     override fun tick() {
-       if (isGrinding) {
+        if (isGrinding) {
             if (time < 30) {
                 time++
-            }
-            else {
+            } else {
                 time = 0
                 isGrinding = false
                 progress++
@@ -94,7 +96,7 @@ class MortarPestleTileEntity : TileEntity(TileEntityRegistry.PESTLE), INameable,
     }
 
     private fun updateInventory() {
-        if (! level!!.isClientSide && progress >= totalGrindCount) {
+        if (!level!!.isClientSide && progress >= totalGrindCount) {
             progress = 0
             items = RecipeHelper.getRecipeProductFor(RecipeRegistry.GRINDING, items, level!!)
 
@@ -133,7 +135,7 @@ class MortarPestleTileEntity : TileEntity(TileEntityRegistry.PESTLE), INameable,
     }
 
     fun pushItems(inputStack: ItemStack) {
-        if (! items.isEmpty) {
+        if (!items.isEmpty) {
             WorldHelper.spawnItemStack(level!!, blockPos, items)
         }
         items = inputStack
@@ -165,12 +167,12 @@ class MortarPestleTileEntity : TileEntity(TileEntityRegistry.PESTLE), INameable,
 
     override fun setChanged() {
         super.setChanged()
-        if (! level!!.isClientSide)
+        if (!level!!.isClientSide)
             level?.sendBlockUpdated(blockPos, blockState, blockState, 2)
     }
 
     fun attemptGrinding() {
-        if (! isGrinding and canGrind) {
+        if (!isGrinding and canGrind) {
             isGrinding = true
             setChanged()
         }

@@ -7,8 +7,7 @@ import net.minecraftforge.fml.network.NetworkRegistry
 abstract class AbstractNetwork(private val name: String) : NetworkingUnit() {
     private var builder: NetworkBuilder? = null
 
-    open fun init()
-    {
+    open fun init() {
         val version: String = WiedzminstvoMod.info.version.toString()
 
         registerNetworkChannel(
@@ -20,8 +19,7 @@ abstract class AbstractNetwork(private val name: String) : NetworkingUnit() {
         )
     }
 
-    protected fun getBuilder(): NetworkBuilder
-    {
+    protected fun getBuilder(): NetworkBuilder {
         if (builder == null) {
             builder = NetworkBuilder(channel)
         }

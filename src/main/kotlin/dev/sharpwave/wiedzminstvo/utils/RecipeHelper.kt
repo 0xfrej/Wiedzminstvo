@@ -9,26 +9,46 @@ import net.minecraft.world.World
 import java.util.*
 
 object RecipeHelper {
-    fun <C:IInventory, T:IRecipe<C>> canCraftFromItem(recipeType: IRecipeType<T>, inventory: C, level: World): Boolean {
+    fun <C : IInventory, T : IRecipe<C>> canCraftFromItem(
+        recipeType: IRecipeType<T>,
+        inventory: C,
+        level: World
+    ): Boolean {
         return level.recipeManager.getRecipeFor(recipeType, inventory, level).isPresent
     }
 
-    fun <T:IRecipe<IInventory>> canCraftFromItem(recipeType: IRecipeType<T>, inputStack: ItemStack, level: World): Boolean {
+    fun <T : IRecipe<IInventory>> canCraftFromItem(
+        recipeType: IRecipeType<T>,
+        inputStack: ItemStack,
+        level: World
+    ): Boolean {
         return level.recipeManager.getRecipeFor(recipeType, Inventory(inputStack) as IInventory, level).isPresent
     }
 
-    fun <T:IRecipe<IInventory>> getRecipeFor(recipeType: IRecipeType<T>, inputStack: ItemStack, level: World): IRecipe<IInventory>? {
+    fun <T : IRecipe<IInventory>> getRecipeFor(
+        recipeType: IRecipeType<T>,
+        inputStack: ItemStack,
+        level: World
+    ): IRecipe<IInventory>? {
         val r = level.recipeManager.getRecipeFor(recipeType, Inventory(inputStack) as IInventory, level)
         return if (r.isPresent)
             r.get()
         else null
     }
 
-    fun <T:IRecipe<IInventory>> getRecipeOptionalFor(recipeType: IRecipeType<T>, inputStack: ItemStack, level: World): Optional<T> {
+    fun <T : IRecipe<IInventory>> getRecipeOptionalFor(
+        recipeType: IRecipeType<T>,
+        inputStack: ItemStack,
+        level: World
+    ): Optional<T> {
         return level.recipeManager.getRecipeFor(recipeType, Inventory(inputStack) as IInventory, level)
     }
 
-    fun <T:IRecipe<IInventory>> getRecipeProductFor(recipeType: IRecipeType<T>,inputStack: ItemStack, level: World): ItemStack {
+    fun <T : IRecipe<IInventory>> getRecipeProductFor(
+        recipeType: IRecipeType<T>,
+        inputStack: ItemStack,
+        level: World
+    ): ItemStack {
         return getRecipeFor(recipeType, inputStack, level)?.resultItem ?: ItemStack.EMPTY
     }
 }

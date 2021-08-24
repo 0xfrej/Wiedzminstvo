@@ -11,7 +11,8 @@ import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
 import thedarkcolour.kotlinforforge.forge.KDeferredRegister
 
 object TileEntityRegistry : IForgeRegistry {
-    private val ENTITY: KDeferredRegister<TileEntityType<*>> = KDeferredRegister(ForgeRegistries.TILE_ENTITIES, WiedzminstvoMod.MODID)
+    private val ENTITY: KDeferredRegister<TileEntityType<*>> =
+        KDeferredRegister(ForgeRegistries.TILE_ENTITIES, WiedzminstvoMod.MODID)
 
     override fun register(bus: KotlinEventBus) {
         ENTITY.register(bus)
@@ -20,7 +21,8 @@ object TileEntityRegistry : IForgeRegistry {
     val ALCHEMY_TABLE by ENTITY.registerObject("alchemy_table") { buildTEType({ AlchemyTableTileEntity() }, BlockRegistry.ALCHEMY_TABLE) }
     val PESTLE by ENTITY.registerObject("pestle") { buildTEType({ MortarPestleTileEntity() }, BlockRegistry.MORTAR) }
 
-    private fun <T: TileEntity> buildTEType(factory: () -> T, vararg validBlocks: Block): TileEntityType<T> {
+    private fun <T : TileEntity> buildTEType(factory: () -> T, vararg validBlocks: Block): TileEntityType<T> {
+        @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         return TileEntityType.Builder.of(factory, *validBlocks).build(null)
     }
 }

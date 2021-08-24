@@ -8,7 +8,14 @@ import net.minecraft.item.crafting.IRecipeSerializer
 import net.minecraft.item.crafting.Ingredient
 import net.minecraft.util.ResourceLocation
 
-class MortarRecipe(location: ResourceLocation, group: String, ingredient: Ingredient, item: ItemStack, experience: Float, grindingCount: Int) :
+class MortarRecipe(
+    location: ResourceLocation,
+    group: String,
+    ingredient: Ingredient,
+    item: ItemStack,
+    experience: Float,
+    grindingCount: Int
+) :
     AbstractCookingRecipe(RecipeRegistry.GRINDING, location, group, ingredient, item, experience, grindingCount) {
 
     override fun getToastSymbol(): ItemStack {

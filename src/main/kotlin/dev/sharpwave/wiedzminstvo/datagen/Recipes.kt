@@ -12,8 +12,8 @@ import java.util.function.Consumer
 
 class Recipes(generator: DataGenerator) : RecipeProvider(generator) {
     override fun buildShapelessRecipes(consumer: Consumer<IFinishedRecipe>) {
-        ShapedRecipeBuilder.shaped(ItemRegistry.ALCHEMY_TABLE).pattern("sss").pattern(" s ").pattern("sss").define('s', Items.STONE).unlockedBy("stone", InventoryChangeTrigger.Instance.hasItems(Items.STONE)).save(consumer);
-        ShapedRecipeBuilder.shaped(ItemRegistry.MORTAR).pattern("   ").pattern("s s").pattern("sss").define('s', Items.STONE).unlockedBy("stone", InventoryChangeTrigger.Instance.hasItems(Items.STONE)).save(consumer);
+        ShapedRecipeBuilder.shaped(ItemRegistry.ALCHEMY_TABLE).pattern("sss").pattern(" s ").pattern("sss").define('s', Items.STONE).unlockedBy("stone", InventoryChangeTrigger.Instance.hasItems(Items.STONE)).save(consumer)
+        ShapedRecipeBuilder.shaped(ItemRegistry.MORTAR).pattern("   ").pattern("s s").pattern("sss").define('s', Items.STONE).unlockedBy("stone", InventoryChangeTrigger.Instance.hasItems(Items.STONE)).save(consumer)
 
         grinding(ItemRegistry.ARENARIA, ItemRegistry.GROUND_ARENARIA, .5F).unlockedBy("arenaria", InventoryChangeTrigger.Instance.hasItems(ItemRegistry.ARENARIA)).save(consumer)
         grinding(ItemRegistry.BEGGARTICK, ItemRegistry.GROUND_BEGGARTICK, .5F).unlockedBy("beggartick", InventoryChangeTrigger.Instance.hasItems(ItemRegistry.BEGGARTICK)).save(consumer)
@@ -24,7 +24,18 @@ class Recipes(generator: DataGenerator) : RecipeProvider(generator) {
         AlchemyRecipeBuilder.alchemy(ItemRegistry.ALCHEMY_PASTE).requires(ItemRegistry.GROUND_ARENARIA).requires(ItemRegistry.PORK_FAT).unlockedBy("pork_fat", InventoryChangeTrigger.Instance.hasItems(ItemRegistry.PORK_FAT)).unlockedBy("ground_arenaria", InventoryChangeTrigger.Instance.hasItems(ItemRegistry.GROUND_ARENARIA)).save(consumer)
     }
 
-    private fun grinding(input: IItemProvider, output: IItemProvider, experience: Float, grindingCycles: Int = 3): CookingRecipeBuilder {
-        return CookingRecipeBuilder.cooking(Ingredient.of(input), output, experience, grindingCycles, RecipeRegistry.GRINDING_SERIALIZER)
+    private fun grinding(
+        input: IItemProvider,
+        output: IItemProvider,
+        experience: Float,
+        grindingCycles: Int = 3
+    ): CookingRecipeBuilder {
+        return CookingRecipeBuilder.cooking(
+            Ingredient.of(input),
+            output,
+            experience,
+            grindingCycles,
+            RecipeRegistry.GRINDING_SERIALIZER
+        )
     }
 }

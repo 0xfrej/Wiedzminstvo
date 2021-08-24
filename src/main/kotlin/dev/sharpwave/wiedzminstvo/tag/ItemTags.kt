@@ -1,7 +1,6 @@
 package dev.sharpwave.wiedzminstvo.tag
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod.MODID
-import net.minecraft.entity.EntityType
 import net.minecraft.item.Item
 import net.minecraft.tags.ITag.INamedTag
 import net.minecraft.tags.TagRegistry
