@@ -1,0 +1,15 @@
+{
+  "type": "wiedzminstvo:alchemy",
+  "group": "alchemy",
+  "ingredients": [
+    {
+      "item": "wiedzminstvo:ground_arenaria"
+    },
+    {
+      "item": "wiedzminstvo:pork_fat"
+    }
+  ],
+  "result": {
+    "item": "wiedzminstvo:alchemy_paste"
+  }
+}

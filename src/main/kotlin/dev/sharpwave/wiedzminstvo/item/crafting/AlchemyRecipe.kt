@@ -1,64 +1,42 @@
 package dev.sharpwave.wiedzminstvo.item.crafting
 
 import dev.sharpwave.wiedzminstvo.inventory.AlchemyInventory
-import net.minecraft.block.FlowerBlock
-import net.minecraft.item.BlockItem
+import dev.sharpwave.wiedzminstvo.registry.ItemRegistry
+import dev.sharpwave.wiedzminstvo.registry.RecipeRegistry
 import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
-import net.minecraft.item.SuspiciousStewItem
 import net.minecraft.item.crafting.IRecipe
 import net.minecraft.item.crafting.IRecipeSerializer
 import net.minecraft.item.crafting.IRecipeType
-import net.minecraft.tags.ItemTags
+import net.minecraft.item.crafting.Ingredient
+import net.minecraft.util.NonNullList
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
+import net.minecraftforge.common.util.RecipeMatcher
 
-class AlchemyRecipe(location: ResourceLocation) : IRecipe<AlchemyInventory> {
+class AlchemyRecipe(private val id: ResourceLocation, private val group: String, private val result: ItemStack, private val ingredientList: NonNullList<Ingredient>) : IRecipe<AlchemyInventory> {
+
     override fun matches(inventory: AlchemyInventory, level: World): Boolean {
-        /*var flag = false
-        var flag1 = false
-        var flag2 = false
-        var flag3 = false
-        for (i in 0 until inventory.containerSize) {
-            val itemstack = inventory.getItem(i)
-            if (!itemstack.isEmpty) {
-                if (itemstack.item === Blocks.BROWN_MUSHROOM.asItem() && !flag2) {
-                    flag2 = true
-                } else if (itemstack.item === Blocks.RED_MUSHROOM.asItem() && !flag1) {
-                    flag1 = true
-                } else if (itemstack.item.`is`(ItemTags.SMALL_FLOWERS) && !flag) {
-                    flag = true
-                } else {
-                    if (itemstack.item !== Items.BOWL || flag3) {
-                        return false
-                    }
-                    flag3 = true
-                }
+        val inputs: MutableList<ItemStack> = emptyList<ItemStack>().toMutableList()
+
+        var i = 0
+
+        for (j in 0 until inventory.containerSize) {
+            val stack: ItemStack = inventory.getItem(j)
+            if (!stack.isEmpty) {
+                ++i
+                inputs.add(stack)
             }
-        }*/
-        return false //flag && flag2 && flag1 && flag3
+        }
+
+        return i == this.ingredients.size && RecipeMatcher.findMatches(inputs, this.ingredients) != null
     }
 
     override fun assemble(inventory: AlchemyInventory): ItemStack {
-        var items = ItemStack.EMPTY
-        for (i in 0 until inventory.containerSize) {
-            val inventoryItem = inventory.getItem(i)
-            if (!inventoryItem.isEmpty && inventoryItem.item.`is`(ItemTags.SMALL_FLOWERS)) {
-                items = inventoryItem
-                break
-            }
-        }
-        val outputItem = ItemStack(Items.SUSPICIOUS_STEW, 1)
-        if (items.item is BlockItem && (items.item as BlockItem).block is FlowerBlock) {
-            val flowerBlock = (items.item as BlockItem).block as FlowerBlock
-            val effect = flowerBlock.suspiciousStewEffect
-            SuspiciousStewItem.saveMobEffect(outputItem, effect, flowerBlock.effectDuration)
-        }
-        return outputItem
+        return result.copy()
     }
 
     override fun canCraftInDimensions(p_194133_1_: Int, p_194133_2_: Int): Boolean {
-        return p_194133_1_ >= 2 && p_194133_2_ >= 2
+        return true
     }
 
     override fun getSerializer(): IRecipeSerializer<*> {
@@ -66,14 +44,26 @@ class AlchemyRecipe(location: ResourceLocation) : IRecipe<AlchemyInventory> {
     }
 
     override fun getResultItem(): ItemStack {
-        TODO("Not yet implemented")
+        return result
     }
 
     override fun getId(): ResourceLocation {
-        TODO("Not yet implemented")
+        return id
     }
 
     override fun getType(): IRecipeType<*> {
-        TODO("Not yet implemented")
+        return RecipeRegistry.ALCHEMY
+    }
+
+    override fun getIngredients(): NonNullList<Ingredient> {
+        return ingredientList
+    }
+
+    override fun getGroup(): String {
+        return group
+    }
+
+    override fun getToastSymbol(): ItemStack {
+        return ItemStack(ItemRegistry.ALCHEMY_TABLE)
     }
 }

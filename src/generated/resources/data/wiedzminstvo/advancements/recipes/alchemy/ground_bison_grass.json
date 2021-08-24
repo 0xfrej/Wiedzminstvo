@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "wiedzminstvo:ground_bison_grass"
+    ]
+  },
+  "criteria": {
+    "bison_grass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "wiedzminstvo:bison_grass"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "wiedzminstvo:ground_bison_grass"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bison_grass",
+      "has_the_recipe"
+    ]
+  ]
+}

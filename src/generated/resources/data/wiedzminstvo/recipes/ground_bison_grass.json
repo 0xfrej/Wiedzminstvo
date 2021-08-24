@@ -1,0 +1,9 @@
+{
+  "type": "wiedzminstvo:mortar_grinding",
+  "ingredient": {
+    "item": "wiedzminstvo:bison_grass"
+  },
+  "result": "wiedzminstvo:ground_bison_grass",
+  "experience": 0.5,
+  "cookingtime": 3
+}

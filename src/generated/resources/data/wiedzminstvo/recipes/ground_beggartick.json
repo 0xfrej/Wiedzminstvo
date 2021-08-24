@@ -1,0 +1,9 @@
+{
+  "type": "wiedzminstvo:mortar_grinding",
+  "ingredient": {
+    "item": "wiedzminstvo:beggartick_blossoms"
+  },
+  "result": "wiedzminstvo:ground_beggartick",
+  "experience": 0.5,
+  "cookingtime": 3
+}

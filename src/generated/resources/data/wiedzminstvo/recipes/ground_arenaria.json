@@ -1,0 +1,9 @@
+{
+  "type": "wiedzminstvo:mortar_grinding",
+  "ingredient": {
+    "item": "wiedzminstvo:arenaria"
+  },
+  "result": "wiedzminstvo:ground_arenaria",
+  "experience": 0.5,
+  "cookingtime": 3
+}

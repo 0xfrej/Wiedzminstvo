@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "wiedzminstvo:alchemy_paste"
+    ]
+  },
+  "criteria": {
+    "pork_fat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "wiedzminstvo:pork_fat"
+          }
+        ]
+      }
+    },
+    "ground_arenaria": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "wiedzminstvo:ground_arenaria"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "wiedzminstvo:alchemy_paste"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "pork_fat",
+      "ground_arenaria",
+      "has_the_recipe"
+    ]
+  ]
+}

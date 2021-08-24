@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "wiedzminstvo:ground_winter_cherry"
+    ]
+  },
+  "criteria": {
+    "winter_cherry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "wiedzminstvo:winter_cherry"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "wiedzminstvo:ground_winter_cherry"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "winter_cherry",
+      "has_the_recipe"
+    ]
+  ]
+}

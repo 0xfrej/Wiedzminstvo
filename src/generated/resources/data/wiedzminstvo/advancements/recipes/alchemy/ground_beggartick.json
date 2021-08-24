@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "wiedzminstvo:ground_beggartick"
+    ]
+  },
+  "criteria": {
+    "beggartick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "wiedzminstvo:beggartick_blossoms"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "wiedzminstvo:ground_beggartick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "beggartick",
+      "has_the_recipe"
+    ]
+  ]
+}

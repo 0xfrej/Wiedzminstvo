@@ -9,6 +9,7 @@ import dev.sharpwave.wiedzminstvo.world.loot.HorseDropModifier
 import dev.sharpwave.wiedzminstvo.world.loot.KillDropModifier
 import net.minecraft.advancements.criterion.EntityPredicate
 import net.minecraft.data.DataGenerator
+import net.minecraft.entity.EntityType
 import net.minecraft.loot.LootContext
 import net.minecraft.loot.conditions.EntityHasProperty
 import net.minecraft.loot.conditions.RandomChanceWithLooting
@@ -22,6 +23,7 @@ class GlobalLootModifiers(generator: DataGenerator) : GlobalLootModifierProvider
             EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, predicate().of(EntityTypeTags.HORSES)).build()
         )))
         add(GLM.PIG_DROP, KillDropModifier(arrayOf(
+            EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, predicate().of(EntityTypeTags.PIGLIKE)).build(),
             RandomChanceWithLooting.randomChanceAndLootingBoost(0.6F, 0.1F).build()
         ), ItemRegistry.PORK_FAT, Pair(1, 3)))
     }

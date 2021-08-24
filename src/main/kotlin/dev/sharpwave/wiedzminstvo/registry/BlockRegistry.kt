@@ -6,6 +6,7 @@ import dev.sharpwave.wiedzminstvo.block.AlchemyTableBlock
 import dev.sharpwave.wiedzminstvo.block.MortarBlock
 import net.minecraft.block.AbstractBlock
 import net.minecraft.block.Block
+import net.minecraft.block.SoundType
 import net.minecraft.block.material.Material
 import net.minecraft.block.material.MaterialColor
 import net.minecraft.potion.Effects
@@ -20,8 +21,8 @@ object BlockRegistry : IForgeRegistry {
         BLOCKS.register(bus)
     }
 
-    val ALCHEMY_TABLE by BLOCKS.registerObject("alchemy_table") { AlchemyTableBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_RED)) }
-    val MORTAR by BLOCKS.registerObject("mortar") { MortarBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_RED)) }
+    val ALCHEMY_TABLE by BLOCKS.registerObject("alchemy_table") { AlchemyTableBlock(AbstractBlock.Properties.of(Material.STONE).strength(4F).sound(SoundType.STONE)) }
+    val MORTAR by BLOCKS.registerObject("mortar") { MortarBlock(AbstractBlock.Properties.of(Material.STONE).strength(4F).sound(SoundType.STONE)) }
     val ARENARIA by BLOCKS.registerObject("arenaria") { AlchemyFlowerBlock.make(Effects.HEAL, 1) }
     val BEGGARTICK by BLOCKS.registerObject("beggartick_blossoms") { AlchemyFlowerBlock.make() }
     val BISON_GRASS by BLOCKS.registerObject("bison_grass") { AlchemyFlowerBlock.make() }

@@ -1,0 +1,9 @@
+{
+  "type": "wiedzminstvo:mortar_grinding",
+  "ingredient": {
+    "item": "wiedzminstvo:winter_cherry"
+  },
+  "result": "wiedzminstvo:ground_winter_cherry",
+  "experience": 0.5,
+  "cookingtime": 3
+}

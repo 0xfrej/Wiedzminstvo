@@ -1,6 +1,13 @@
 {
   "conditions": [
     {
+      "condition": "minecraft:entity_properties",
+      "predicate": {
+        "type": "#wiedzminstvo:piglike"
+      },
+      "entity": "this"
+    },
+    {
       "condition": "minecraft:random_chance_with_looting",
       "chance": 0.6,
       "looting_multiplier": 0.1

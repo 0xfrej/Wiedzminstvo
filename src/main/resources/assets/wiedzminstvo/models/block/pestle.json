@@ -2,11 +2,11 @@
 	"textures": {
 		"mortar": "wiedzminstvo:block/mortar"
 	},
-	"elements": [ 	 
+	"elements": [
 		{
-			"from": [ 7.5001, 2.5, 8 ],
-			"to": [ 8.500099, 6.5, 9 ],
-			"rotation": { "origin": [ 8, 2.5, 8.5 ], "axis": "z", "angle": -45 },
+			"from": [ 8.0001, 2.5, 7.5 ],
+			"to": [ 9.0001, 6.5, 8.5 ],
+			"rotation": { "origin": [ 8.5, 2.5, 8 ], "axis": "z", "angle": -22.5 },
 			"faces": {
 				"down": { "uv": [ 5.5, 12.5, 6.5, 13.5 ], "texture": "#mortar", "rotation": 180 },
 				"up": { "uv": [ 6, 9, 7, 10 ], "texture": "#mortar", "rotation": 180 },
@@ -17,9 +17,9 @@
 			}
 		},
 		{
-			"from": [ 7.625, 2.25, 8.125 ],
-			"to": [ 8.375, 2.5, 8.875 ],
-			"rotation": { "origin": [ 8, 2.5, 8.5 ], "axis": "z", "angle": -45 },
+			"from": [ 8.125, 2.25, 7.625 ],
+			"to": [ 8.875, 2.5, 8.375 ],
+			"rotation": { "origin": [ 8.5, 2.5, 8 ], "axis": "z", "angle": -22.5 },
 			"faces": {
 				"down": { "uv": [ 7.5, 8, 8.25, 8.75 ], "texture": "#mortar", "rotation": 180 },
 				"up": { "uv": [ 4, 9, 4.75, 9.75 ], "texture": "#mortar", "rotation": 180 },
@@ -30,9 +30,9 @@
 			}
 		},
 		{
-			"from": [ 7.75, 2.125, 8.25 ],
-			"to": [ 8.25, 2.25, 8.75 ],
-			"rotation": { "origin": [ 8, 2.5, 8.5 ], "axis": "z", "angle": -45 },
+			"from": [ 8.25, 2.125, 7.75 ],
+			"to": [ 8.75, 2.25, 8.25 ],
+			"rotation": { "origin": [ 8.5, 2.5, 8 ], "axis": "z", "angle": -22.5 },
 			"faces": {
 				"down": { "uv": [ 7.5, 14, 8, 14.5 ], "texture": "#mortar", "rotation": 180 },
 				"up": { "uv": [ 7.75, 8.25, 8.25, 8.75 ], "texture": "#mortar", "rotation": 180 },

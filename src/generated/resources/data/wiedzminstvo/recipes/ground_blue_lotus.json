@@ -1,0 +1,9 @@
+{
+  "type": "wiedzminstvo:mortar_grinding",
+  "ingredient": {
+    "item": "wiedzminstvo:blue_lotus"
+  },
+  "result": "wiedzminstvo:ground_blue_lotus",
+  "experience": 0.5,
+  "cookingtime": 3
+}

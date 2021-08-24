@@ -14,10 +14,12 @@ class AlchemyInventory(container: Container, ingredientSlots: Int, fuseSlots: In
     private val menu: Container
     val ingredientSlots: Int
     val fuseSlots: Int
+    val fuseSlotsOffset: Int
 
     init {
         items = NonNullList.withSize(ingredientSlots + fuseSlots, ItemStack.EMPTY)
         menu = container
+        fuseSlotsOffset = ingredientSlots
         this.fuseSlots = fuseSlots
         this.ingredientSlots = ingredientSlots
     }

@@ -29,6 +29,11 @@ object ItemRegistry : IForgeRegistry {
     val BISON_GRASS by ITEMS.registerObject("bison_grass") { registerBlock(BlockRegistry.BISON_GRASS, ModItemGroup.TAB_ALCHEMY) }
     val BLUE_LOTUS by ITEMS.registerObject("blue_lotus") { registerTallBlock(BlockRegistry.BLUE_LOTUS, ModItemGroup.TAB_ALCHEMY) }
     val WINTER_CHERRY by ITEMS.registerObject("winter_cherry") { registerTallBlock(BlockRegistry.WINTER_CHERRY, ModItemGroup.TAB_ALCHEMY) }
+    val GROUND_ARENARIA by ITEMS.registerObject("ground_arenaria") { registerPlainItem(ModItemGroup.TAB_ALCHEMY) }
+    val GROUND_BEGGARTICK by ITEMS.registerObject("ground_beggartick") { registerPlainItem(ModItemGroup.TAB_ALCHEMY) }
+    val GROUND_BISON_GRASS by ITEMS.registerObject("ground_bison_grass") { registerPlainItem(ModItemGroup.TAB_ALCHEMY) }
+    val GROUND_BLUE_LOTUS by ITEMS.registerObject("ground_blue_lotus") { registerPlainItem(ModItemGroup.TAB_ALCHEMY) }
+    val GROUND_WINTER_CHERRY by ITEMS.registerObject("ground_winter_cherry") { registerPlainItem(ModItemGroup.TAB_ALCHEMY) }
     val PORK_FAT by ITEMS.registerObject("pork_fat") { Item(Item.Properties().tab(ModItemGroup.TAB_MISC).food(Foods.TROPICAL_FISH)) }
 
     private fun registerBlock(block: Block, tab: ItemGroup): BlockItem {
@@ -36,5 +41,8 @@ object ItemRegistry : IForgeRegistry {
     }
     private fun registerTallBlock(block: Block, tab: ItemGroup): BlockItem {
         return TallBlockItem(block, Item.Properties().tab(tab))
+    }
+    private fun registerPlainItem(tab: ItemGroup): Item {
+        return Item(Item.Properties().tab(tab))
     }
 }

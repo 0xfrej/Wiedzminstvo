@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "wiedzminstvo:ground_blue_lotus"
+    ]
+  },
+  "criteria": {
+    "blue_lotus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "wiedzminstvo:blue_lotus"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "wiedzminstvo:ground_blue_lotus"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "blue_lotus",
+      "has_the_recipe"
+    ]
+  ]
+}

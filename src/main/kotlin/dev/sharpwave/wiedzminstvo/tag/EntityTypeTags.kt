@@ -16,4 +16,5 @@ object EntityTypeTags {
     }
 
     val HORSES = bind("horses")
+    val PIGLIKE = bind("piglike")
 }

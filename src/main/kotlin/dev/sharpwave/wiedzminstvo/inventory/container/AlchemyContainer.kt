@@ -3,7 +3,9 @@ package dev.sharpwave.wiedzminstvo.inventory.container
 import dev.sharpwave.wiedzminstvo.inventory.AlchemyInventory
 import dev.sharpwave.wiedzminstvo.registry.BlockRegistry
 import dev.sharpwave.wiedzminstvo.registry.ContainerTypeRegistry
+import dev.sharpwave.wiedzminstvo.registry.RecipeRegistry
 import dev.sharpwave.wiedzminstvo.tag.ItemTags
+import dev.sharpwave.wiedzminstvo.utils.RecipeHelper
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.container.RecipeBookContainer
@@ -94,7 +96,7 @@ class AlchemyContainer(id: Int, private val inv: PlayerInventory, private val ac
       // bottom
       addSlot(object : Slot(alchemySlots, 1, 113, 63) {
          override fun mayPlace(itemStack: ItemStack): Boolean {
-            return ItemTags.ALCHEMY_INGREDIENTS.contains(itemStack.item)
+            return ItemTags.ALCHEMY_INGREDIENTS.contains(itemStack.item) or RecipeHelper.canCraftFromItem(RecipeRegistry.ALCHEMY, alchemySlots, inv.player.level)
          }
 
          override fun getMaxStackSize(): Int {
@@ -104,7 +106,7 @@ class AlchemyContainer(id: Int, private val inv: PlayerInventory, private val ac
       // top left
       addSlot(object : Slot(alchemySlots, 2, 83, 13) {
          override fun mayPlace(itemStack: ItemStack): Boolean {
-            return ItemTags.ALCHEMY_INGREDIENTS.contains(itemStack.item)
+            return ItemTags.ALCHEMY_INGREDIENTS.contains(itemStack.item) or RecipeHelper.canCraftFromItem(RecipeRegistry.ALCHEMY, alchemySlots, inv.player.level)
          }
 
          override fun getMaxStackSize(): Int {
@@ -114,7 +116,7 @@ class AlchemyContainer(id: Int, private val inv: PlayerInventory, private val ac
       // top right
       addSlot(object : Slot(alchemySlots, 3, 142, 13) {
          override fun mayPlace(itemStack: ItemStack): Boolean {
-            return ItemTags.ALCHEMY_INGREDIENTS.contains(itemStack.item)
+            return ItemTags.ALCHEMY_INGREDIENTS.contains(itemStack.item) or RecipeHelper.canCraftFromItem(RecipeRegistry.ALCHEMY, alchemySlots, inv.player.level)
          }
 
          override fun getMaxStackSize(): Int {
