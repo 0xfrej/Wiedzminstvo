@@ -44,6 +44,14 @@ object RecipeHelper {
         return level.recipeManager.getRecipeFor(recipeType, Inventory(inputStack) as IInventory, level)
     }
 
+    fun <C : IInventory, T : IRecipe<C>> getRecipeOptionalFor(
+        recipeType: IRecipeType<T>,
+        inventory: C,
+        level: World
+    ): Optional<T> {
+        return level.recipeManager.getRecipeFor(recipeType, inventory, level)
+    }
+
     fun <T : IRecipe<IInventory>> getRecipeProductFor(
         recipeType: IRecipeType<T>,
         inputStack: ItemStack,

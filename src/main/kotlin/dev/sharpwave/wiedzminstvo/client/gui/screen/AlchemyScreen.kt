@@ -23,23 +23,7 @@ class AlchemyScreen(container: AlchemyContainer, playerInventory: PlayerInventor
     private var open = 0f
     private var oOpen = 0f
 
-    override fun mouseClicked(x: Double, y: Double, key: Int): Boolean {
-        // TODO: tf is this
-        /*val i = (width - imageWidth) / 2
-        val j = (height - imageHeight) / 2
-        for (k in 0..2) {
-            val d0 = x - (i + 60).toDouble()
-            val d1 = y - (j + 14 + 19 * k).toDouble()
-            if (d0 >= 0.0 && d1 >= 0.0 && d0 < 108.0 && d1 < 19.0 && menu!!.clickMenuButton(minecraft!!.player!!, k)) {
-                minecraft!!.gameMode!!.handleInventoryButtonClick(menu.containerId, k)
-                return true
-            }
-        }*/
-        return super.mouseClicked(x, y, key)
-    }
-
     override fun renderBg(matrixStack: MatrixStack, p_230450_2_: Float, p_230450_3_: Int, p_230450_4_: Int) {
-        // TODO: Figure out what this does
         RenderHelper.setupForFlatItems()
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f)
         minecraft!!.getTextureManager().bind(ALCHEMY_TABLE_LOCATION)
@@ -88,9 +72,9 @@ class AlchemyScreen(container: AlchemyContainer, playerInventory: PlayerInventor
         @Suppress("VARIABLE_WITH_REDUNDANT_INITIALIZER")
         var timeShadow = time
         timeShadow = minecraft!!.frameTime
-        this.renderBackground(matrixStack)
+        renderBackground(matrixStack)
         super.render(matrixStack, x, y, timeShadow)
-        this.renderTooltip(matrixStack, x, y)
+        renderTooltip(matrixStack, x, y)
     }
 
     companion object {
