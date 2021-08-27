@@ -1,0 +1,31 @@
+{
+  "parent": "wiedzminstvo:alchemy/grinding",
+  "display": {
+    "icon": {
+      "item": "wiedzminstvo:arenaria"
+    },
+    "title": {
+      "translate": "wiedzminstvo.advancements.alchemy.ingredient_ground.title"
+    },
+    "description": {
+      "translate": "wiedzminstvo.advancements.alchemy.ingredient_ground.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "ground_an_ingredient": {
+      "trigger": "wiedzminstvo:ground_item",
+      "conditions": {
+        "item": "wiedzminstvo:ground_arenaria"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ground_an_ingredient"
+    ]
+  ]
+}

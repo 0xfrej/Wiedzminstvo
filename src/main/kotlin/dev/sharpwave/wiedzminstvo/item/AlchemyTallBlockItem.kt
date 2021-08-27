@@ -2,16 +2,15 @@ package dev.sharpwave.wiedzminstvo.item
 
 import dev.sharpwave.wiedzminstvo.alchemy.IAlchemyIngredient
 import dev.sharpwave.wiedzminstvo.alchemy.IngredientEffect
+import net.minecraft.block.Block
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.item.Item
-import net.minecraft.item.ItemStack
-import net.minecraft.item.UseAction
+import net.minecraft.item.*
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
 import net.minecraft.world.World
 
-class AlchemyItem(properties: Properties, effectListFactory: (Item) -> List<IngredientEffect>) : Item(properties), IAlchemyIngredient {
+class AlchemyTallBlockItem(parent: Block, properties: Properties, effectListFactory: (Item) -> List<IngredientEffect>) : BlockItem(parent, properties), IAlchemyIngredient {
     override val effects: List<IngredientEffect>
 
     init {

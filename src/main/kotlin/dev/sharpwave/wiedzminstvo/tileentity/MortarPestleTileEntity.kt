@@ -1,11 +1,13 @@
 package dev.sharpwave.wiedzminstvo.tileentity
 
+import dev.sharpwave.wiedzminstvo.advancements.criterion.Criterions
 import dev.sharpwave.wiedzminstvo.registry.RecipeRegistry
 import dev.sharpwave.wiedzminstvo.registry.TileEntityRegistry
 import dev.sharpwave.wiedzminstvo.utils.RecipeHelper
 import dev.sharpwave.wiedzminstvo.utils.WorldHelper
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import net.minecraft.block.BlockState
+import net.minecraft.entity.player.ServerPlayerEntity
 import net.minecraft.inventory.IRecipeHelperPopulator
 import net.minecraft.inventory.IRecipeHolder
 import net.minecraft.item.ItemStack
@@ -36,6 +38,7 @@ class MortarPestleTileEntity : TileEntity(TileEntityRegistry.PESTLE), INameable,
         private set
     var totalGrindCount: Int = 0
         private set
+    private var lastPlayerGrinding: ServerPlayerEntity? = null
     private val recipesUsed = Object2IntOpenHashMap<ResourceLocation>()
     val canGrind: Boolean
         get() = !level!!.isClientSide and !items.isEmpty and RecipeHelper.canCraftFromItem(
@@ -104,6 +107,10 @@ class MortarPestleTileEntity : TileEntity(TileEntityRegistry.PESTLE), INameable,
                 totalGrindCount = getTotalGrindingCycleCount()
             }
             setChanged()
+
+            lastPlayerGrinding?.let {
+                Criterions.GRINDING.trigger(it, items.item)
+            }
         }
     }
 
@@ -171,9 +178,10 @@ class MortarPestleTileEntity : TileEntity(TileEntityRegistry.PESTLE), INameable,
             level?.sendBlockUpdated(blockPos, blockState, blockState, 2)
     }
 
-    fun attemptGrinding() {
+    fun attemptGrinding(player: ServerPlayerEntity) {
         if (!isGrinding and canGrind) {
             isGrinding = true
+            lastPlayerGrinding = player
             setChanged()
         }
     }

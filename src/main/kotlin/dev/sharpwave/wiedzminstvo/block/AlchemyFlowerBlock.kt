@@ -1,44 +1,27 @@
 package dev.sharpwave.wiedzminstvo.block
 
 import net.minecraft.block.*
-import net.minecraft.block.material.Material
-import net.minecraft.potion.Effect
+import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.shapes.ISelectionContext
+import net.minecraft.util.math.shapes.VoxelShape
+import net.minecraft.world.IBlockReader
 
-object AlchemyFlowerBlock {
-    fun make(properties: AbstractBlock.Properties? = null): Bush {
-        if (properties != null)
-            return Bush(properties)
-        return Bush()
+class AlchemyFlowerBlock(properties: Properties) : BushBlock(properties) {
+    override fun getShape(
+        state: BlockState,
+        blockReader: IBlockReader,
+        pos: BlockPos,
+        selectionCtx: ISelectionContext
+    ): VoxelShape {
+        val offsetPos = state.getOffset(blockReader, pos)
+        return SHAPE.move(offsetPos.x, offsetPos.y, offsetPos.z)
     }
 
-    fun make(effect: Effect, effectDuration: Int, properties: AbstractBlock.Properties? = null): Flower {
-        if (properties != null)
-            return Flower(effect, effectDuration, properties)
-        return Flower(effect, effectDuration)
+    override fun getOffsetType(): OffsetType {
+        return OffsetType.XZ
     }
 
-    fun makeTall(properties: AbstractBlock.Properties? = null): TallFlower {
-        if (properties != null)
-            return TallFlower(properties)
-        return TallFlower()
-    }
-
-    class Flower(effect: Effect, effectDuration: Int, properties: Properties) :
-        FlowerBlock(effect, effectDuration, properties) {
-        constructor(effect: Effect, effectDuration: Int) : this(
-            effect,
-            effectDuration,
-            Properties.of(Material.PLANT).noOcclusion().noCollission().instabreak().sound(SoundType.GRASS)
-        )
-    }
-
-    class Bush(properties: Properties) : BushBlock(properties) {
-        constructor() : this(Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS))
-    }
-
-    class TallFlower(properties: Properties) : TallFlowerBlock(properties) {
-        constructor() : this(
-            Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)
-        )
+    companion object {
+        private val SHAPE = box(5.0, 0.0, 5.0, 11.0, 10.0, 11.0)
     }
 }

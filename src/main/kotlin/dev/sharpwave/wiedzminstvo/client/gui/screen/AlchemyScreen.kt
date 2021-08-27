@@ -68,12 +68,12 @@ class AlchemyScreen(container: AlchemyContainer, playerInventory: PlayerInventor
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f)
     }
 
+    override fun renderLabels(matrixStack: MatrixStack, x: Int, y: Int) {}
+
     override fun render(matrixStack: MatrixStack, x: Int, y: Int, time: Float) {
-        @Suppress("VARIABLE_WITH_REDUNDANT_INITIALIZER")
-        var timeShadow = time
-        timeShadow = minecraft!!.frameTime
+        val frameTime = minecraft!!.frameTime
         renderBackground(matrixStack)
-        super.render(matrixStack, x, y, timeShadow)
+        super.render(matrixStack, x, y, frameTime)
         renderTooltip(matrixStack, x, y)
     }
 

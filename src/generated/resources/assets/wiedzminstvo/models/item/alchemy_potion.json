@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer1": "wiedzminstvo:item/alchemy_potion",
+    "layer0": "wiedzminstvo:item/alchemy_potion_overlay"
+  }
+}

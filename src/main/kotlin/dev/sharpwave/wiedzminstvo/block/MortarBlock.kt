@@ -10,6 +10,7 @@ import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.entity.player.ServerPlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.pathfinding.PathType
 import net.minecraft.tileentity.TileEntity
@@ -67,7 +68,7 @@ class MortarBlock(properties: Properties) : Block(properties) {
                     val teStack = te.popItems()
                     player.setItemInHand(hand, teStack)
                 } else if (handStack.count < handStack.maxStackSize && handStack.sameItem(te.items)) {
-                    handStack.count++
+                    handStack.grow(1)
                     player.setItemInHand(hand, handStack)
                     te.popItems()
                 } else {
@@ -81,14 +82,14 @@ class MortarBlock(properties: Properties) : Block(properties) {
             ) {
                 val newStack = handStack.copy()
                 newStack.count = 1
-                handStack.count--
+                handStack.shrink(1)
                 te.pushItems(newStack)
                 player.setItemInHand(hand, handStack)
             } else if (player.isCrouching and handStack.isEmpty) {
                 val teStack = te.popItems()
                 player.setItemInHand(hand, teStack)
             } else if (!te.isGrinding) {
-                te.attemptGrinding()
+                te.attemptGrinding(player as ServerPlayerEntity)
             }
 
             ActionResultType.CONSUME

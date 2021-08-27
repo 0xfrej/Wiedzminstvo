@@ -18,13 +18,13 @@ class AlchemyResultInventory : IInventory, IRecipeHolder {
 
     override fun isEmpty(): Boolean {
         val stackIterator: Iterator<*> = itemStacks.iterator()
-        var newStack: ItemStack
+        var testStack: ItemStack
         do {
             if (!stackIterator.hasNext()) {
                 return true
             }
-            newStack = stackIterator.next() as ItemStack
-        } while (newStack.isEmpty)
+            testStack = stackIterator.next() as ItemStack
+        } while (testStack.isEmpty)
         return false
     }
 

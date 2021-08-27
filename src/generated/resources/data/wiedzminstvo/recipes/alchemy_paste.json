@@ -1,6 +1,5 @@
 {
   "type": "wiedzminstvo:alchemy",
-  "group": "alchemy",
   "ingredients": [
     {
       "item": "wiedzminstvo:ground_arenaria"

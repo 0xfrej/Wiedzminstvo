@@ -74,9 +74,7 @@ class AlchemyInventory(container: Container, ingredientSlots: Int, fuseSlots: In
     }
 
     override fun fillStackedContents(recipeHelper: RecipeItemHelper) {
-        val itemIterator = items.iterator()
-        while (itemIterator.hasNext()) {
-            val nextStack = itemIterator.next() as ItemStack
+        for (nextStack in items) {
             recipeHelper.accountSimpleStack(nextStack)
         }
     }

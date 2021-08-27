@@ -1,8 +1,8 @@
 package dev.sharpwave.wiedzminstvo.registry
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
-import dev.sharpwave.wiedzminstvo.item.AlchemyItem
-import dev.sharpwave.wiedzminstvo.item.ModItemGroup
+import dev.sharpwave.wiedzminstvo.alchemy.IngredientEffect
+import dev.sharpwave.wiedzminstvo.item.*
 import dev.sharpwave.wiedzminstvo.item.PotionItem
 import net.minecraft.block.Block
 import net.minecraft.item.*
@@ -17,34 +17,41 @@ object ItemRegistry : IForgeRegistry {
         ITEMS.register(bus)
     }
 
-    val ALCHEMY_TABLE by ITEMS.registerObject("alchemy_table") { registerBlock(BlockRegistry.ALCHEMY_TABLE, ModItemGroup.TAB_ALCHEMY) }
-    val MORTAR by ITEMS.registerObject("mortar") { registerBlock(BlockRegistry.MORTAR, ModItemGroup.TAB_ALCHEMY) }
+    val ALCHEMY_TABLE by ITEMS.registerObject("alchemy_table") { block(BlockRegistry.ALCHEMY_TABLE, ModItemGroup.TAB_ALCHEMY) }
+    val MORTAR by ITEMS.registerObject("mortar") { block(BlockRegistry.MORTAR, ModItemGroup.TAB_ALCHEMY) }
     val ALCHEMY_POTION by ITEMS.registerObject("alchemy_potion") { PotionItem() }
-    val ALCHEMY_PASTE by ITEMS.registerObject("alchemy_paste") { AlchemyItem() }
-    val DARK_ESSENCE by ITEMS.registerObject("dark_essence") { AlchemyItem() }
-    val FIFTH_ESSENCE by ITEMS.registerObject("fifth_essence") { AlchemyItem() }
-    val ARENARIA by ITEMS.registerObject("arenaria") { registerBlock(BlockRegistry.ARENARIA, ModItemGroup.TAB_ALCHEMY) }
-    // TODO: Maybe change beggartick and bison grass to flower or make implementation which also has offsetting as flower because it's weird how it is in middle of the block
-    val BEGGARTICK by ITEMS.registerObject("beggartick_blossoms") { registerBlock(BlockRegistry.BEGGARTICK, ModItemGroup.TAB_ALCHEMY) }
-    val BISON_GRASS by ITEMS.registerObject("bison_grass") { registerBlock(BlockRegistry.BISON_GRASS, ModItemGroup.TAB_ALCHEMY) }
-    val BLUE_LOTUS by ITEMS.registerObject("blue_lotus") { registerTallBlock(BlockRegistry.BLUE_LOTUS, ModItemGroup.TAB_ALCHEMY) }
-    val WINTER_CHERRY by ITEMS.registerObject("winter_cherry") { registerTallBlock(BlockRegistry.WINTER_CHERRY, ModItemGroup.TAB_ALCHEMY) }
-    val GROUND_ARENARIA by ITEMS.registerObject("ground_arenaria") { registerPlainItem(ModItemGroup.TAB_ALCHEMY) }
-    val GROUND_BEGGARTICK by ITEMS.registerObject("ground_beggartick") { registerPlainItem(ModItemGroup.TAB_ALCHEMY) }
-    val GROUND_BISON_GRASS by ITEMS.registerObject("ground_bison_grass") { registerPlainItem(ModItemGroup.TAB_ALCHEMY) }
-    val GROUND_BLUE_LOTUS by ITEMS.registerObject("ground_blue_lotus") { registerPlainItem(ModItemGroup.TAB_ALCHEMY) }
-    val GROUND_WINTER_CHERRY by ITEMS.registerObject("ground_winter_cherry") { registerPlainItem(ModItemGroup.TAB_ALCHEMY) }
+    val ALCHEMY_PASTE by ITEMS.registerObject("alchemy_paste") { item(ModItemGroup.TAB_ALCHEMY) }
+    val DARK_ESSENCE by ITEMS.registerObject("dark_essence") { item(ModItemGroup.TAB_ALCHEMY) }
+    val FIFTH_ESSENCE by ITEMS.registerObject("fifth_essence") { item(ModItemGroup.TAB_ALCHEMY) }
+    val ARENARIA by ITEMS.registerObject("arenaria") { ingredientBlock(BlockRegistry.ARENARIA, { emptyList() }) }
+    val BEGGARTICK by ITEMS.registerObject("beggartick_blossoms") { ingredientBlock(BlockRegistry.BEGGARTICK, { emptyList() }) }
+    val BISON_GRASS by ITEMS.registerObject("bison_grass") { ingredientBlock(BlockRegistry.BISON_GRASS, { emptyList() }) }
+    val BLUE_LOTUS by ITEMS.registerObject("blue_lotus") { tallIngredientBlock(BlockRegistry.BLUE_LOTUS, { emptyList() }) }
+    val WINTER_CHERRY by ITEMS.registerObject("winter_cherry") { tallIngredientBlock(BlockRegistry.WINTER_CHERRY, { emptyList() }) }
+    val GROUND_ARENARIA by ITEMS.registerObject("ground_arenaria") { item(ModItemGroup.TAB_ALCHEMY) }
+    val GROUND_BEGGARTICK by ITEMS.registerObject("ground_beggartick") { item(ModItemGroup.TAB_ALCHEMY) }
+    val GROUND_BISON_GRASS by ITEMS.registerObject("ground_bison_grass") { item(ModItemGroup.TAB_ALCHEMY) }
+    val GROUND_BLUE_LOTUS by ITEMS.registerObject("ground_blue_lotus") { item(ModItemGroup.TAB_ALCHEMY) }
+    val GROUND_WINTER_CHERRY by ITEMS.registerObject("ground_winter_cherry") { item(ModItemGroup.TAB_ALCHEMY) }
     val PORK_FAT by ITEMS.registerObject("pork_fat") { Item(Item.Properties().tab(ModItemGroup.TAB_MISC).food(Foods.TROPICAL_FISH)) }
 
-    private fun registerBlock(block: Block, tab: ItemGroup): BlockItem {
+    private fun block(block: Block, tab: ItemGroup): BlockItem {
         return BlockItem(block, Item.Properties().tab(tab))
     }
 
-    private fun registerTallBlock(block: Block, tab: ItemGroup): BlockItem {
+    private fun ingredientBlock(block: Block, effectListFactory: (Item) -> List<IngredientEffect>, properties: Item.Properties = Item.Properties().tab(ModItemGroup.TAB_ALCHEMY)): AlchemyBlockItem {
+        return AlchemyBlockItem(block, properties, effectListFactory)
+    }
+
+    private fun tallIngredientBlock(block: Block, effectListFactory: (Item) -> List<IngredientEffect>, properties: Item.Properties = Item.Properties().tab(ModItemGroup.TAB_ALCHEMY)): AlchemyTallBlockItem {
+        return AlchemyTallBlockItem(block, properties, effectListFactory)
+    }
+
+    private fun tallBlock(block: Block, tab: ItemGroup): BlockItem {
         return TallBlockItem(block, Item.Properties().tab(tab))
     }
 
-    private fun registerPlainItem(tab: ItemGroup): Item {
+    private fun item(tab: ItemGroup): Item {
         return Item(Item.Properties().tab(tab))
     }
 }

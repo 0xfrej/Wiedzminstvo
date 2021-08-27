@@ -21,6 +21,7 @@ object ModDataGenerators {
             generator.addProvider(Recipes(generator))
             generator.addProvider(BlockLootTables(generator))
             generator.addProvider(GlobalLootModifiers(generator))
+            generator.addProvider(Advancements(generator))
         }
 
         if (event.includeClient()) {

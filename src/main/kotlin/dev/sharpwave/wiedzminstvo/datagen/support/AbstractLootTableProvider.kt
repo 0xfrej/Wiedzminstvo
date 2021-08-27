@@ -12,7 +12,7 @@ import org.apache.logging.log4j.LogManager
 import java.io.IOException
 
 
-abstract class BaseLootTableProvider<T>(protected val generator: DataGenerator) : LootTableProvider(generator) {
+abstract class AbstractLootTableProvider<T>(protected val generator: DataGenerator) : LootTableProvider(generator) {
     protected val lootTables: MutableMap<T, LootTable.Builder> = HashMap()
 
     protected abstract fun addTables()

@@ -2,6 +2,7 @@ package dev.sharpwave.wiedzminstvo.alchemy
 
 interface IPotionTier {
     enum class AmplifierType {
+        NONE,
         DURATION,
         STRENGTH
     }
@@ -10,4 +11,7 @@ interface IPotionTier {
     val uses: Int
     val amplifier: AmplifierType
     val amplifyBy: Double
+
+    fun amplifyDuration(duration: Int): Int
+    fun amplifyStrength(strength: Int): Int
 }

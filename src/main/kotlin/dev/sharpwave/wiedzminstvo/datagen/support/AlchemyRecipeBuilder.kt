@@ -114,10 +114,8 @@ class AlchemyRecipeBuilder(resultItem: IItemProvider, count: Int) {
                 json.addProperty("group", group)
 
             val ingredientList = JsonArray()
-            val ingredientIterator: Iterator<*> = ingredients.iterator()
-            while (ingredientIterator.hasNext()) {
-                val iteratedIngredient = ingredientIterator.next() as Ingredient
-                ingredientList.add(iteratedIngredient.toJson())
+            for (ingredient in ingredients) {
+                ingredientList.add(ingredient.toJson())
             }
             json.add("ingredients", ingredientList)
 

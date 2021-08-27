@@ -21,7 +21,7 @@ class AlchemyRecipe(
 ) : IRecipe<AlchemyInventory> {
 
     override fun matches(inventory: AlchemyInventory, level: World): Boolean {
-        val inputs: MutableList<ItemStack> = emptyList<ItemStack>().toMutableList()
+        val inputs: MutableList<ItemStack> = mutableListOf()
 
         var i = 0
 

@@ -1,7 +1,7 @@
 package dev.sharpwave.wiedzminstvo.datagen
 
 import com.google.common.collect.ImmutableSet
-import dev.sharpwave.wiedzminstvo.datagen.support.BaseLootTableProvider
+import dev.sharpwave.wiedzminstvo.datagen.support.AbstractLootTableProvider
 import dev.sharpwave.wiedzminstvo.registry.BlockRegistry
 import net.minecraft.block.Block
 import net.minecraft.block.Blocks
@@ -16,7 +16,7 @@ import java.util.function.Function
 import java.util.stream.Stream
 
 
-class BlockLootTables(generator: DataGenerator) : BaseLootTableProvider<Block>(generator) {
+class BlockLootTables(generator: DataGenerator) : AbstractLootTableProvider<Block>(generator) {
     //private val HAS_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))))
     //private val HAS_NO_SILK_TOUCH = HAS_SILK_TOUCH.invert()
     //private val HAS_SHEARS = MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS))
