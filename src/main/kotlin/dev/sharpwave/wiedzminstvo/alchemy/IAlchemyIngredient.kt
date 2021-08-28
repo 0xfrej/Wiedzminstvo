@@ -96,13 +96,13 @@ interface IAlchemyIngredient: IForgeItem {
     @OnlyIn(Dist.CLIENT)
     fun appendHoverText(
         stack: ItemStack,
-        level: World,
+        level: World?,
         tooltips: MutableList<ITextComponent>,
         flag: ITooltipFlag
     ) {
         if (Screen.hasShiftDown()) {
             for (effect in effects) {
-                val adv = Minecraft.getInstance().player!!.connection.advancements.advancements.get()
+                ///val adv = Minecraft.getInstance().player!!.connection.advancements.advancements.get()
             }
         }
         else {
