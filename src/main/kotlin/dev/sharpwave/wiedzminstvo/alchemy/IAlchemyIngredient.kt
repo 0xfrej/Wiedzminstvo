@@ -102,7 +102,9 @@ interface IAlchemyIngredient: IForgeItem {
     ) {
         if (Screen.hasShiftDown()) {
             for (effect in effects) {
-                ///val adv = Minecraft.getInstance().player!!.connection.advancements.advancements.get()
+                val mng = Minecraft.getInstance().player!!.connection.advancements
+                val adv = mng.progress[mng.advancements.get(ingredientEffectLocation(this.item, effect))]
+
             }
         }
         else {

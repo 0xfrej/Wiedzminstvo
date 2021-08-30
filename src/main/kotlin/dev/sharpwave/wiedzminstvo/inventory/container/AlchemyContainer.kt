@@ -36,7 +36,7 @@ class AlchemyContainer(id: Int, private val inv: PlayerInventory, private val ac
 
     override fun removed(player: PlayerEntity) {
         super.removed(player)
-        access.execute { level: World, pos: BlockPos ->
+        access.execute { level: World, _: BlockPos ->
             clearContainer(
                 player,
                 level,
@@ -50,7 +50,7 @@ class AlchemyContainer(id: Int, private val inv: PlayerInventory, private val ac
     }
 
     override fun slotsChanged(inventory: IInventory) {
-        access.execute { level, pos ->
+        access.execute { level, _ ->
             run {
                 if (!level.isClientSide) {
                     val player = inv.player as ServerPlayerEntity

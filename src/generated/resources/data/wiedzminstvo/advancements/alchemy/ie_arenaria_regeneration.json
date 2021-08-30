@@ -1,0 +1,32 @@
+{
+  "parent": "wiedzminstvo:alchemy/root",
+  "display": {
+    "icon": {
+      "item": "wiedzminstvo:arenaria"
+    },
+    "title": {
+      "translate": "wiedzminstvo.advancements.alchemy.ingredient_effect_discovery.title"
+    },
+    "description": {
+      "translate": "wiedzminstvo.advancements.alchemy.ingredient_effect_discovery.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "ingredient_effect_discovered": {
+      "trigger": "wiedzminstvo:effect_discovery",
+      "conditions": {
+        "item": "wiedzminstvo:arenaria",
+        "slot": 0
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ingredient_effect_discovered"
+    ]
+  ]
+}

@@ -100,7 +100,7 @@ class AlchemyTableBlock(properties: Properties) : ContainerBlock(properties) {
         val tileEntity = level.getBlockEntity(pos)
         return if (tileEntity is AlchemyTableTileEntity) {
             val name = (tileEntity as INameable).displayName
-            SimpleNamedContainerProvider({ containerId: Int, inventory: PlayerInventory, player: PlayerEntity ->
+            SimpleNamedContainerProvider({ containerId: Int, inventory: PlayerInventory, _: PlayerEntity ->
                 AlchemyContainer(
                     containerId,
                     inventory,

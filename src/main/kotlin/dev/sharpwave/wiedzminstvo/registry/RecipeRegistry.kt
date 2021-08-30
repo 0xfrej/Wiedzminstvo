@@ -20,8 +20,8 @@ object RecipeRegistry : IForgeRegistry {
         RECIPE.register(bus)
     }
 
-    val GRINDING = IRecipeType.register<MortarRecipe>("${WiedzminstvoMod.MODID}:mortar_grinding")!!
-    val ALCHEMY = IRecipeType.register<AlchemyRecipe>("${WiedzminstvoMod.MODID}:alchemy")!!
+    val GRINDING: IRecipeType<MortarRecipe> = IRecipeType.register("${WiedzminstvoMod.MODID}:mortar_grinding")
+    val ALCHEMY: IRecipeType<AlchemyRecipe> = IRecipeType.register("${WiedzminstvoMod.MODID}:alchemy")
 
     // TODO: Refactor factory
     val GRINDING_SERIALIZER by RECIPE.registerObject("mortar_grinding") { CookingRecipeSerializer({ location, name, ingredient, item, exp, grindTime -> MortarRecipe(location, name, ingredient, item, exp, grindTime) }, 3) }

@@ -12,7 +12,7 @@ class IngredientEffect(
     val slot: Slot,
     val baseDuration: Int,
     val baseAmplifier: Int,
-    val isAmbient: Boolean
+    val isAmbient: Boolean = false
 ) {
 
     enum class Slot {
@@ -36,4 +36,22 @@ class IngredientEffect(
     fun asEffectInstance(tier: IPotionTier) : EffectInstance {
         return EffectInstance(effect, tier.amplifyDuration(baseDuration), tier.amplifyStrength(baseAmplifier), isAmbient, true)
     }
+
+    companion object {
+        fun of(effect: Effect, slot: Slot, baseDuration: Int, baseAmplifier: Int, isAmbient: Boolean): Model {
+            return Model(effect, slot, baseDuration, baseAmplifier, isAmbient)
+        }
+
+        fun of(model: Model, parent: Item): IngredientEffect {
+            return IngredientEffect(parent, model.effect, model.slot, model.baseDuration, model.baseAmplifier, model.isAmbient)
+        }
+    }
+
+    data class Model(
+        val effect: Effect,
+        val slot: Slot,
+        val baseDuration: Int,
+        val baseAmplifier: Int,
+        val isAmbient: Boolean = false
+    )
 }
