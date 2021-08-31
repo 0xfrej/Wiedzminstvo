@@ -36,11 +36,19 @@ object ItemRegistry : IForgeRegistry {
     val BISON_GRASS by ITEMS.registerObject("bison_grass") { ingredientBlock(BlockRegistry.BISON_GRASS, emptyList()) }
     val BLUE_LOTUS by ITEMS.registerObject("blue_lotus") { tallIngredientBlock(BlockRegistry.BLUE_LOTUS,emptyList()) }
     val WINTER_CHERRY by ITEMS.registerObject("winter_cherry") { tallIngredientBlock(BlockRegistry.WINTER_CHERRY, emptyList()) }
+    val FOOLS_PARSLEY by ITEMS.registerObject("fools_parsley") { ingredientBlock(BlockRegistry.FOOLS_PARSLEY, emptyList()) }
+    val BERBERCANE by ITEMS.registerObject("berbercane") { ingredientBlock(BlockRegistry.BERBERCANE, emptyList()) }
+    val CELANDINE by ITEMS.registerObject("celandine") { ingredientBlock(BlockRegistry.CELANDINE, emptyList()) }
+    val CORTINARIUS by ITEMS.registerObject("cortinarius") { ingredientBlock(BlockRegistry.CORTINARIUS, emptyList()) }
     val GROUND_ARENARIA by ITEMS.registerObject("ground_arenaria") { item(ModItemGroup.TAB_ALCHEMY) }
     val GROUND_BEGGARTICK by ITEMS.registerObject("ground_beggartick") { item(ModItemGroup.TAB_ALCHEMY) }
     val GROUND_BISON_GRASS by ITEMS.registerObject("ground_bison_grass") { item(ModItemGroup.TAB_ALCHEMY) }
     val GROUND_BLUE_LOTUS by ITEMS.registerObject("ground_blue_lotus") { item(ModItemGroup.TAB_ALCHEMY) }
     val GROUND_WINTER_CHERRY by ITEMS.registerObject("ground_winter_cherry") { item(ModItemGroup.TAB_ALCHEMY) }
+    val GROUND_FOOLS_PARSLEY by ITEMS.registerObject("ground_fools_parsley") { item(ModItemGroup.TAB_ALCHEMY) }
+    val GROUND_BERBERCANE by ITEMS.registerObject("ground_berbercane") { item(ModItemGroup.TAB_ALCHEMY) }
+    val GROUND_CELANDINE by ITEMS.registerObject("ground_celandine") { item(ModItemGroup.TAB_ALCHEMY) }
+    val GROUND_CORTINARIUS by ITEMS.registerObject("ground_cortinarius") { item(ModItemGroup.TAB_ALCHEMY) }
     val PORK_FAT by ITEMS.registerObject("pork_fat") { Item(Item.Properties().tab(ModItemGroup.TAB_MISC).food(Foods.TROPICAL_FISH)) }
 
     private fun block(block: Block, tab: ItemGroup): BlockItem {

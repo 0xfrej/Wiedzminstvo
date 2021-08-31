@@ -15,5 +15,9 @@ object RenderTypeLookup {
         RTL.setRenderLayer(BlockRegistry.BISON_GRASS, renderCutout)
         RTL.setRenderLayer(BlockRegistry.BLUE_LOTUS, renderCutout)
         RTL.setRenderLayer(BlockRegistry.WINTER_CHERRY, renderCutout)
+        RTL.setRenderLayer(BlockRegistry.FOOLS_PARSLEY, renderCutout)
+        RTL.setRenderLayer(BlockRegistry.BERBERCANE, renderCutout)
+        RTL.setRenderLayer(BlockRegistry.CELANDINE, renderCutout)
+        RTL.setRenderLayer(BlockRegistry.CORTINARIUS, renderCutout)
     }
 }

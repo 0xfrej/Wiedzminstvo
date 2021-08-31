@@ -1,16 +1,12 @@
 package dev.sharpwave.wiedzminstvo.registry
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
-import dev.sharpwave.wiedzminstvo.alchemy.IngredientEffect
-import dev.sharpwave.wiedzminstvo.block.AlchemyFlowerBlock
-import dev.sharpwave.wiedzminstvo.block.AlchemyTableBlock
-import dev.sharpwave.wiedzminstvo.block.MortarBlock
-import dev.sharpwave.wiedzminstvo.block.TallAlchemyFlowerBlock
-import net.minecraft.block.AbstractBlock
-import net.minecraft.block.Block
-import net.minecraft.block.SoundType
+import dev.sharpwave.wiedzminstvo.block.*
+import net.minecraft.block.*
 import net.minecraft.block.material.Material
-import net.minecraft.potion.Effects
+import net.minecraft.block.material.MaterialColor
+import net.minecraft.util.math.BlockPos
+import net.minecraft.world.IBlockReader
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
 import thedarkcolour.kotlinforforge.forge.KDeferredRegister
@@ -29,8 +25,19 @@ object BlockRegistry : IForgeRegistry {
     val BISON_GRASS by BLOCKS.registerObject("bison_grass") { AlchemyFlowerBlock(flowerProperties()) }
     val BLUE_LOTUS by BLOCKS.registerObject("blue_lotus") { TallAlchemyFlowerBlock(flowerProperties()) }
     val WINTER_CHERRY by BLOCKS.registerObject("winter_cherry") { TallAlchemyFlowerBlock(flowerProperties()) }
+    val FOOLS_PARSLEY by BLOCKS.registerObject("fools_parsley") { AlchemyFlowerBlock(flowerProperties()) }
+    val BERBERCANE by BLOCKS.registerObject("berbercane") { AlchemyFlowerBlock(flowerProperties()) }
+    val CELANDINE by BLOCKS.registerObject("celandine") { AlchemyFlowerBlock(flowerProperties()) }
+    val CORTINARIUS by BLOCKS.registerObject("cortinarius") { AlchemyMushroomBlock(mushroomProperties()) }
 
     private fun flowerProperties() : AbstractBlock.Properties {
         return AbstractBlock.Properties.of(Material.PLANT).noOcclusion().noCollission().instabreak().sound(SoundType.GRASS)
+    }
+    private fun mushroomProperties() : AbstractBlock.Properties {
+        return AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_BROWN).noCollission().randomTicks()
+            .instabreak().sound(
+                SoundType.GRASS
+            ).lightLevel { 1 }
+            .hasPostProcess { _, _, _ -> true }
     }
 }

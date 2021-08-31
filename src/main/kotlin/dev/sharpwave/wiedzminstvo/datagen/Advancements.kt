@@ -52,7 +52,11 @@ class Advancements(generator: DataGenerator) : AbstractAdvancementProvider(gener
                 Pair(ItemRegistry.BEGGARTICK, ItemRegistry.GROUND_BEGGARTICK),
                 Pair(ItemRegistry.BISON_GRASS, ItemRegistry.GROUND_BISON_GRASS),
                 Pair(ItemRegistry.BLUE_LOTUS, ItemRegistry.GROUND_BLUE_LOTUS),
-                Pair(ItemRegistry.WINTER_CHERRY, ItemRegistry.GROUND_WINTER_CHERRY)
+                Pair(ItemRegistry.WINTER_CHERRY, ItemRegistry.GROUND_WINTER_CHERRY),
+                Pair(ItemRegistry.BERBERCANE, ItemRegistry.GROUND_BERBERCANE),
+                Pair(ItemRegistry.FOOLS_PARSLEY, ItemRegistry.FOOLS_PARSLEY),
+                Pair(ItemRegistry.CELANDINE, ItemRegistry.GROUND_CELANDINE),
+                Pair(ItemRegistry.CORTINARIUS, ItemRegistry.CORTINARIUS)
             )
 
             generateIngredientDiscoveries(alchemyRoot, consumer)

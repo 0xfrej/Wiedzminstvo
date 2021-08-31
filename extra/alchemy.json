@@ -1,0 +1,181 @@
+{
+  "arenaria": {
+    "type": "ingredient",
+    "biome": {
+      "biomes": [
+        "plains", "forest", "flower forest", "birch forest", "tall birch forest",
+        "dark forest", "dark forest hills", "swamp", "swamp hills", "jungle",
+        "modified jungle", "jungle edge", "modified jungle edge", "river", "beach"
+      ]
+    },
+    "products": {
+      "grinding": ["ground arenaria"]
+    },
+    "effects": ["heal", "regeneration", "nausea"]
+  },
+  "bison grass": {
+    "type": "ingredient",
+    "biome": {
+      "biomes": [
+        "savannah", "shattered savanna", "badlands", "eroded badlands",
+        "wooden badlands", "river", "plateau"
+      ]
+    },
+    "products": {
+      "grinding": ["ground bison grass"]
+    },
+    "effects": ["jump", "movement speed", "dig slowdown"]
+  },
+  "beggartick": {
+    "type": "ingredient",
+    "biome": {
+      "biomes": [
+        "plains", "mountains", "hills",
+        "river"
+      ]
+    },
+    "products": {
+      "grinding": ["ground beggartick"]
+    },
+    "effects": ["regeneration", "damage resistance", "nausea"]
+  },
+  "winter cherry": {
+    "type": "ingredient",
+    "biome": {
+      "biomes": [
+        "snowy taiga", "snowy taiga mountains",
+        "snowy tundra"
+      ]
+    },
+    "products": {
+      "grinding": ["ground winter cherry"]
+    },
+    "effects": ["heal", "damage resistance", "fire resistance"]
+  },
+  "blue lotus": {
+    "type": "ingredient",
+    "biome": {
+      "biomes": [
+        "plains", "forest", "flower forest", "birch forest", "tall birch forest",
+        "dark forest", "dark forest hills", "swamp", "swamp hills", "jungle",
+        "modified jungle", "jungle edge", "modified jungle edge", "river", "beach"
+      ]
+    },
+    "products": {
+      "grinding": ["ground blue lotus"]
+    },
+    "effects": ["blindness", "dig speed", "regeneration"]
+  },
+  "fools parsley": {
+    "type": "ingredient",
+    "biome": {
+      "biomes": [
+
+      ]
+    },
+    "products": {
+      "grinding": ["ground fools parsley"]
+    },
+    "effects": []
+  },
+  "Draught of Origin": {
+    "type": "fusion ingredient",
+    "tier": "base",
+    "fill": "water"
+  },
+  "Draught of the Ancestors": {
+    "type": "fusion ingredient",
+    "tier": "minor strength",
+    "craft": {
+      "alchemy table": []
+    }
+  },
+  "Brew of Tranquillity": {
+    "type": "fusion ingredient",
+    "tier": "minor duration",
+    "craft": {
+      "alchemy table": []
+    }
+  },
+  "Flask of Ancient Secrets": {
+    "type": "fusion ingredient",
+    "tier": "major strength",
+    "craft": {
+      "alchemy table": []
+    }
+  },
+  "Draught of the Master": {
+    "type": "fusion ingredient",
+    "tier": "major duration",
+    "craft": {
+      "alchemy table": []
+    }
+  },
+  "Philter of Endless Time": {
+    "type": "fusion ingredient",
+    "tier": "magic duration",
+    "craft": {
+      "alchemy table": []
+    }
+  },
+  "Flask of Awakening": {
+    "type": "fusion ingredient",
+    "tier": "magic strength",
+    "craft": {
+      "alchemy table": []
+    }
+  },
+  "Fifth essence": {
+    "type": "ingredient",
+    "craft": {
+      "alchemy table": ["ground bison grass", "ground winter cherry", "essence of lucid dreams"]
+    },
+    "drop": {
+      "witch": {
+        "rarity": "common"
+      }
+    }
+  },
+  "Dark essence": {
+    "type": "ingredient",
+    "craft": {
+      "alchemy table": ["fifth essence", "blue lotus", "?"]
+    },
+    "drop": {
+      "witch": {
+        "rarity": "uncommon?"
+      }
+    }
+  },
+  "Essence of Lucid Dreams": {
+    "type": "ingredient",
+    "craft": {
+      "alchemy table": ["ground blue lotus", "arenaria", "honey"]
+    }
+  },
+  "Philter of Nature": {
+
+  },
+  "Philter of Dawn": {
+
+  },
+  "alchemy paste": {
+    "type": "product",
+    "craft": {
+      "alchemy table": ["pork fat", "ground arenaria"]
+    }
+  },
+  "healing paste": {
+    "type": "product",
+    "effects": "heal",
+    "craft": {
+      "alchemy table": ["alchemy paste", "fifth essence"]
+    }
+  },
+  "bone meal paste": {
+    "type": "product",
+    "craft": {
+      "alchemy table": ["healing paste", "bone meal"]
+    }
+  }
+}

@@ -6,7 +6,7 @@ import net.minecraft.util.math.shapes.ISelectionContext
 import net.minecraft.util.math.shapes.VoxelShape
 import net.minecraft.world.IBlockReader
 
-class AlchemyFlowerBlock(properties: Properties) : BushBlock(properties) {
+open class AlchemyFlowerBlock(properties: Properties) : BushBlock(properties) {
     override fun getShape(
         state: BlockState,
         blockReader: IBlockReader,
