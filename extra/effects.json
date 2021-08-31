@@ -1,0 +1,37 @@
+{
+  "neutral": [
+    "glowing"
+  ],
+  "beneficial": [
+    "speed",
+    "haste",
+    "strength",
+    "instant_health",
+    "jump_boost",
+    "regeneration",
+    "resistance",
+    "fire_resistance",
+    "water_breathing",
+    "invisibility",
+    "night_vision",
+    "weakness",
+    "poison",
+    "wither",
+    "health_boost",
+    "absorption",
+    "saturation",
+    "slow_falling",
+    "luck"
+  ],
+  "harmful": [
+    "mining_fatigue",
+    "instant_damage",
+    "slowness",
+    "unluck",
+    "nausea",
+    "blindness",
+    "hunger",
+    "levitation - big gravity",
+    "levitation"
+  ]
+}

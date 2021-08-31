@@ -5,7 +5,7 @@ import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
 open class SimpleRegister<K, V> {
-    private val entries = LinkedHashMap<K, ValueHolderDelegate<in K, out V>>()
+    protected val entries = LinkedHashMap<K, ValueHolderDelegate<in K, out V>>()
 
     open class ValueHolderDelegate<K, V>(private var key: K, private var value: V) : ReadOnlyProperty<Any?, V>,
         Supplier<V>, () -> V {

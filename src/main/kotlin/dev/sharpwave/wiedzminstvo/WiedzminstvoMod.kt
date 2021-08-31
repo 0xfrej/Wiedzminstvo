@@ -1,15 +1,18 @@
 package dev.sharpwave.wiedzminstvo
 
+import dev.sharpwave.wiedzminstvo.advancements.criterion.Criterions
 import dev.sharpwave.wiedzminstvo.client.managers.KeybindManager
 import dev.sharpwave.wiedzminstvo.client.render.MortarPestleTileEntityRenderer
 import dev.sharpwave.wiedzminstvo.client.render.RenderTypeLookup
 import dev.sharpwave.wiedzminstvo.init.ModConfig
 import dev.sharpwave.wiedzminstvo.init.ModRegistries
 import dev.sharpwave.wiedzminstvo.registry.TileEntityRegistry
+import net.minecraftforge.fml.DeferredWorkQueue
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
 import net.minecraftforge.fml.loading.FMLPaths
 import net.minecraftforge.forgespi.language.IModInfo
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
@@ -36,6 +39,7 @@ object WiedzminstvoMod {
 
         // usage of the KotlinEventBus
         MOD_BUS.addListener(::onClientSetup)
+        MOD_BUS.addListener(::onCommonSetup)
 
         info = ModLoadingContext.get().activeContainer.modInfo
     }
@@ -46,5 +50,10 @@ object WiedzminstvoMod {
         RenderTypeLookup.register()
 
         ClientRegistry.bindTileEntityRenderer(TileEntityRegistry.PESTLE) { terd -> MortarPestleTileEntityRenderer(terd) }
+    }
+
+    @Suppress("UNUSED_PARAMETER")
+    private fun onCommonSetup(event: FMLCommonSetupEvent) {
+        event.enqueueWork { Criterions.register() }
     }
 }
