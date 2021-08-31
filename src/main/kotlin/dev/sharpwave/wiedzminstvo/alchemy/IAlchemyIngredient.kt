@@ -2,12 +2,14 @@ package dev.sharpwave.wiedzminstvo.alchemy
 
 import dev.sharpwave.wiedzminstvo.advancements.criterion.Criterions
 import dev.sharpwave.wiedzminstvo.locale.GeneralStrings
+import dev.sharpwave.wiedzminstvo.utils.AlchemyHelpers.ingredientEffectIsDiscovered
 import dev.sharpwave.wiedzminstvo.utils.AlchemyHelpers.ingredientEffectLocation
 import net.minecraft.advancements.CriteriaTriggers
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.util.ITooltipFlag
 import net.minecraft.entity.LivingEntity
+import net.minecraft.entity.ai.attributes.AttributeModifier
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.ServerPlayerEntity
 import net.minecraft.item.ItemStack
@@ -18,6 +20,8 @@ import net.minecraft.util.DrinkHelper
 import net.minecraft.util.Hand
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.ITextComponent
+import net.minecraft.util.text.StringTextComponent
+import net.minecraft.util.text.TextFormatting
 import net.minecraft.util.text.TranslationTextComponent
 import net.minecraft.world.World
 import net.minecraftforge.api.distmarker.Dist
@@ -100,15 +104,23 @@ interface IAlchemyIngredient: IForgeItem {
         tooltips: MutableList<ITextComponent>,
         flag: ITooltipFlag
     ) {
-        if (Screen.hasShiftDown()) {
-            for (effect in effects) {
+        if (effects.isNotEmpty()) {
+            if (Screen.hasShiftDown()) {
+                tooltips.add(StringTextComponent.EMPTY)
                 val mng = Minecraft.getInstance().player!!.connection.advancements
-                val adv = mng.progress[mng.advancements.get(ingredientEffectLocation(this.item, effect))]
 
+                for (ingredientEffect in effects) {
+                    val text = if (ingredientEffectIsDiscovered(mng, this, ingredientEffect))
+                        TranslationTextComponent(ingredientEffect.descriptionId)
+                    else
+                        StringTextComponent("x").withStyle(TextFormatting.GRAY)
+
+                    tooltips.add(text)
+                }
             }
-        }
-        else {
-            tooltips.add(TranslationTextComponent(GeneralStrings.TOOLTIP_HOLD_SHIFT_FOR_INFO))
+            else {
+                tooltips.add(TranslationTextComponent(GeneralStrings.TOOLTIP_HOLD_SHIFT_FOR_INFO))
+            }
         }
     }
 }

@@ -16,11 +16,21 @@ import net.minecraft.world.World
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 
-class AlchemyItem(properties: Properties, effectListFactory: (Item) -> List<IngredientEffect>) : Item(properties), IAlchemyIngredient {
+class AlchemyItem(
+    properties: Properties,
+    effects: List<IngredientEffect.Model>
+) : Item(properties), IAlchemyIngredient {
+
     override val effects: List<IngredientEffect>
 
     init {
-        effects = effectListFactory(this)
+        val list = mutableListOf<IngredientEffect>()
+
+        for (effect in effects) {
+            list.add(IngredientEffect.of(effect, this))
+        }
+
+        this.effects = list
     }
 
     override fun finishUsingItem(stack: ItemStack, level: World, entity: LivingEntity): ItemStack {

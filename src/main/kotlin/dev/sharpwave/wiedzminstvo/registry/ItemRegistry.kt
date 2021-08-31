@@ -47,6 +47,10 @@ object ItemRegistry : IForgeRegistry {
         return BlockItem(block, Item.Properties().tab(tab))
     }
 
+    private fun ingredient(effects: List<Model>, properties: Item.Properties = Item.Properties().tab(ModItemGroup.TAB_ALCHEMY)): AlchemyItem {
+        return AlchemyItem(properties, effects)
+    }
+
     private fun ingredientBlock(block: Block, effects: List<Model>, properties: Item.Properties = Item.Properties().tab(ModItemGroup.TAB_ALCHEMY)): AlchemyBlockItem {
         return AlchemyBlockItem(block, properties, effects)
     }

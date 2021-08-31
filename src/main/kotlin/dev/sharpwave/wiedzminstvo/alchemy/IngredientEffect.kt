@@ -14,13 +14,8 @@ class IngredientEffect(
     val baseAmplifier: Int,
     val isAmbient: Boolean = false
 ) {
-
-    enum class Slot {
-        FIRST,
-        SECOND,
-        THIRD,
-        FOURTH
-    }
+    val descriptionId: String
+        get() = effect.descriptionId
 
     fun isDiscovered(player: ServerPlayerEntity): Boolean {
         return if (player.level.isClientSide) {
@@ -45,6 +40,13 @@ class IngredientEffect(
         fun of(model: Model, parent: Item): IngredientEffect {
             return IngredientEffect(parent, model.effect, model.slot, model.baseDuration, model.baseAmplifier, model.isAmbient)
         }
+    }
+
+    enum class Slot {
+        FIRST,
+        SECOND,
+        THIRD,
+        FOURTH
     }
 
     data class Model(
