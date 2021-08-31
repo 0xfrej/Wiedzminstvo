@@ -56,7 +56,6 @@ class Advancements(generator: DataGenerator) : AbstractAdvancementProvider(gener
                 Pair(ItemRegistry.BERBERCANE, ItemRegistry.GROUND_BERBERCANE),
                 Pair(ItemRegistry.FOOLS_PARSLEY, ItemRegistry.FOOLS_PARSLEY),
                 Pair(ItemRegistry.CELANDINE, ItemRegistry.GROUND_CELANDINE),
-                Pair(ItemRegistry.CORTINARIUS, ItemRegistry.CORTINARIUS)
             )
 
             generateIngredientDiscoveries(alchemyRoot, consumer)

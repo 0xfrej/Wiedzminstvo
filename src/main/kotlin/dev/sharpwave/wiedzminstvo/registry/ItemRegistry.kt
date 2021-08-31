@@ -48,7 +48,6 @@ object ItemRegistry : IForgeRegistry {
     val GROUND_FOOLS_PARSLEY by ITEMS.registerObject("ground_fools_parsley") { item(ModItemGroup.TAB_ALCHEMY) }
     val GROUND_BERBERCANE by ITEMS.registerObject("ground_berbercane") { item(ModItemGroup.TAB_ALCHEMY) }
     val GROUND_CELANDINE by ITEMS.registerObject("ground_celandine") { item(ModItemGroup.TAB_ALCHEMY) }
-    val GROUND_CORTINARIUS by ITEMS.registerObject("ground_cortinarius") { item(ModItemGroup.TAB_ALCHEMY) }
     val PORK_FAT by ITEMS.registerObject("pork_fat") { Item(Item.Properties().tab(ModItemGroup.TAB_MISC).food(Foods.TROPICAL_FISH)) }
 
     private fun block(block: Block, tab: ItemGroup): BlockItem {
