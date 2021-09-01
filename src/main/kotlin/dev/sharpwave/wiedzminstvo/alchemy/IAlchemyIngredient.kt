@@ -2,6 +2,7 @@ package dev.sharpwave.wiedzminstvo.alchemy
 
 import dev.sharpwave.wiedzminstvo.advancements.criterion.Criterions
 import dev.sharpwave.wiedzminstvo.locale.GeneralStrings
+import dev.sharpwave.wiedzminstvo.utils.AlchemyHelpers.getStyleForIngredientEffect
 import dev.sharpwave.wiedzminstvo.utils.AlchemyHelpers.ingredientEffectIsDiscovered
 import dev.sharpwave.wiedzminstvo.utils.AlchemyHelpers.ingredientEffectLocation
 import net.minecraft.advancements.CriteriaTriggers
@@ -27,14 +28,15 @@ import net.minecraft.world.World
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 import net.minecraftforge.common.extensions.IForgeItem
+import javax.swing.Action
 
 interface IAlchemyIngredient: IForgeItem {
     val hasEffects: Boolean
         get() = effects.isNotEmpty()
-    val effects: List<IngredientEffect>
+    val effects: Map<IngredientEffect.Slot, IngredientEffect>
 
-    fun getEffect(index: Int) : IngredientEffect? {
-        return effects.getOrNull(index)
+    fun getEffect(slot: IngredientEffect.Slot) : IngredientEffect? {
+        return effects[slot]
     }
 
     fun getEffectCount(): Int {
@@ -52,7 +54,7 @@ interface IAlchemyIngredient: IForgeItem {
 
     fun getUndiscoveredIngredients(player: ServerPlayerEntity): List<IngredientEffect> {
         val list = mutableListOf<IngredientEffect>()
-        for (element in effects)
+        for ((_, element) in effects)
             if (! element.isDiscovered(player))
                 list.add(element)
 
@@ -67,11 +69,15 @@ interface IAlchemyIngredient: IForgeItem {
             Criterions.EFFECT_DISCOVERY.trigger(player, this.item, IngredientEffect.Slot.FIRST)
         }
         if (!level.isClientSide) {
-            for (effect in effects) {
-                if (effect.effect.isInstantenous) {
-                    effect.effect.applyInstantenousEffect(player, player, entity, 1, 1.0)
-                } else {
-                    entity.addEffect(effect.asEffectInstance(PotionTiers.BASE))
+            // Only apply effect if it was not discovered yet
+            val effect = effects[IngredientEffect.Slot.FIRST]
+            effect?.let {
+                if (! effect.isDiscovered(player as ServerPlayerEntity)) {
+                    if (it.effect.isInstantenous) {
+                        it.effect.applyInstantenousEffect(player, player, entity, 1, 1.0)
+                    } else {
+                        entity.addEffect(it.asEffectInstance(PotionTiers.BASE))
+                    }
                 }
             }
         }
@@ -109,11 +115,12 @@ interface IAlchemyIngredient: IForgeItem {
                 tooltips.add(StringTextComponent.EMPTY)
                 val mng = Minecraft.getInstance().player!!.connection.advancements
 
-                for (ingredientEffect in effects) {
-                    val text = if (ingredientEffectIsDiscovered(mng, this, ingredientEffect))
-                        TranslationTextComponent(ingredientEffect.descriptionId)
-                    else
-                        StringTextComponent("x").withStyle(TextFormatting.GRAY)
+                for ((_, effect) in effects) {
+                    val text = TranslationTextComponent(effect.descriptionId)
+                        .withStyle(getStyleForIngredientEffect(
+                            effect,
+                            ingredientEffectIsDiscovered(mng, this, effect)
+                        ))
 
                     tooltips.add(text)
                 }

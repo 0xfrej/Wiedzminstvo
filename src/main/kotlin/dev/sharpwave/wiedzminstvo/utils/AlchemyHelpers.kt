@@ -6,6 +6,8 @@ import dev.sharpwave.wiedzminstvo.alchemy.IngredientEffect
 import net.minecraft.client.multiplayer.ClientAdvancementManager
 import net.minecraft.item.Item
 import net.minecraft.util.ResourceLocation
+import net.minecraft.util.text.Color
+import net.minecraft.util.text.Style
 import net.minecraft.util.text.TextFormatting
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
@@ -24,13 +26,8 @@ object AlchemyHelpers {
         return manager.progress[manager.advancements.get(ingredientEffectLocation(ingredient.item, effect))]?.isDone ?: false
     }
 
-    fun getFormattingForSlot(slot: IngredientEffect.Slot): TextFormatting {
-        return when (slot) {
-            IngredientEffect.Slot.FIRST -> TextFormatting.AQUA
-            IngredientEffect.Slot.SECOND -> TextFormatting.GREEN
-            IngredientEffect.Slot.THIRD -> TextFormatting.GOLD
-            IngredientEffect.Slot.FOURTH -> TextFormatting.DARK_RED
-            else -> TextFormatting.RESET
-        }
+    fun getStyleForIngredientEffect(ingredientEffect: IngredientEffect, isDiscovered: Boolean): Style {
+        return Style.EMPTY.withColor(Color.fromRgb(ingredientEffect.effect.color))
+                .setObfuscated(!isDiscovered)
     }
 }

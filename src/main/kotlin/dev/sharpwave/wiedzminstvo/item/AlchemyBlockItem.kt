@@ -22,16 +22,22 @@ class AlchemyBlockItem(
     properties: Properties,
     effects: List<IngredientEffect.Model>
 ) : BlockItem(parent, properties), IAlchemyIngredient {
-    override val effects: List<IngredientEffect>
+    override val effects: Map<IngredientEffect.Slot, IngredientEffect>
 
     init {
-        val list = mutableListOf<IngredientEffect>()
+        val map = mutableMapOf<IngredientEffect.Slot, IngredientEffect>()
+        val slotIterator = IngredientEffect.Slot.values().iterator()
 
         for (effect in effects) {
-            list.add(IngredientEffect.of(effect, this))
+            if (slotIterator.hasNext()) {
+                map[slotIterator.next()] = IngredientEffect.of(effect, this)
+            }
+            else {
+                throw Exception("Invalid effect count. More effects were supplied than there is available slots")
+            }
         }
 
-        this.effects = list
+        this.effects = map
     }
 
     override fun finishUsingItem(stack: ItemStack, level: World, entity: LivingEntity): ItemStack {
