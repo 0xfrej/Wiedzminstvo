@@ -65,7 +65,7 @@ class Advancements(generator: DataGenerator) : AbstractAdvancementProvider(gener
     private fun generateIngredientDiscoveries(parent: Advancement, consumer: Consumer<Advancement>) {
         for (item in ForgeRegistries.ITEMS) {
             if (item is IAlchemyIngredient && item.hasEffects) {
-                for (ingredientEffect in item.effects) {
+                for ((effectSlot, ingredientEffect) in item.effects) {
                     Builder.advancement().parent(parent).display(
                         item,
                         translate(AlchemyStrings.ALCHEMY_ADV_INGREDIENT_EFFECT_DISCOVERY_NAME),
@@ -73,7 +73,7 @@ class Advancements(generator: DataGenerator) : AbstractAdvancementProvider(gener
                         null,
                         FrameType.TASK, true, false, true
                         )
-                        .addCriterion("ingredient_effect_discovered", EffectDiscoveryTrigger.Instance.effectDiscovered(item.asItem(), ingredientEffect.slot))
+                        .addCriterion("ingredient_effect_discovered", EffectDiscoveryTrigger.Instance.effectDiscovered(item.asItem(), effectSlot))
                         .save(consumer, location(ingredientEffectLocationStr(item, ingredientEffect)))
                 }
             }

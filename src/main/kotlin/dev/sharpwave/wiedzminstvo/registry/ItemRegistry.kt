@@ -29,7 +29,7 @@ object ItemRegistry : IForgeRegistry {
     val FIFTH_ESSENCE by ITEMS.registerObject("fifth_essence") { item(ModItemGroup.TAB_ALCHEMY) }
     val ARENARIA by ITEMS.registerObject("arenaria") {
         ingredientBlock(BlockRegistry.ARENARIA, listOf(
-            InEffect(Effects.REGENERATION, IngredientEffect.Slot.FIRST, 3600, 1)
+            InEffect(Effects.REGENERATION, 3600, 1)
         ))
     }
     val BEGGARTICK by ITEMS.registerObject("beggartick_blossoms") { ingredientBlock(BlockRegistry.BEGGARTICK, emptyList()) }

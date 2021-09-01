@@ -9,7 +9,6 @@ import net.minecraft.potion.EffectInstance
 class IngredientEffect(
     private val parent: Item,
     val effect: Effect,
-    val slot: Slot,
     val baseDuration: Int,
     val baseAmplifier: Int,
     val isAmbient: Boolean = false
@@ -33,12 +32,12 @@ class IngredientEffect(
     }
 
     companion object {
-        fun of(effect: Effect, slot: Slot, baseDuration: Int, baseAmplifier: Int, isAmbient: Boolean): Model {
-            return Model(effect, slot, baseDuration, baseAmplifier, isAmbient)
+        fun of(effect: Effect, baseDuration: Int, baseAmplifier: Int, isAmbient: Boolean): Model {
+            return Model(effect, baseDuration, baseAmplifier, isAmbient)
         }
 
         fun of(model: Model, parent: Item): IngredientEffect {
-            return IngredientEffect(parent, model.effect, model.slot, model.baseDuration, model.baseAmplifier, model.isAmbient)
+            return IngredientEffect(parent, model.effect, model.baseDuration, model.baseAmplifier, model.isAmbient)
         }
     }
 
@@ -51,7 +50,6 @@ class IngredientEffect(
 
     data class Model(
         val effect: Effect,
-        val slot: Slot,
         val baseDuration: Int,
         val baseAmplifier: Int,
         val isAmbient: Boolean = false

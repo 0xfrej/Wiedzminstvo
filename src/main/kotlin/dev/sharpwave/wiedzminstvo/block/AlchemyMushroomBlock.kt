@@ -13,14 +13,14 @@ import java.util.*
 
 class AlchemyMushroomBlock(properties: Properties) : AlchemyFlowerBlock(properties) {
 
-    override fun getShape(
+    /*override fun getShape(
         state: BlockState,
         blockReader: IBlockReader,
         pos: BlockPos,
         selectionCtx: ISelectionContext
     ): VoxelShape {
         return SHAPE
-    }
+    }*/
 
     override fun randomTick(
         state: BlockState,

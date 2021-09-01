@@ -43,20 +43,11 @@ interface IAlchemyIngredient: IForgeItem {
         return effects.count()
     }
 
-    fun getDiscoveredIngredients(player: ServerPlayerEntity): List<IngredientEffect?> {
-        val list = MutableList<IngredientEffect?>(IngredientEffect.Slot.values().size) { null }
-        for ((index, element) in effects.withIndex())
-            if (element.isDiscovered(player))
-                list[index] = element
-
-        return list
-    }
-
-    fun getUndiscoveredIngredients(player: ServerPlayerEntity): List<IngredientEffect> {
-        val list = mutableListOf<IngredientEffect>()
-        for ((_, element) in effects)
+    fun getUndiscoveredIngredientEffects(player: ServerPlayerEntity): List<IngredientEffect.Slot> {
+        val list = mutableListOf<IngredientEffect.Slot>()
+        for ((slot, element) in effects)
             if (! element.isDiscovered(player))
-                list.add(element)
+                list.add(slot)
 
         return list
     }

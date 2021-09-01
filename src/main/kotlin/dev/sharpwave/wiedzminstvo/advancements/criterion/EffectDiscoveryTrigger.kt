@@ -49,16 +49,18 @@ class EffectDiscoveryTrigger : AbstractCriterionTrigger<EffectDiscoveryTrigger.I
     }
 
     fun triggerRandom(player: ServerPlayerEntity, ingredient: IAlchemyIngredient) {
-        val undiscoveredEffects = ingredient.getUndiscoveredIngredients(player)
+        val undiscoveredEffects = ingredient.getUndiscoveredIngredientEffects(player)
 
-        val discoveredEffect = if (undiscoveredEffects.size > 1) {
-            val random = player.random.nextInt(undiscoveredEffects.size)
-            undiscoveredEffects[random]
-        } else {
-            undiscoveredEffects.first()
+        if (! undiscoveredEffects.isEmpty()) {
+            val discoveredEffect = if (undiscoveredEffects.size > 1) {
+                val random = player.random.nextInt(undiscoveredEffects.size)
+                undiscoveredEffects[random]
+            } else {
+                undiscoveredEffects.first()
+            }
+
+            trigger(player, ingredient.item, discoveredEffect)
         }
-
-        trigger(player, ingredient.item, discoveredEffect.slot)
     }
 
     class Instance(predicate: EntityPredicate.AndPredicate, private val item: Item, private val effectSlot: IngredientEffect.Slot) :
