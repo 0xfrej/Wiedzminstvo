@@ -2,6 +2,7 @@ package dev.sharpwave.wiedzminstvo.inventory.container
 
 import dev.sharpwave.wiedzminstvo.inventory.AlchemyInventory
 import dev.sharpwave.wiedzminstvo.inventory.AlchemyResultInventory
+import dev.sharpwave.wiedzminstvo.item.FusionIngredientItem
 import dev.sharpwave.wiedzminstvo.registry.BlockRegistry
 import dev.sharpwave.wiedzminstvo.registry.ContainerTypeRegistry
 import dev.sharpwave.wiedzminstvo.registry.ItemRegistry
@@ -63,6 +64,8 @@ class AlchemyContainer(id: Int, private val inv: PlayerInventory, private val ac
                         if (resultSlots.setRecipeUsed(level, player, recipe)) {
                             newStack = recipe.assemble(alchemySlots)
                         }
+                    } else if (canComposePotions()) {
+
                     }
 
                     resultSlots.setItem(0, newStack)
@@ -70,6 +73,11 @@ class AlchemyContainer(id: Int, private val inv: PlayerInventory, private val ac
                 }
             }
         }
+    }
+
+    private fun canComposePotions(): Boolean {
+        return alchemySlots.getFuseItem(0).item is FusionIngredientItem &&
+                alchemySlots.containsOnlyIngredients()
     }
 
 //    override fun quickMoveStack(player: PlayerEntity, slotId: Int): ItemStack {

@@ -11,6 +11,7 @@ interface IPotionTier {
     val uses: Int
     val amplifier: AmplifierType
     val amplifyBy: Double
+    val color: Int
 
     fun amplifyDuration(duration: Int): Int
     fun amplifyStrength(strength: Int): Int

@@ -4,6 +4,7 @@ import dev.sharpwave.wiedzminstvo.alchemy.IngredientEffect.Model
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.alchemy.IngredientEffect
+import dev.sharpwave.wiedzminstvo.alchemy.PotionTiers
 import dev.sharpwave.wiedzminstvo.alchemy.IngredientEffect.Model as InEffect
 import dev.sharpwave.wiedzminstvo.item.*
 import dev.sharpwave.wiedzminstvo.item.PotionItem
@@ -24,6 +25,13 @@ object ItemRegistry : IForgeRegistry {
     val ALCHEMY_TABLE by ITEMS.registerObject("alchemy_table") { block(BlockRegistry.ALCHEMY_TABLE, ModItemGroup.TAB_ALCHEMY) }
     val MORTAR by ITEMS.registerObject("mortar") { block(BlockRegistry.MORTAR, ModItemGroup.TAB_ALCHEMY) }
     val ALCHEMY_POTION by ITEMS.registerObject("alchemy_potion") { PotionItem() }
+    val DRAUGHT_OF_ORIGIN by ITEMS.registerObject("draught_of_origin") { FusionIngredientItem(PotionTiers.BASE) }
+    val DRAUGHT_OF_ANCESTORS by ITEMS.registerObject("draught_of_ancestors") { FusionIngredientItem(PotionTiers.MINOR_STRENGTH) }
+    val BREW_OF_TRANQUILITY by ITEMS.registerObject("brew_of_tranquility") { FusionIngredientItem(PotionTiers.MINOR_DURATION) }
+    val FLASK_OF_ANCIENT_SECRETS by ITEMS.registerObject("flask_of_ancient_secrets") { FusionIngredientItem(PotionTiers.MAJOR_STRENGTH) }
+    val DRAUGHT_OF_MASTER by ITEMS.registerObject("draught_of_master") { FusionIngredientItem(PotionTiers.MAJOR_DURATION) }
+    val PHILTER_OF_ENDLESS_TIME by ITEMS.registerObject("philter_of_endless_time") { FusionIngredientItem(PotionTiers.MAGIC_DURATION) }
+    val FLASK_OF_AWAKENING by ITEMS.registerObject("flask_of_awakening") { FusionIngredientItem(PotionTiers.MAGIC_STRENGTH) }
     val ALCHEMY_PASTE by ITEMS.registerObject("alchemy_paste") { item(ModItemGroup.TAB_ALCHEMY) }
     val SUSPICIOUS_ALCHEMY_PASTE by ITEMS.registerObject("suspicious_alchemy_paste") { SuspiciousAlchemyPaste() }
     val DARK_ESSENCE by ITEMS.registerObject("dark_essence") { item(ModItemGroup.TAB_ALCHEMY) }

@@ -1,5 +1,6 @@
 package dev.sharpwave.wiedzminstvo.inventory
 
+import dev.sharpwave.wiedzminstvo.alchemy.IAlchemyIngredient
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.IInventory
 import net.minecraft.inventory.IRecipeHelperPopulator
@@ -51,6 +52,17 @@ class AlchemyInventory(container: Container, ingredientSlots: Int, fuseSlots: In
 
     fun getIngredientItem(index: Int): ItemStack {
         return if (index < ingredientSlots) getItem(index) else ItemStack.EMPTY
+    }
+
+    fun containsOnlyIngredients(): Boolean {
+        for (i in 0 until ingredientSlots) {
+            val slot = getIngredientItem(i)
+            if (! slot.isEmpty && slot.item !is IAlchemyIngredient) {
+                return false
+            }
+        }
+
+        return true
     }
 
     override fun removeItemNoUpdate(index: Int): ItemStack {
