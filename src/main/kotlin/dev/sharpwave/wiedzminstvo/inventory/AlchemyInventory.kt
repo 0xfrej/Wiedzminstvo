@@ -45,6 +45,14 @@ class AlchemyInventory(container: Container, ingredientSlots: Int, fuseSlots: In
         return if (index >= this.containerSize) ItemStack.EMPTY else items[index]
     }
 
+    fun getFuseItem(index: Int): ItemStack {
+        return getItem(index + ingredientSlots)
+    }
+
+    fun getIngredientItem(index: Int): ItemStack {
+        return if (index < ingredientSlots) getItem(index) else ItemStack.EMPTY
+    }
+
     override fun removeItemNoUpdate(index: Int): ItemStack {
         return ItemStackHelper.takeItem(items, index)
     }

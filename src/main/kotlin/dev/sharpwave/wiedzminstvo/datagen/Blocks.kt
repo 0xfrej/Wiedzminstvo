@@ -17,6 +17,11 @@ class Blocks(generator: DataGenerator, existingFileHelper: ExistingFileHelper) :
         cross(getRegistryPath(BlockRegistry.BISON_GRASS), blockLocation(getRegistryPath(BlockRegistry.BISON_GRASS)))
         tallCross(getRegistryPath(BlockRegistry.BLUE_LOTUS), getRegistryPath(BlockRegistry.BLUE_LOTUS))
         tallCross(getRegistryPath(BlockRegistry.WINTER_CHERRY), getRegistryPath(BlockRegistry.WINTER_CHERRY))
+        cross(getRegistryPath(BlockRegistry.FOOLS_PARSLEY), blockLocation(getRegistryPath(BlockRegistry.FOOLS_PARSLEY)))
+        cross(getRegistryPath(BlockRegistry.BERBERCANE), blockLocation(getRegistryPath(BlockRegistry.BERBERCANE)))
+        cross(getRegistryPath(BlockRegistry.CELANDINE), blockLocation(getRegistryPath(BlockRegistry.CELANDINE)))
+        cross(getRegistryPath(BlockRegistry.CORTINARIUS), blockLocation(getRegistryPath(BlockRegistry.CORTINARIUS)))
+        cross(getRegistryPath(BlockRegistry.BALLISEFRUIT), blockLocation(getRegistryPath(BlockRegistry.BALLISEFRUIT)))
     }
 
     private fun tallCross(name: String, registryPath: String) {

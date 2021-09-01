@@ -6,6 +6,7 @@ import dev.sharpwave.wiedzminstvo.registry.RecipeRegistry
 import net.minecraft.advancements.criterion.InventoryChangeTrigger
 import net.minecraft.data.*
 import net.minecraft.item.Items
+import net.minecraft.item.crafting.IRecipeSerializer
 import net.minecraft.item.crafting.Ingredient
 import net.minecraft.util.IItemProvider
 import java.util.function.Consumer
@@ -22,6 +23,7 @@ class Recipes(generator: DataGenerator) : RecipeProvider(generator) {
         grinding(ItemRegistry.WINTER_CHERRY, ItemRegistry.GROUND_WINTER_CHERRY, .5F).unlockedBy("winter_cherry", InventoryChangeTrigger.Instance.hasItems(ItemRegistry.WINTER_CHERRY)).save(consumer)
 
         AlchemyRecipeBuilder.alchemy(ItemRegistry.ALCHEMY_PASTE).requires(ItemRegistry.GROUND_ARENARIA).requires(ItemRegistry.PORK_FAT).unlockedBy("pork_fat", InventoryChangeTrigger.Instance.hasItems(ItemRegistry.PORK_FAT)).unlockedBy("ground_arenaria", InventoryChangeTrigger.Instance.hasItems(ItemRegistry.GROUND_ARENARIA)).save(consumer)
+        CustomRecipeBuilder.special(RecipeRegistry.SUSPICIOUS_PASTE_SERIALIZER).save(consumer, "suspicious_alchemy_paste")
     }
 
     private fun grinding(

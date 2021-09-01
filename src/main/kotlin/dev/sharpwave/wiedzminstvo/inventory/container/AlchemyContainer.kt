@@ -4,6 +4,7 @@ import dev.sharpwave.wiedzminstvo.inventory.AlchemyInventory
 import dev.sharpwave.wiedzminstvo.inventory.AlchemyResultInventory
 import dev.sharpwave.wiedzminstvo.registry.BlockRegistry
 import dev.sharpwave.wiedzminstvo.registry.ContainerTypeRegistry
+import dev.sharpwave.wiedzminstvo.registry.ItemRegistry
 import dev.sharpwave.wiedzminstvo.registry.RecipeRegistry
 import dev.sharpwave.wiedzminstvo.tag.ItemTags
 import dev.sharpwave.wiedzminstvo.utils.RecipeHelper

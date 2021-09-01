@@ -17,5 +17,6 @@ object ItemTags {
     }
 
     val ALCHEMY_INGREDIENTS = bind("alchemy_ingredients")
+    val GROUND_ALCHEMY_INGREDIENTS = bind("ground_alchemy_ingredients")
     val ALCHEMY_FUSION_INGREDIENTS = bind("alchemy_fusion_ingredients")
 }

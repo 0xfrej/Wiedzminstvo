@@ -38,6 +38,4 @@ object PotionTiers : SimpleRegister<Int, IPotionTier>() {
     val MAJOR_STRENGTH by register(6, PotionTier("major_strength", 8, IPotionTier.AmplifierType.STRENGTH, 1.5))
     val MAGIC_DURATION by register(7, PotionTier("magic_duration", 12, IPotionTier.AmplifierType.DURATION, 2.0))
     val MAGIC_STRENGTH by register(8, PotionTier("magic_strength", 12, IPotionTier.AmplifierType.STRENGTH, 2.0))
-    val CREATIVE_DURATION by register(9, PotionTier("creative_duration", -1, IPotionTier.AmplifierType.DURATION, 2.0))
-    val CREATIVE_STRENGTH by register(10, PotionTier("creative_strength", -1, IPotionTier.AmplifierType.STRENGTH, 2.0))
 }

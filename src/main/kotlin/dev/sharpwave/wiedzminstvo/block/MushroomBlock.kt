@@ -4,14 +4,13 @@ import net.minecraft.block.BlockState
 import net.minecraft.tags.BlockTags
 import net.minecraft.util.Direction
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.shapes.ISelectionContext
 import net.minecraft.util.math.shapes.VoxelShape
 import net.minecraft.world.IBlockReader
 import net.minecraft.world.IWorldReader
 import net.minecraft.world.server.ServerWorld
 import java.util.*
 
-class AlchemyMushroomBlock(properties: Properties) : AlchemyFlowerBlock(properties) {
+class MushroomBlock(properties: Properties) : FlowerBlock(properties) {
 
     /*override fun getShape(
         state: BlockState,

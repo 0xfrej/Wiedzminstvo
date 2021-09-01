@@ -25,6 +25,7 @@ object ItemRegistry : IForgeRegistry {
     val MORTAR by ITEMS.registerObject("mortar") { block(BlockRegistry.MORTAR, ModItemGroup.TAB_ALCHEMY) }
     val ALCHEMY_POTION by ITEMS.registerObject("alchemy_potion") { PotionItem() }
     val ALCHEMY_PASTE by ITEMS.registerObject("alchemy_paste") { item(ModItemGroup.TAB_ALCHEMY) }
+    val SUSPICIOUS_ALCHEMY_PASTE by ITEMS.registerObject("suspicious_alchemy_paste") { SuspiciousAlchemyPaste() }
     val DARK_ESSENCE by ITEMS.registerObject("dark_essence") { item(ModItemGroup.TAB_ALCHEMY) }
     val FIFTH_ESSENCE by ITEMS.registerObject("fifth_essence") { item(ModItemGroup.TAB_ALCHEMY) }
     val ARENARIA by ITEMS.registerObject("arenaria") {
@@ -40,6 +41,7 @@ object ItemRegistry : IForgeRegistry {
     val BERBERCANE by ITEMS.registerObject("berbercane") { ingredientBlock(BlockRegistry.BERBERCANE, emptyList()) }
     val CELANDINE by ITEMS.registerObject("celandine") { ingredientBlock(BlockRegistry.CELANDINE, emptyList()) }
     val CORTINARIUS by ITEMS.registerObject("cortinarius") { ingredientBlock(BlockRegistry.CORTINARIUS, emptyList()) }
+    val BALLISEFRUIT by ITEMS.registerObject("ballisefruit") { ingredientBlock(BlockRegistry.BALLISEFRUIT, emptyList()) }
     val GROUND_ARENARIA by ITEMS.registerObject("ground_arenaria") { item(ModItemGroup.TAB_ALCHEMY) }
     val GROUND_BEGGARTICK by ITEMS.registerObject("ground_beggartick") { item(ModItemGroup.TAB_ALCHEMY) }
     val GROUND_BISON_GRASS by ITEMS.registerObject("ground_bison_grass") { item(ModItemGroup.TAB_ALCHEMY) }

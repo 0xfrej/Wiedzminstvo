@@ -21,6 +21,8 @@ class BlockStates(generator: DataGenerator, existingFileHelper: ExistingFileHelp
         simpleBlock(BlockRegistry.BISON_GRASS)
         tallFlowerBlock(BlockRegistry.BLUE_LOTUS)
         tallFlowerBlock(BlockRegistry.WINTER_CHERRY)
+        simpleBlock(BlockRegistry.FOOLS_PARSLEY)
+        simpleBlock(BlockRegistry.BERBERCANE)
     }
 
     private fun tallFlowerBlock(block: TallFlowerBlock) {

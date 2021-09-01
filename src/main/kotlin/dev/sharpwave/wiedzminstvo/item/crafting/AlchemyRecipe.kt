@@ -40,12 +40,12 @@ class AlchemyRecipe(
         return result.copy()
     }
 
-    override fun canCraftInDimensions(p_194133_1_: Int, p_194133_2_: Int): Boolean {
+    override fun canCraftInDimensions(width: Int, height: Int): Boolean {
         return true
     }
 
     override fun getSerializer(): IRecipeSerializer<*> {
-        return IRecipeSerializer.SUSPICIOUS_STEW
+        return RecipeRegistry.ALCHEMY_SERIALIZER
     }
 
     override fun getResultItem(): ItemStack {

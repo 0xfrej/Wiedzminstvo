@@ -51,6 +51,11 @@ class BlockLootTables(generator: DataGenerator) : AbstractLootTableProvider<Bloc
         dropSelf(BlockRegistry.BISON_GRASS)
         dropSelf(BlockRegistry.BLUE_LOTUS)
         dropSelf(BlockRegistry.WINTER_CHERRY)
+        dropSelf(BlockRegistry.FOOLS_PARSLEY)
+        dropSelf(BlockRegistry.BERBERCANE)
+        dropSelf(BlockRegistry.CELANDINE)
+        dropSelf(BlockRegistry.CORTINARIUS)
+        dropSelf(BlockRegistry.BALLISEFRUIT)
     }
 
     override fun buildTables(): Map<ResourceLocation, LootTable> {
