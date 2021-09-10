@@ -3,13 +3,16 @@ package dev.sharpwave.wiedzminstvo.items
 import net.minecraft.item.Item
 import net.minecraft.item.Rarity
 
-class BottomlessCarafeItem(properties: Item.Properties) : Item(properties) {
+open class AlchemyIngredientItem(properties: Item.Properties) : Item(properties) {
+
     constructor() : this(Properties())
 
-    class Properties : Item.Properties() {
+    constructor(rarity: Rarity) : this(Properties(rarity))
+
+    class Properties(rarity: Rarity = Rarity.COMMON) : Item.Properties() {
         init {
             setNoRepair()
-            rarity(Rarity.EPIC)
+            rarity(rarity)
             tab(ModItemGroup.TAB_ALCHEMY)
         }
     }

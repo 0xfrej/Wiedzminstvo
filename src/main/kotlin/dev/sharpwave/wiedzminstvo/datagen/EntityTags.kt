@@ -1,7 +1,7 @@
 package dev.sharpwave.wiedzminstvo.datagen
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
-import dev.sharpwave.wiedzminstvo.entity.EntityTypeTags
+import dev.sharpwave.wiedzminstvo.tags.EntityTypeTags
 import net.minecraft.data.DataGenerator
 import net.minecraft.data.EntityTypeTagsProvider
 import net.minecraft.entity.EntityType

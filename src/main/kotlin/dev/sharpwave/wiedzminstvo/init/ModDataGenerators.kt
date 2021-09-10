@@ -14,15 +14,16 @@ object ModDataGenerators {
         val existingFileHelper = event.existingFileHelper
 
         if (event.includeServer()) {
+            generator.addProvider(EntityTags(generator, event.existingFileHelper))
             //generator.addProvider(Recipes(generator))
             generator.addProvider(BlockLootTables(generator))
-            generator.addProvider(EntityTags(generator, event.existingFileHelper))
+            generator.addProvider(GlobalLootModifiers(generator))
         }
 
         if (event.includeClient()) {
             generator.addProvider(BlockStates(generator, existingFileHelper))
-            generator.addProvider(Items(generator, existingFileHelper))
             generator.addProvider(Blocks(generator, existingFileHelper))
+            generator.addProvider(Items(generator, existingFileHelper))
             generator.addProvider(Language(generator))
         }
     }

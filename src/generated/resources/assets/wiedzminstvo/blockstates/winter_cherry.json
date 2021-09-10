@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "wiedzminstvo:block/winter_cherry_top"
+    },
+    "half=lower": {
+      "model": "wiedzminstvo:block/winter_cherry_bottom"
+    }
+  }
+}

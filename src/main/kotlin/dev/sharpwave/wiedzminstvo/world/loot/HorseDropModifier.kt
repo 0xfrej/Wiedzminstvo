@@ -1,7 +1,6 @@
 package dev.sharpwave.wiedzminstvo.world.loot
 
 import com.google.gson.JsonObject
-import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.utils.HorseHelper.getHorseCap
 import net.minecraft.entity.Entity
 import net.minecraft.entity.passive.horse.AbstractHorseEntity
@@ -12,14 +11,8 @@ import net.minecraft.loot.conditions.ILootCondition
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer
 import net.minecraftforge.common.loot.LootModifier
-import net.minecraftforge.event.RegistryEvent
-import net.minecraftforge.eventbus.api.SubscribeEvent
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus
 
-
-@EventBusSubscriber(modid = WiedzminstvoMod.MODID, bus = Bus.MOD)
-open class HorseDropModifier protected constructor(conditionsIn: Array<ILootCondition>?) : LootModifier(conditionsIn) {
+class HorseDropModifier constructor(conditionsIn: Array<ILootCondition>) : LootModifier(conditionsIn) {
 
     override fun doApply(generatedLoot: MutableList<ItemStack>, context: LootContext): List<ItemStack> {
         val entity: Entity? = context.getParamOrNull(LootParameters.THIS_ENTITY)
@@ -33,11 +26,7 @@ open class HorseDropModifier protected constructor(conditionsIn: Array<ILootCond
     }
 
     private class Serializer : GlobalLootModifierSerializer<HorseDropModifier>() {
-        override fun read(
-            location: ResourceLocation,
-            `object`: JsonObject,
-            ailootcondition: Array<ILootCondition>
-        ): HorseDropModifier {
+        override fun read(location: ResourceLocation, `object`: JsonObject, ailootcondition: Array<ILootCondition>): HorseDropModifier {
             return HorseDropModifier(ailootcondition)
         }
 
@@ -46,10 +35,9 @@ open class HorseDropModifier protected constructor(conditionsIn: Array<ILootCond
         }
     }
 
-    companion object {
-        @SubscribeEvent
-        fun registerModifierSerializers(event: RegistryEvent.Register<GlobalLootModifierSerializer<*>?>) {
-            event.registry.register(Serializer().setRegistryName(ResourceLocation(WiedzminstvoMod.MODID, "horse_drop")))
+    companion object : ISerializerFactory<HorseDropModifier> {
+        override fun serializerFactory(): GlobalLootModifierSerializer<HorseDropModifier> {
+            return Serializer()
         }
     }
 }

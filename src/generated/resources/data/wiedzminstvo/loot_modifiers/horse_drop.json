@@ -3,9 +3,10 @@
     {
       "condition": "minecraft:entity_properties",
       "predicate": {
-        "type": "#wiedzminstvo:horse"
+        "type": "#wiedzminstvo:horses"
       },
-      "entity": "THIS"
+      "entity": "this"
     }
-  ]
+  ],
+  "type": "wiedzminstvo:horse_drop"
 }

@@ -17,4 +17,7 @@ object BlockRegistry : IForgeRegistry {
 
     val ARENARIA by BLOCKS.registerObject("arenaria") { AlchemyFlowerBlock.make(Effects.HEAL, 1) }
     val BEGGARTICK by BLOCKS.registerObject("beggartick_blossoms") { AlchemyFlowerBlock.make() }
+    val BISON_GRASS by BLOCKS.registerObject("bison_grass") { AlchemyFlowerBlock.make() }
+    val BLUE_LOTUS by BLOCKS.registerObject("blue_lotus") { AlchemyFlowerBlock.makeTall() }
+    val WINTER_CHERRY by BLOCKS.registerObject("winter_cherry") { AlchemyFlowerBlock.makeTall() }
 }
