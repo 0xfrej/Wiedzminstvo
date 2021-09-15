@@ -12,20 +12,19 @@ class Blocks(generator: DataGenerator, existingFileHelper: ExistingFileHelper) :
     BlockModelProvider(generator, WiedzminstvoMod.MODID, existingFileHelper) {
 
     override fun registerModels() {
-        cross(getRegistryPath(BlockRegistry.ARENARIA), blockLocation(getRegistryPath(BlockRegistry.ARENARIA)))
-        cross(getRegistryPath(BlockRegistry.BEGGARTICK), blockLocation(getRegistryPath(BlockRegistry.BEGGARTICK)))
-        cross(getRegistryPath(BlockRegistry.BISON_GRASS), blockLocation(getRegistryPath(BlockRegistry.BISON_GRASS)))
-        tallCross(getRegistryPath(BlockRegistry.BLUE_LOTUS), getRegistryPath(BlockRegistry.BLUE_LOTUS))
-        tallCross(getRegistryPath(BlockRegistry.WINTER_CHERRY), getRegistryPath(BlockRegistry.WINTER_CHERRY))
-        cross(getRegistryPath(BlockRegistry.FOOLS_PARSLEY), blockLocation(getRegistryPath(BlockRegistry.FOOLS_PARSLEY)))
-        cross(getRegistryPath(BlockRegistry.BERBERCANE), blockLocation(getRegistryPath(BlockRegistry.BERBERCANE)))
-        cross(getRegistryPath(BlockRegistry.CELANDINE), blockLocation(getRegistryPath(BlockRegistry.CELANDINE)))
-        cross(getRegistryPath(BlockRegistry.CORTINARIUS), blockLocation(getRegistryPath(BlockRegistry.CORTINARIUS)))
-        cross(getRegistryPath(BlockRegistry.BALLISEFRUIT), blockLocation(getRegistryPath(BlockRegistry.BALLISEFRUIT)))
+        cross(getRegistryPath(BlockRegistry.ARENARIA))
+        cross(getRegistryPath(BlockRegistry.BEGGARTICK))
+        cross(getRegistryPath(BlockRegistry.BISON_GRASS))
+        cross(getRegistryPath(BlockRegistry.CORTINARIUS))
+        cross(getRegistryPath(BlockRegistry.PUFFBALL))
     }
 
-    private fun tallCross(name: String, registryPath: String) {
-        cross(name + "_top", blockLocation(registryPath + "_top"))
-        cross(name + "_bottom", blockLocation(registryPath + "_bottom"))
+    private fun cross(name: String) {
+        cross(name, blockLocation(name))
+    }
+
+    private fun tallCross(registryPath: String) {
+        cross(registryPath + "_top", blockLocation(registryPath + "_top"))
+        cross(registryPath + "_bottom", blockLocation(registryPath + "_bottom"))
     }
 }

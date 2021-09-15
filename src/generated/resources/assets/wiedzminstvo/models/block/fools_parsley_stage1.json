@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "wiedzminstvo:block/winter_cherry_top"
+    "cross": "wiedzminstvo:block/fools_parsley_stage1"
   }
 }

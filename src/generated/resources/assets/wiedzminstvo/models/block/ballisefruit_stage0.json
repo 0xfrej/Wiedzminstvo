@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "wiedzminstvo:block/ballisefruit_stage0"
+  }
+}

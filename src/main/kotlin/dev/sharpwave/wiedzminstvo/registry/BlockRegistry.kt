@@ -22,17 +22,21 @@ object BlockRegistry : IForgeRegistry {
     val MORTAR by BLOCKS.registerObject("mortar") { MortarBlock(AbstractBlock.Properties.of(Material.STONE).strength(4F).sound(SoundType.STONE)) }
     val ARENARIA by BLOCKS.registerObject("arenaria") { FlowerBlock(flowerProperties()) }
     val BEGGARTICK by BLOCKS.registerObject("beggartick_blossoms") { FlowerBlock(flowerProperties()) }
+    val PUFFBALL by BLOCKS.registerObject("puffball") { FlowerBlock(flowerProperties()) }
     val BISON_GRASS by BLOCKS.registerObject("bison_grass") { FlowerBlock(flowerProperties()) }
-    val BLUE_LOTUS by BLOCKS.registerObject("blue_lotus") { TallAlchemyFlowerBlock(flowerProperties()) }
-    val WINTER_CHERRY by BLOCKS.registerObject("winter_cherry") { TallAlchemyFlowerBlock(flowerProperties()) }
-    val FOOLS_PARSLEY by BLOCKS.registerObject("fools_parsley") { FlowerBlock(flowerProperties()) }
-    val BERBERCANE by BLOCKS.registerObject("berbercane") { FlowerBlock(flowerProperties()) }
-    val CELANDINE by BLOCKS.registerObject("celandine") { FlowerBlock(flowerProperties()) }
+    val BLUE_LOTUS by BLOCKS.registerObject("blue_lotus") { GrowableTallFlowerBlock(growableFlowerProperties(), GrowableConditions.NONE) }
+    val WINTER_CHERRY by BLOCKS.registerObject("winter_cherry") { GrowableTallFlowerBlock(growableFlowerProperties(), GrowableConditions.NONE) }
+    val FOOLS_PARSLEY by BLOCKS.registerObject("fools_parsley") { GrowableFlowerBlock(growableFlowerProperties(), GrowableConditions.NONE) }
+    val BERBERCANE by BLOCKS.registerObject("berbercane") { GrowableFlowerBlock(growableFlowerProperties(), GrowableConditions.NONE) }
+    val CELANDINE by BLOCKS.registerObject("celandine") { GrowableFlowerBlock(growableFlowerProperties(), GrowableConditions.NONE) }
     val CORTINARIUS by BLOCKS.registerObject("cortinarius") { MushroomBlock(mushroomProperties()) }
-    val BALLISEFRUIT by BLOCKS.registerObject("ballisefruit") { FlowerBlock(flowerProperties()) }
+    val BALLISEFRUIT by BLOCKS.registerObject("ballisefruit") { GrowableFlowerBlock(growableFlowerProperties(), GrowableConditions.NONE) }
 
     private fun flowerProperties() : AbstractBlock.Properties {
         return AbstractBlock.Properties.of(Material.PLANT).noOcclusion().noCollission().instabreak().sound(SoundType.GRASS)
+    }
+    private fun growableFlowerProperties() : AbstractBlock.Properties {
+        return AbstractBlock.Properties.of(Material.PLANT).noOcclusion().noCollission().instabreak().randomTicks().sound(SoundType.GRASS)
     }
     private fun mushroomProperties() : AbstractBlock.Properties {
         return AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_BROWN).noCollission().randomTicks()

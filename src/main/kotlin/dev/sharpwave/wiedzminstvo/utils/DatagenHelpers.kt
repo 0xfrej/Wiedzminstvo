@@ -27,6 +27,14 @@ object DatagenHelpers {
         return blockLocation(itemName + "_top")
     }
 
+    fun growableTallFlowerBlockLocation(itemName: String): ResourceLocation {
+        return blockLocation(itemName + "_top_stage3")
+    }
+
+    fun growableFlowerBlockLocation(itemName: String): ResourceLocation {
+        return blockLocation(itemName + "_stage3")
+    }
+
     private fun location(location: String, itemName: String): ResourceLocation {
         return ResourceLocation(WiedzminstvoMod.MODID, "$location/$itemName")
     }

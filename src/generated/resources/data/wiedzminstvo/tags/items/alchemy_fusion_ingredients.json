@@ -1,4 +1,13 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "wiedzminstvo:alchemy_paste",
+    "wiedzminstvo:draught_of_origin",
+    "wiedzminstvo:draught_of_ancestors",
+    "wiedzminstvo:brew_of_tranquility",
+    "wiedzminstvo:flask_of_ancient_secrets",
+    "wiedzminstvo:draught_of_master",
+    "wiedzminstvo:philter_of_endless_time",
+    "wiedzminstvo:flask_of_awakening"
+  ]
 }

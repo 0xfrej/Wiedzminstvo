@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "wiedzminstvo:block/blue_lotus_top"
+    "cross": "wiedzminstvo:block/blue_lotus_top_stage0"
   }
 }

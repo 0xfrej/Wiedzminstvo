@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.RenderTypeLookup as RTL
 @OnlyIn(Dist.CLIENT)
 object RenderTypeLookup {
     fun register() {
-        val renderCutout = RenderType.cutoutMipped()
+        val renderCutout = RenderType.cutout()
         RTL.setRenderLayer(BlockRegistry.ARENARIA, renderCutout)
         RTL.setRenderLayer(BlockRegistry.BEGGARTICK, renderCutout)
         RTL.setRenderLayer(BlockRegistry.BISON_GRASS, renderCutout)
@@ -19,5 +19,7 @@ object RenderTypeLookup {
         RTL.setRenderLayer(BlockRegistry.BERBERCANE, renderCutout)
         RTL.setRenderLayer(BlockRegistry.CELANDINE, renderCutout)
         RTL.setRenderLayer(BlockRegistry.CORTINARIUS, renderCutout)
+        RTL.setRenderLayer(BlockRegistry.BALLISEFRUIT, renderCutout)
+        RTL.setRenderLayer(BlockRegistry.PUFFBALL, renderCutout)
     }
 }

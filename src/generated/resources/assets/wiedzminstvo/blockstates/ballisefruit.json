@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "wiedzminstvo:block/ballisefruit_stage0"
+    },
+    "age=1": {
+      "model": "wiedzminstvo:block/ballisefruit_stage1"
+    },
+    "age=2": {
+      "model": "wiedzminstvo:block/ballisefruit_stage2"
+    },
+    "age=3": {
+      "model": "wiedzminstvo:block/ballisefruit_stage3"
+    }
+  }
+}

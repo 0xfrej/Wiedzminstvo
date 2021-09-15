@@ -43,7 +43,8 @@ object ItemRegistry : IForgeRegistry {
     }
     val BEGGARTICK by ITEMS.registerObject("beggartick_blossoms") { ingredientBlock(BlockRegistry.BEGGARTICK, emptyList()) }
     val BISON_GRASS by ITEMS.registerObject("bison_grass") { ingredientBlock(BlockRegistry.BISON_GRASS, emptyList()) }
-    val BLUE_LOTUS by ITEMS.registerObject("blue_lotus") { tallIngredientBlock(BlockRegistry.BLUE_LOTUS,emptyList()) }
+    val PUFFBALL by ITEMS.registerObject("puffball") { ingredientBlock(BlockRegistry.PUFFBALL, emptyList()) }
+    val BLUE_LOTUS by ITEMS.registerObject("blue_lotus") { tallIngredientBlock(BlockRegistry.BLUE_LOTUS, emptyList()) }
     val WINTER_CHERRY by ITEMS.registerObject("winter_cherry") { tallIngredientBlock(BlockRegistry.WINTER_CHERRY, emptyList()) }
     val FOOLS_PARSLEY by ITEMS.registerObject("fools_parsley") { ingredientBlock(BlockRegistry.FOOLS_PARSLEY, emptyList()) }
     val BERBERCANE by ITEMS.registerObject("berbercane") { ingredientBlock(BlockRegistry.BERBERCANE, emptyList()) }

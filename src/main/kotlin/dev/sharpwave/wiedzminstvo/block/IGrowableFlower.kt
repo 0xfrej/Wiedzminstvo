@@ -1,4 +1,4 @@
-package dev.sharpwave.wiedzminstvo.item
+package dev.sharpwave.wiedzminstvo.block
 
 import net.minecraft.block.BlockState
 import net.minecraft.state.IntegerProperty
@@ -11,13 +11,10 @@ import net.minecraftforge.common.extensions.IForgeBlock
 import java.util.*
 
 interface IGrowableFlower : IForgeBlock {
-    val minSurvivalBrightness: Int
-    val minGrowingBrightness: Int
+    val conditions: GrowableConditions.Condition
 
     fun getMaxAge(): Int
     fun getAgeProperty(): IntegerProperty
-
-    fun getDefaultBlockState(): BlockState
 
     fun getAge(state: BlockState): Int {
         return state.getValue(getAgeProperty())
@@ -31,15 +28,13 @@ interface IGrowableFlower : IForgeBlock {
         return ! isMaxAge(state)
     }
 
-    fun getStateForAge(age: Int): BlockState {
-        return getDefaultBlockState().setValue(getAgeProperty(), Integer.valueOf(age))
-    }
+    fun getStateForAge(age: Int): BlockState
 
     // TODO: Tweak the speed
     fun randomTick(state: BlockState, level: ServerWorld, pos: BlockPos, random: Random) {
         if (!level.isAreaLoaded(pos, 1)) return  // Forge: prevent loading unloaded chunks when checking neighbor's light
 
-        if (level.getRawBrightness(pos, 0) >= minGrowingBrightness) {
+        if (level.getRawBrightness(pos, 0) >= conditions.minGrowingBrightness) {
             val i = getAge(state)
             if (i < getMaxAge()) {
                 val f = getGrowthSpeed(level, pos)
@@ -61,7 +56,7 @@ interface IGrowableFlower : IForgeBlock {
         return (reader.getRawBrightness(
             pos,
             0
-        ) > minSurvivalBrightness || reader.canSeeSky(pos))
+        ) > conditions.minSurvivalBrightness || reader.canSeeSky(pos))
     }
 
     // TODO: Checkup if this doesn't need rewrite

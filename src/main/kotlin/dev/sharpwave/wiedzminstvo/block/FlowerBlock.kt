@@ -1,7 +1,6 @@
 package dev.sharpwave.wiedzminstvo.block
 
 import net.minecraft.block.*
-import net.minecraft.state.properties.BlockStateProperties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.shapes.ISelectionContext
 import net.minecraft.util.math.shapes.VoxelShape

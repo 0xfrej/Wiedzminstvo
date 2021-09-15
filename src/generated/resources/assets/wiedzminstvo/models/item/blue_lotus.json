@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "wiedzminstvo:block/blue_lotus_top"
+    "layer0": "wiedzminstvo:block/blue_lotus_top_stage3"
   }
 }

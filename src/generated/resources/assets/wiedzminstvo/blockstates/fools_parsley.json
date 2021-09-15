@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "wiedzminstvo:block/fools_parsley_stage0"
+    },
+    "age=1": {
+      "model": "wiedzminstvo:block/fools_parsley_stage1"
+    },
+    "age=2": {
+      "model": "wiedzminstvo:block/fools_parsley_stage2"
+    },
+    "age=3": {
+      "model": "wiedzminstvo:block/fools_parsley_stage3"
+    }
+  }
+}
