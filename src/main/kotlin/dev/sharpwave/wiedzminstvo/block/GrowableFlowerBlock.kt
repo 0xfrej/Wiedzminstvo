@@ -44,7 +44,7 @@ class GrowableFlowerBlock(
         return if (state.getValue(AGE) == getMaxAge()) {
             val resultStack = harvest(player.getItemInHand(hand))
             WorldHelper.spawnItemStack(level, pos, resultStack)
-            state.setValue(AGE, 0)
+            level.setBlock(pos, getStateForAge(0), 2)
             ActionResultType.CONSUME
         }
         else

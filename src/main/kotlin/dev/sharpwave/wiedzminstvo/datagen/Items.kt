@@ -36,6 +36,12 @@ class Items(generator: DataGenerator, existingFileHelper: ExistingFileHelper) :
         // TODO: Add textures for ground flowers
         //singleTexture(getRegistryPath(ItemRegistry.GROUND_BLUE_LOTUS), generatedItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.GROUND_BLUE_LOTUS)))
         //singleTexture(getRegistryPath(ItemRegistry.GROUND_WINTER_CHERRY), generatedItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.GROUND_WINTER_CHERRY)))
+        singleTexture(getRegistryPath(ItemRegistry.HARVESTED_BALLISEFRUIT), generatedItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.HARVESTED_BALLISEFRUIT)))
+        singleTexture(getRegistryPath(ItemRegistry.HARVESTED_BERNERCANE), generatedItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.HARVESTED_BERNERCANE)))
+        singleTexture(getRegistryPath(ItemRegistry.HARVESTED_BLUE_LOTUS), generatedItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.HARVESTED_BLUE_LOTUS)))
+        singleTexture(getRegistryPath(ItemRegistry.HARVESTED_CELANDINE), generatedItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.HARVESTED_CELANDINE)))
+        singleTexture(getRegistryPath(ItemRegistry.HARVESTED_FOOLS_PARSLEY), generatedItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.HARVESTED_FOOLS_PARSLEY)))
+        singleTexture(getRegistryPath(ItemRegistry.HARVESTED_WINTER_CHERRY), generatedItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.HARVESTED_WINTER_CHERRY)))
         singleTexture(getRegistryPath(ItemRegistry.PORK_FAT), generatedItem(), "layer0", itemLocation(getRegistryPath(ItemRegistry.PORK_FAT)))
         singleTexture(getRegistryPath(ItemRegistry.ALCHEMY_POTION), generatedItem(), "layer1", itemLocation(getRegistryPath(ItemRegistry.ALCHEMY_POTION))).texture("layer0", itemLocation(getRegistryPath(ItemRegistry.ALCHEMY_POTION)+"_overlay"))
     }

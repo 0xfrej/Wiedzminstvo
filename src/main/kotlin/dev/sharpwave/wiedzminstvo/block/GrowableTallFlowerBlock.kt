@@ -45,10 +45,10 @@ class GrowableTallFlowerBlock(
         hand: Hand,
         trace: BlockRayTraceResult
     ): ActionResultType {
-        return if (state.getValue(GrowableFlowerBlock.AGE) == getMaxAge()) {
+        return if (state.getValue(HALF) == DoubleBlockHalf.UPPER && state.getValue(GrowableFlowerBlock.AGE) == getMaxAge()) {
             val resultStack = harvest(player.getItemInHand(hand))
             WorldHelper.spawnItemStack(level, pos, resultStack)
-            state.setValue(GrowableFlowerBlock.AGE, 0)
+            level.setBlock(pos, getStateForAge(0), 2)
             ActionResultType.CONSUME
         }
         else
@@ -91,7 +91,7 @@ class GrowableTallFlowerBlock(
         }
 
         override fun getStateForAge(age: Int): BlockState {
-            return parent.defaultBlockState().setValue(AGE, Integer.valueOf(age))
+            return parent.defaultBlockState().setValue(AGE, Integer.valueOf(age)).setValue(HALF, DoubleBlockHalf.UPPER)
         }
     }
 }
