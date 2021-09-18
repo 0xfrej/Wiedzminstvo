@@ -22,16 +22,16 @@ class BlockLootTables(generator: DataGenerator) : AbstractLootTableProvider<Bloc
     //private val HAS_SHEARS = MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS))
     //private val HAS_SHEARS_OR_SILK_TOUCH: ILootCondition.IBuilder = HAS_SHEARS.or(HAS_SILK_TOUCH)
     //private val HAS_NO_SHEARS_OR_SILK_TOUCH = HAS_SHEARS_OR_SILK_TOUCH.invert()
-    private val EXPLOSION_RESISTANT: Set<Item> = Stream.of(Blocks.DRAGON_EGG, Blocks.BEACON, Blocks.CONDUIT,Blocks.SKELETON_SKULL,Blocks.WITHER_SKELETON_SKULL,Blocks.PLAYER_HEAD,Blocks.ZOMBIE_HEAD,Blocks.CREEPER_HEAD, Blocks.DRAGON_HEAD,Blocks.SHULKER_BOX,Blocks.BLACK_SHULKER_BOX,Blocks.BLUE_SHULKER_BOX,Blocks.BROWN_SHULKER_BOX,Blocks.CYAN_SHULKER_BOX,Blocks.GRAY_SHULKER_BOX,Blocks.GREEN_SHULKER_BOX,Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.LIGHT_GRAY_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX,Blocks.ORANGE_SHULKER_BOX, Blocks.PINK_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.WHITE_SHULKER_BOX,Blocks.YELLOW_SHULKER_BOX).map { obj: Block -> obj.asItem() }.collect(ImmutableSet.toImmutableSet())
+    private val explosionResistant: Set<Item> = Stream.of(Blocks.DRAGON_EGG, Blocks.BEACON, Blocks.CONDUIT,Blocks.SKELETON_SKULL,Blocks.WITHER_SKELETON_SKULL,Blocks.PLAYER_HEAD,Blocks.ZOMBIE_HEAD,Blocks.CREEPER_HEAD, Blocks.DRAGON_HEAD,Blocks.SHULKER_BOX,Blocks.BLACK_SHULKER_BOX,Blocks.BLUE_SHULKER_BOX,Blocks.BROWN_SHULKER_BOX,Blocks.CYAN_SHULKER_BOX,Blocks.GRAY_SHULKER_BOX,Blocks.GREEN_SHULKER_BOX,Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.LIGHT_GRAY_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX,Blocks.ORANGE_SHULKER_BOX, Blocks.PINK_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.WHITE_SHULKER_BOX,Blocks.YELLOW_SHULKER_BOX).map { obj: Block -> obj.asItem() }.collect(ImmutableSet.toImmutableSet())
     //private val NORMAL_LEAVES_SAPLING_CHANCES = floatArrayOf(0.05f, 0.0625f, 0.083333336f, 0.1f)
     //private val JUNGLE_LEAVES_SAPLING_CHANGES = floatArrayOf(0.025f, 0.027777778f, 0.03125f, 0.041666668f, 0.1f)
 
     private fun <T> applyExplosionDecay(provider: IItemProvider, consumer: ILootFunctionConsumer<T>): T {
-        return (if (!EXPLOSION_RESISTANT.contains(provider.asItem())) consumer.apply(ExplosionDecay.explosionDecay()) else consumer.unwrap()) as T
+        return (if (!explosionResistant.contains(provider.asItem())) consumer.apply(ExplosionDecay.explosionDecay()) else consumer.unwrap()) as T
     }
 
     private fun <T> applyExplosionCondition(provider: IItemProvider, consumer: ILootConditionConsumer<T>): T {
-        return (if (!EXPLOSION_RESISTANT.contains(provider.asItem())) consumer.`when`(SurvivesExplosion.survivesExplosion()) else consumer.unwrap()) as T
+        return (if (!explosionResistant.contains(provider.asItem())) consumer.`when`(SurvivesExplosion.survivesExplosion()) else consumer.unwrap()) as T
     }
 
     private fun createSingleItemTable(provider: IItemProvider): LootTable.Builder {

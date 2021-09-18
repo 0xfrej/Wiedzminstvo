@@ -6,7 +6,6 @@ import dev.sharpwave.wiedzminstvo.registry.RecipeRegistry
 import net.minecraft.advancements.criterion.InventoryChangeTrigger
 import net.minecraft.data.*
 import net.minecraft.item.Items
-import net.minecraft.item.crafting.IRecipeSerializer
 import net.minecraft.item.crafting.Ingredient
 import net.minecraft.util.IItemProvider
 import java.util.function.Consumer

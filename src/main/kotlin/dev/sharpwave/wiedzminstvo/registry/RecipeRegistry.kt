@@ -5,13 +5,10 @@ import dev.sharpwave.wiedzminstvo.item.crafting.AlchemyRecipe
 import dev.sharpwave.wiedzminstvo.item.crafting.AlchemyRecipeSerializer
 import dev.sharpwave.wiedzminstvo.item.crafting.MortarRecipe
 import dev.sharpwave.wiedzminstvo.item.crafting.SuspiciousAlchemyPasteRecipe
-import net.minecraft.item.Item
 import net.minecraft.item.crafting.*
-import net.minecraft.util.ResourceLocation
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.eventbus.KotlinEventBus
 import thedarkcolour.kotlinforforge.forge.KDeferredRegister
-import kotlin.reflect.typeOf
 
 
 object RecipeRegistry : IForgeRegistry {

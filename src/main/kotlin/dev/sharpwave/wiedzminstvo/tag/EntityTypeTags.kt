@@ -15,6 +15,5 @@ object EntityTypeTags {
         return HELPER.bind("$MODID:$group")
     }
 
-    val HORSES = bind("horses")
     val PIGLIKE = bind("piglike")
 }

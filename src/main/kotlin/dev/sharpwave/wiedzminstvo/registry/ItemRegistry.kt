@@ -3,7 +3,6 @@ package dev.sharpwave.wiedzminstvo.registry
 import dev.sharpwave.wiedzminstvo.alchemy.IngredientEffect.Model
 
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
-import dev.sharpwave.wiedzminstvo.alchemy.IngredientEffect
 import dev.sharpwave.wiedzminstvo.alchemy.PotionTiers
 import dev.sharpwave.wiedzminstvo.alchemy.IngredientEffect.Model as InEffect
 import dev.sharpwave.wiedzminstvo.item.*

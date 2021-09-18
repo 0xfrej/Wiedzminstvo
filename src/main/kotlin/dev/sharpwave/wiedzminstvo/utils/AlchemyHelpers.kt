@@ -8,7 +8,6 @@ import net.minecraft.item.Item
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.Color
 import net.minecraft.util.text.Style
-import net.minecraft.util.text.TextFormatting
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 

@@ -51,7 +51,7 @@ class EffectDiscoveryTrigger : AbstractCriterionTrigger<EffectDiscoveryTrigger.I
     fun triggerRandom(player: ServerPlayerEntity, ingredient: IAlchemyIngredient) {
         val undiscoveredEffects = ingredient.getUndiscoveredIngredientEffects(player)
 
-        if (! undiscoveredEffects.isEmpty()) {
+        if (undiscoveredEffects.isNotEmpty()) {
             val discoveredEffect = if (undiscoveredEffects.size > 1) {
                 val random = player.random.nextInt(undiscoveredEffects.size)
                 undiscoveredEffects[random]

@@ -4,7 +4,6 @@ import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.registry.ItemRegistry
 import dev.sharpwave.wiedzminstvo.tag.EntityTypeTags
 import dev.sharpwave.wiedzminstvo.utils.DatagenHelpers.getRegistryPath
-import dev.sharpwave.wiedzminstvo.world.loot.HorseDropModifier
 import dev.sharpwave.wiedzminstvo.world.loot.KillDropModifier
 import net.minecraft.advancements.criterion.EntityPredicate
 import net.minecraft.data.DataGenerator
@@ -18,9 +17,6 @@ import dev.sharpwave.wiedzminstvo.registry.GlobalLootModifiersRegistry as GLM
 
 class GlobalLootModifiers(generator: DataGenerator) : GlobalLootModifierProvider(generator, WiedzminstvoMod.MODID) {
     override fun start() {
-        add(GLM.HORSE_DROP, HorseDropModifier(arrayOf(
-            EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, predicate().of(EntityTypeTags.HORSES)).build()
-        )))
         add(GLM.PIG_DROP, KillDropModifier(arrayOf(
             EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, predicate().of(EntityTypeTags.PIGLIKE)).build(),
             RandomChanceWithLooting.randomChanceAndLootingBoost(0.6F, 0.1F).build()

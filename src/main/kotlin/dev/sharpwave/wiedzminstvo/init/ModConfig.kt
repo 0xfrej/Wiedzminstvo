@@ -3,7 +3,6 @@ package dev.sharpwave.wiedzminstvo.init
 import com.electronwill.nightconfig.core.file.CommentedFileConfig
 import com.electronwill.nightconfig.core.io.WritingMode
 import dev.sharpwave.wiedzminstvo.Logger
-import dev.sharpwave.wiedzminstvo.config.HorseConfig
 import dev.sharpwave.wiedzminstvo.config.MainConfig
 import net.minecraftforge.common.ForgeConfigSpec
 import java.io.File
@@ -17,7 +16,6 @@ object ModConfig {
     init {
         // Build configs from each config definition class
         MainConfig(this.serverBuilder, this.clientBuilder)
-        HorseConfig(this.serverBuilder, this.clientBuilder)
 
         // Build configs
         serverConfig = serverBuilder.build()

@@ -8,25 +8,19 @@ import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 
 object ModItemGroup {
-    val TAB_ALCHEMY = object : ItemGroup("wiedzminstvo_alchemy") {
+    val TAB_ALCHEMY: ItemGroup = object : ItemGroup("wiedzminstvo_alchemy") {
         @OnlyIn(Dist.CLIENT)
         override fun makeIcon(): ItemStack {
             return ItemStack(Blocks.BREWING_STAND)
         }
     }.setRecipeFolderName("alchemy")
-    val TAB_EQUIPMENT = object : ItemGroup("wiedzminstvo_equipment") {
-        @OnlyIn(Dist.CLIENT)
-        override fun makeIcon(): ItemStack {
-            return ItemStack(Items.ARMOR_STAND)
-        }
-    }.setRecipeFolderName("equipment")
-    val TAB_POTIONS = object : ItemGroup("wiedzminstvo_potions") {
+    val TAB_POTIONS: ItemGroup = object : ItemGroup("wiedzminstvo_potions") {
         @OnlyIn(Dist.CLIENT)
         override fun makeIcon(): ItemStack {
             return ItemStack(Items.POTION)
         }
     }.setRecipeFolderName("potions")
-    val TAB_MISC = object : ItemGroup("wiedzminstvo_misc") {
+    val TAB_MISC: ItemGroup = object : ItemGroup("wiedzminstvo_misc") {
         @OnlyIn(Dist.CLIENT)
         override fun makeIcon(): ItemStack {
             return ItemStack(Items.BOOKSHELF)

@@ -4,13 +4,11 @@ import dev.sharpwave.wiedzminstvo.advancements.criterion.Criterions
 import dev.sharpwave.wiedzminstvo.locale.GeneralStrings
 import dev.sharpwave.wiedzminstvo.utils.AlchemyHelpers.getStyleForIngredientEffect
 import dev.sharpwave.wiedzminstvo.utils.AlchemyHelpers.ingredientEffectIsDiscovered
-import dev.sharpwave.wiedzminstvo.utils.AlchemyHelpers.ingredientEffectLocation
 import net.minecraft.advancements.CriteriaTriggers
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.util.ITooltipFlag
 import net.minecraft.entity.LivingEntity
-import net.minecraft.entity.ai.attributes.AttributeModifier
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.ServerPlayerEntity
 import net.minecraft.item.ItemStack
@@ -19,16 +17,13 @@ import net.minecraft.stats.Stats
 import net.minecraft.util.ActionResult
 import net.minecraft.util.DrinkHelper
 import net.minecraft.util.Hand
-import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.StringTextComponent
-import net.minecraft.util.text.TextFormatting
 import net.minecraft.util.text.TranslationTextComponent
 import net.minecraft.world.World
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 import net.minecraftforge.common.extensions.IForgeItem
-import javax.swing.Action
 
 interface IAlchemyIngredient: IForgeItem {
     val hasEffects: Boolean

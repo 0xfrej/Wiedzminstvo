@@ -4,7 +4,9 @@ import com.mojang.blaze3d.matrix.MatrixStack
 import dev.sharpwave.wiedzminstvo.WiedzminstvoMod
 import dev.sharpwave.wiedzminstvo.tileentity.MortarPestleTileEntity
 import net.minecraft.client.Minecraft
+import net.minecraft.client.renderer.BlockModelRenderer
 import net.minecraft.client.renderer.IRenderTypeBuffer
+import net.minecraft.client.renderer.ItemRenderer
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.model.IBakedModel
 import net.minecraft.client.renderer.model.ItemCameraTransforms
@@ -124,8 +126,8 @@ class MortarPestleTileEntityRenderer(terDispatcher: TileEntityRendererDispatcher
     }
 
     companion object {
-        val itemRenderer = Minecraft.getInstance().itemRenderer
-        val modelRenderer = Minecraft.getInstance().blockRenderer.modelRenderer
+        val itemRenderer: ItemRenderer = Minecraft.getInstance().itemRenderer
+        val modelRenderer: BlockModelRenderer = Minecraft.getInstance().blockRenderer.modelRenderer
         val PESTLE_LOCATION =
             RenderMaterial(AtlasTexture.LOCATION_BLOCKS, ResourceLocation(WiedzminstvoMod.MODID, "block/mortar"))
     }

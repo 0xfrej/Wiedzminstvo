@@ -5,7 +5,6 @@ import dev.sharpwave.wiedzminstvo.inventory.AlchemyResultInventory
 import dev.sharpwave.wiedzminstvo.item.FusionIngredientItem
 import dev.sharpwave.wiedzminstvo.registry.BlockRegistry
 import dev.sharpwave.wiedzminstvo.registry.ContainerTypeRegistry
-import dev.sharpwave.wiedzminstvo.registry.ItemRegistry
 import dev.sharpwave.wiedzminstvo.registry.RecipeRegistry
 import dev.sharpwave.wiedzminstvo.tag.ItemTags
 import dev.sharpwave.wiedzminstvo.utils.RecipeHelper
@@ -13,20 +12,13 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.entity.player.ServerPlayerEntity
 import net.minecraft.inventory.IInventory
-import net.minecraft.inventory.Inventory
 import net.minecraft.inventory.container.Container
-import net.minecraft.inventory.container.RecipeBookContainer
 import net.minecraft.inventory.container.Slot
 import net.minecraft.item.ItemStack
-import net.minecraft.item.crafting.IRecipe
-import net.minecraft.item.crafting.RecipeBookCategory
-import net.minecraft.item.crafting.RecipeItemHelper
 import net.minecraft.network.play.server.SSetSlotPacket
 import net.minecraft.util.IWorldPosCallable
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import net.minecraftforge.api.distmarker.Dist
-import net.minecraftforge.api.distmarker.OnlyIn
 
 // TODO: FIX crashing from i think quickStack move
 class AlchemyContainer(id: Int, private val inv: PlayerInventory, private val access: IWorldPosCallable) :
