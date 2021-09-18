@@ -1,5 +1,7 @@
-package dev.sharpwave.wiedzminstvo.block
+package dev.sharpwave.wiedzminstvo.block.mixins
 
+import dev.sharpwave.wiedzminstvo.block.GrowableConditions
+import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.state.IntegerProperty
 import net.minecraft.util.math.BlockPos
@@ -7,31 +9,38 @@ import net.minecraft.world.IBlockReader
 import net.minecraft.world.IWorldReader
 import net.minecraft.world.server.ServerWorld
 import net.minecraftforge.common.ForgeHooks
-import net.minecraftforge.common.extensions.IForgeBlock
 import java.util.*
 
-interface IGrowableFlower : IForgeBlock {
-    val conditions: GrowableConditions.Condition
+abstract class AbstractGrowableFlower <T:Block> (val conditions: GrowableConditions.Condition) : IGrowableFlower {
+    protected lateinit var parent: Block
 
-    fun getMaxAge(): Int
-    fun getAgeProperty(): IntegerProperty
+    override fun withGrowableFlower(parent: Block) {
+        this.parent = parent
+    }
 
-    fun getAge(state: BlockState): Int {
+    override fun getGrowableFlower(): IGrowableFlower {
+        return this
+    }
+
+    abstract override fun getMaxAge(): Int
+    abstract override fun getAgeProperty(): IntegerProperty
+
+    override fun getAge(state: BlockState): Int {
         return state.getValue(getAgeProperty())
     }
 
-    fun isMaxAge(state: BlockState): Boolean {
+    override fun isMaxAge(state: BlockState): Boolean {
         return state.getValue(getAgeProperty()) >= getMaxAge()
     }
 
-    fun isRandomlyTicking(state: BlockState): Boolean {
+    override fun shouldTickRandomly(state: BlockState): Boolean {
         return ! isMaxAge(state)
     }
 
-    fun getStateForAge(age: Int): BlockState
+    abstract override fun getStateForAge(age: Int): BlockState
 
     // TODO: Tweak the speed
-    fun randomTick(state: BlockState, level: ServerWorld, pos: BlockPos, random: Random) {
+    override fun processRandomTick(state: BlockState, level: ServerWorld, pos: BlockPos, random: Random) {
         if (!level.isAreaLoaded(pos, 1)) return  // Forge: prevent loading unloaded chunks when checking neighbor's light
 
         if (level.getRawBrightness(pos, 0) >= conditions.minGrowingBrightness) {
@@ -52,7 +61,7 @@ interface IGrowableFlower : IForgeBlock {
         }
     }
 
-    fun canSurvive(state: BlockState, reader: IWorldReader, pos: BlockPos): Boolean {
+    override fun canSurviveIn(state: BlockState, reader: IWorldReader, pos: BlockPos): Boolean {
         return (reader.getRawBrightness(
             pos,
             0
@@ -60,7 +69,7 @@ interface IGrowableFlower : IForgeBlock {
     }
 
     // TODO: Checkup if this doesn't need rewrite
-    fun getGrowthSpeed(reader: IBlockReader, pos: BlockPos): Float {
+    protected fun getGrowthSpeed(reader: IBlockReader, pos: BlockPos): Float {
         var baseSpeed = 1.0f
         val north = pos.north()
         val south = pos.south()
@@ -68,19 +77,19 @@ interface IGrowableFlower : IForgeBlock {
         val east = pos.east()
 
         val hasSameNeighbourWestEast =
-            block === reader.getBlockState(west).block || block === reader.getBlockState(east).block
+            parent === reader.getBlockState(west).block || parent === reader.getBlockState(east).block
         val hasSameNeighbourNorthSouth =
-            block === reader.getBlockState(north).block || block === reader.getBlockState(south).block
+            parent === reader.getBlockState(north).block || parent === reader.getBlockState(south).block
         if (hasSameNeighbourWestEast && hasSameNeighbourNorthSouth) {
             baseSpeed /= 2.0f
         } else if (
-                // has same neighbour diagonally
-                block === reader.getBlockState(west.north()).block ||
-                block === reader.getBlockState(east.north()).block ||
-                block === reader.getBlockState(east.south()).block ||
-                block === reader.getBlockState(west.south()).block
-            ) {
-                baseSpeed /= 2.0f
+        // has same neighbour diagonally
+            parent === reader.getBlockState(west.north()).block ||
+            parent === reader.getBlockState(east.north()).block ||
+            parent === reader.getBlockState(east.south()).block ||
+            parent === reader.getBlockState(west.south()).block
+        ) {
+            baseSpeed /= 2.0f
         }
         return baseSpeed
     }
