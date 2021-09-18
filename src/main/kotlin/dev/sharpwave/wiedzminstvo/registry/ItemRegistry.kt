@@ -43,21 +43,27 @@ object ItemRegistry : IForgeRegistry {
     val BEGGARTICK by ITEMS.registerObject("beggartick_blossoms") { ingredientBlock(BlockRegistry.BEGGARTICK, emptyList()) }
     val BISON_GRASS by ITEMS.registerObject("bison_grass") { ingredientBlock(BlockRegistry.BISON_GRASS, emptyList()) }
     val PUFFBALL by ITEMS.registerObject("puffball") { ingredientBlock(BlockRegistry.PUFFBALL, emptyList()) }
-    val BLUE_LOTUS by ITEMS.registerObject("blue_lotus") { tallIngredientBlock(BlockRegistry.BLUE_LOTUS, emptyList()) }
-    val WINTER_CHERRY by ITEMS.registerObject("winter_cherry") { tallIngredientBlock(BlockRegistry.WINTER_CHERRY, emptyList()) }
-    val FOOLS_PARSLEY by ITEMS.registerObject("fools_parsley") { ingredientBlock(BlockRegistry.FOOLS_PARSLEY, emptyList()) }
-    val BERBERCANE by ITEMS.registerObject("berbercane") { ingredientBlock(BlockRegistry.BERBERCANE, emptyList()) }
-    val CELANDINE by ITEMS.registerObject("celandine") { ingredientBlock(BlockRegistry.CELANDINE, emptyList()) }
+    val BLUE_LOTUS by ITEMS.registerObject("blue_lotus") { tallIngredientHolderBlock(BlockRegistry.BLUE_LOTUS) }
+    val WINTER_CHERRY by ITEMS.registerObject("winter_cherry") { tallIngredientHolderBlock(BlockRegistry.WINTER_CHERRY) }
+    val FOOLS_PARSLEY by ITEMS.registerObject("fools_parsley") { ingredientHolderBlock(BlockRegistry.FOOLS_PARSLEY) }
+    val BERBERCANE by ITEMS.registerObject("berbercane") { ingredientHolderBlock(BlockRegistry.BERBERCANE) }
+    val CELANDINE by ITEMS.registerObject("celandine") { ingredientHolderBlock(BlockRegistry.CELANDINE) }
     val CORTINARIUS by ITEMS.registerObject("cortinarius") { ingredientBlock(BlockRegistry.CORTINARIUS, emptyList()) }
-    val BALLISEFRUIT by ITEMS.registerObject("ballisefruit") { ingredientBlock(BlockRegistry.BALLISEFRUIT, emptyList()) }
-    val GROUND_ARENARIA by ITEMS.registerObject("ground_arenaria") { item(ModItemGroup.TAB_ALCHEMY) }
-    val GROUND_BEGGARTICK by ITEMS.registerObject("ground_beggartick") { item(ModItemGroup.TAB_ALCHEMY) }
-    val GROUND_BISON_GRASS by ITEMS.registerObject("ground_bison_grass") { item(ModItemGroup.TAB_ALCHEMY) }
-    val GROUND_BLUE_LOTUS by ITEMS.registerObject("ground_blue_lotus") { item(ModItemGroup.TAB_ALCHEMY) }
-    val GROUND_WINTER_CHERRY by ITEMS.registerObject("ground_winter_cherry") { item(ModItemGroup.TAB_ALCHEMY) }
-    val GROUND_FOOLS_PARSLEY by ITEMS.registerObject("ground_fools_parsley") { item(ModItemGroup.TAB_ALCHEMY) }
-    val GROUND_BERBERCANE by ITEMS.registerObject("ground_berbercane") { item(ModItemGroup.TAB_ALCHEMY) }
-    val GROUND_CELANDINE by ITEMS.registerObject("ground_celandine") { item(ModItemGroup.TAB_ALCHEMY) }
+    val BALLISEFRUIT by ITEMS.registerObject("ballisefruit") { ingredientHolderBlock(BlockRegistry.BALLISEFRUIT) }
+    val GROUND_ARENARIA by ITEMS.registerObject("ground_arenaria") { ingredient(emptyList()) }
+    val GROUND_BEGGARTICK by ITEMS.registerObject("ground_beggartick") { ingredient(emptyList()) }
+    val GROUND_BISON_GRASS by ITEMS.registerObject("ground_bison_grass") { ingredient(emptyList()) }
+    val GROUND_BLUE_LOTUS by ITEMS.registerObject("ground_blue_lotus") { ingredient(emptyList()) }
+    val GROUND_WINTER_CHERRY by ITEMS.registerObject("ground_winter_cherry") { ingredient(emptyList()) }
+    val GROUND_FOOLS_PARSLEY by ITEMS.registerObject("ground_fools_parsley") { ingredient(emptyList()) }
+    val GROUND_BERBERCANE by ITEMS.registerObject("ground_berbercane") { ingredient(emptyList()) }
+    val GROUND_CELANDINE by ITEMS.registerObject("ground_celandine") { ingredient(emptyList()) }
+    val HARVESTED_BALLISEFRUIT by ITEMS.registerObject("harvested_ballisefruit") { ingredient(emptyList()) }
+    val HARVESTED_BERNERCANE by ITEMS.registerObject("harvested_berbercane") { ingredient(emptyList()) }
+    val HARVESTED_BLUE_LOTUS by ITEMS.registerObject("harvested_blue_lotus") { ingredient(emptyList()) }
+    val HARVESTED_CELANDINE by ITEMS.registerObject("harvested_celandine") { ingredient(emptyList()) }
+    val HARVESTED_FOOLS_PARSLEY by ITEMS.registerObject("harvested_fools_parsley") { ingredient(emptyList()) }
+    val HARVESTED_WINTER_CHERRY by ITEMS.registerObject("harvested_winter_cherry") { ingredient(emptyList()) }
     val PORK_FAT by ITEMS.registerObject("pork_fat") { Item(Item.Properties().tab(ModItemGroup.TAB_MISC).food(Foods.TROPICAL_FISH)) }
 
     private fun block(block: Block, tab: ItemGroup): BlockItem {
@@ -76,7 +82,15 @@ object ItemRegistry : IForgeRegistry {
         return AlchemyTallBlockItem(block, properties, effects)
     }
 
-    private fun tallBlock(block: Block, tab: ItemGroup): BlockItem {
+    private fun ingredientHolderBlock(block: Block, tab: ItemGroup = ModItemGroup.TAB_MISC): BlockItem {
+        return block(block, tab)
+    }
+
+    private fun tallIngredientHolderBlock(block: Block, tab: ItemGroup = ModItemGroup.TAB_MISC): TallBlockItem {
+        return tallBlock(block, tab)
+    }
+
+    private fun tallBlock(block: Block, tab: ItemGroup): TallBlockItem {
         return TallBlockItem(block, Item.Properties().tab(tab))
     }
 
